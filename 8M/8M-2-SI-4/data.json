@@ -1,0 +1,98 @@
+{
+    "lang": "BN",
+    "headerText": {
+      "text": {
+        "BN": "সমৃদ্ধ সংখ্যা",
+        "EN": "Abundant number"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অধ্যায় \n\t\t\t 1",
+        "EN": "Chapter\n\t No.1"
+      },
+      "size": {
+        "BN": 28,
+        "EN": 28
+      },
+      "posX": {
+        "BN":130 ,
+        "EN": 130
+      },
+      "posY": {
+        "BN": 70,
+        "EN": 70
+      }
+    },
+    "informationText": {
+        "text":{
+            "BN":"সংখ্যা",
+            "EN":"Numbers"
+        },
+        "size":{
+            "BN":35,
+            "EN":30
+        },
+        "posX":{
+            "BN": 235,
+            "EN": 205
+        }
+    },
+    "playBtnText": {
+        "text": {
+            "BN": "একটি নাম্বার দিন",
+            "EN": "Enter a number"
+        },
+        "size": {
+            "BN": 30,
+            "EN": 30
+        }
+    },
+    
+    "abdundantnumber": {
+        "text": {
+            "BN": "সমৃদ্ধ সংখ্যা",
+            "EN": "Abundant number"
+        }
+    },
+    "deficentnumber": {
+        "text": {
+            "BN": "অসমৃদ্ধ সংখ্যা",
+            "EN": "Deficent Number"
+        }
+    },
+    "infoAbdunantnumber": {
+        "text": {
+            "BN": "একটি \nসমৃদ্ধ\nসংখ্যা",
+            "EN": "is an\nabundant\nnumber"
+        }
+    },
+    "infodeficentnumber": {
+        "text": {
+            "BN": "একটি\nঅসমৃদ্ধ\nসংখ্যা",
+            "EN": "is not\nan abundant\nnumber"
+        }
+    },
+    "iswrongnumber": {
+        "text": {
+            "BN": "ভুল উত্তর",
+            "EN": "is not a vald"
+        }
+    },
+    "wrongnumbermassage": {
+        "text": {
+            "BN": "আপনি ১০ \nবার ভুল\nউত্তর দিয়েছেন",
+            "EN": "You have given 10 wrong answers"
+        }
+    }
+    
+
+    
+    
+}
+
+

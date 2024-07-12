@@ -1,0 +1,153 @@
+{
+    "lang": "EN",
+    "headerText": {
+      "text": {
+        "BN": "ফিবোনাচ্চি রাশিমালা",
+        "EN": "Fibonacci Series"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অবিজ্ঞতা \n\t\t\t 1",
+        "EN": "Experiment\n\t\t\t\t No.1"
+      },
+      "size": {
+        "BN": 28,
+        "EN": 28
+      },
+      "posX": {
+        "BN":130 ,
+        "EN": 130
+      },
+      "posY": {
+        "BN": 70,
+        "EN": 70
+      }
+    },
+    "informationText": {
+        "text":{
+            "BN":"ফুলের ছবি",
+            "EN":"Flowers picture"
+        },
+        "size":{
+            "BN":35,
+            "EN":30
+        },
+        "posX":{
+            "BN": 235,
+            "EN": 205
+        }
+    },
+    "playBtnText": {
+        "text": {
+            "BN": "একটি নাম্বার দিন",
+            "EN": "Enter a number"
+        },
+        "size": {
+            "BN": 30,
+            "EN": 30
+        }
+    },
+    
+    "fibonaccitnumber": {
+        "text": {
+            "BN": "ফিবোনাচ্চি সংখ্যা",
+            "EN": "Fibonacci Number"
+        }
+    },
+    "deficentnumber": {
+        "text": {
+            "BN": "ফিবোনাচ্চি সংখ্যা নয়",
+            "EN": "Not a Fibonacci Number"
+        }
+    },
+    "infoAbdunantnumber": {
+        "text": {
+            "BN": "একটি সমৃদ্ধ সংখ্যা",
+            "EN": "is an abundant number"
+        }
+    },
+    "infodeficentnumber": {
+        "text": {
+            "BN": "একটি অসমৃদ্ধ সংখ্যা",
+            "EN": "is not an abundant number"
+        }
+    },
+    "iswrongnumber": {
+        "text": {
+            "BN": "আপনার উত্তরটি ভুল হয়েছে",
+            "EN": "Your ans is not a valid"
+        }
+    },
+    "iscorrectnumber": {
+        "text": {
+            "BN": "আপনার উত্তরটি সঠিক হয়েছে। ",
+            "EN": "Your ans is correct"
+        }
+    },
+    "flowername": {
+        "text": {
+            "BN": "ফুলের নাম :",
+            "EN": "Flower Name :"
+        }
+    },
+    "leafnumberlabel": {
+        "text": {
+            "BN": "পাপড়ি সংখ্যা :",
+            "EN": "Leaf Number :"
+        }
+    },
+    "wrongnumbermassage": {
+        "text": {
+            "BN": "আপনি ১০ \nবার ভুল\nউত্তর দিয়েছেন",
+            "EN": "You have given 10 wrong answers"
+        }
+    },
+    "multiflymassage": {
+        "text": {
+            "BN": " এর গুনিতক:",
+            "EN": " Its multiple numbers:"
+        }
+    },
+    "multiflicationmassage": {
+        "text": {
+            "BN": "গুনিতক গুলোর যোগফল:\n",
+            "EN": "Sum of the multiplied numbers:\n"
+        }
+    },
+    "attempresult": {
+        "text": {
+            "BN": "আপনি চেষ্টার সর্বোচ্চ\nসংখ্যায় পৌঁছেছেন।",
+            "EN": "You have reached the maximum\nnumber of attempts.\n"
+        }
+    },
+    "rightresult": {
+        "text": {
+            "BN": "সঠিক হয়েছে :",
+            "EN": "Correct answer :"
+        }
+    },
+    "wrongresult": {
+        "text": {
+            "BN": "ভুল হয়েছে :",
+            "EN": "Wrong answer :"
+        }
+    },
+    "percentageofpass": {
+        "text": {
+            "BN": "আপনার উত্তরের শতকরা:",
+            "EN": "Percentage of your answer:"
+        }
+    }
+
+    
+
+    
+    
+}
+
+

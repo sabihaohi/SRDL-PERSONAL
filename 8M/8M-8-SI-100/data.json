@@ -1,0 +1,103 @@
+{
+    "lang": "EN",
+    "headerText": {
+      "text": {
+        "BN": "প্রতিসমতা ব্যাবহার করে বাগান সাজাই",
+        "EN": "Decorate the garden using symmetry"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অধ্যায় \n\t\t\t ৮",
+        "EN": "Chapter\n\t\t No.8"
+      },
+      "size": {
+        "BN": 28,
+        "EN": 28
+      },
+      "posX": {
+        "BN":130 ,
+        "EN": 130
+      },
+      "posY": {
+        "BN": 70,
+        "EN": 70
+      }
+    },
+    "informationText": {
+        "text":{
+            "BN":"তথ্য ",
+            "EN": "Information"
+        },
+        "size":{
+            "BN":45,
+            "EN":35
+        },
+        "posX":{
+            "BN": 300,
+            "EN": 255
+        }
+    },
+    "lengthoforSide": {
+        "text": {
+            "BN": "একটি বাহুর দৈর্ঘ্য : 10 মিটার",
+            "EN": "Length of one side : 10 meter"
+        }
+      
+    },
+    "instructionText": {
+        "text":{
+            "BN":"এখানে, আমাদের তিনটি লাইন আছে,এই রেখার\nমাধ্যমে আমরা প্রতিসাম্য গণনা করি, প্রতিটি\nএকক লাইনে ত্রিভুজ ফুলের সংখ্যার সমন্বয় রয়েছে,\nলাইন 1 এ : (1,6), (2,5), (3,4)\nলাইন 2 এ : (1,2), (3,6), (4,5),\nলাইন 3 এ : (2,3), (1,4), (5,6)\nযদি প্রতিটি লাইনের প্রতিটি সংমিশ্রণের জন্য \nফুলের সংখ্যা একই হয় তবে আমরা বলতে পারি\nএই লাইনটির প্রতিসাম্য রয়েছে",
+
+            "EN":"Here,we have three Lines,through these\nline we calculate symmetry,every single\nline has combination of Triangles flowers\nin line1 : (1,6),(2,5),(3,4)\nin line2 : (1,2),(3,6),(4,5)\nin line3 : (2,3),(1,4),(5,6)\nif flower counts are same for each\ncombination of each line then we can say\nthis line has symmetry\n"
+        },
+        "size":{
+            "BN":20,
+            "EN":20
+        },
+        "posX":{
+            "BN": 300,
+            "EN": 275
+        },
+        "LineHeight":{
+            "BN": 30,
+            "EN": 25
+        }
+    },
+    "resultInformation":{
+        "text":{
+            "BN":"প্রতিসমতা রয়েছে লাইন : ",
+            "EN":"\nSymmetry is present Line :"
+        },
+        "size":{
+            "BN":25,
+            "EN":35
+        },
+        "posX":{
+            "BN": 300,
+            "EN": 275
+        },
+        "posY":{
+            "BN": 840,
+            "EN": 770
+        }
+    },
+    "arearesultText":{
+        "text":{
+            "BN":"\n\nএখানে,৬ টি সমবাহু ত্রিভুজ রয়েছে প্রতি বাহুর\nদৈর্ঘ্য ১০মি।\nএকটি ত্রিভুজ এর ক্ষেত্রফল =(√3/4)a²\nএখানে a=10 \nতাহলে ত্রিভুজের ক্ষেত্রফল = 25√3 বর্গ মিটার \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t= 43.30 বর্গ মিটার\n তাহলে 6 টি ত্রিভুজের ক্ষেত্রফল = 6 X 43.30 বর্গ মিটার \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t = 259.80 বর্গ মিটার",
+            "EN":"Here, there are 6 equilateral triangles each side\nlength 10m.Area of a triangle =(√3/4)a²\nHere, a=10 \nThen, Area of a triangle = 25√3 square meter \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t = 43.30 square meter\n So, Area of 6 triangles  = 6 X 43.30 square meter \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t = 259.80 square meter"
+        }
+        
+    }
+    
+    
+
+
+
+    
+    
+}

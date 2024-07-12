@@ -1,0 +1,44 @@
+{
+    "lang": "BN",
+    "headerText": {
+      "text": {
+        "BN": "সূচকের সূচক",
+        "EN":"index of indices"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অভিজ্ঞতা নং \n\t\t\t\t\t\t\t\t1",
+        "EN": "Experience No.\n\t\t\t\t\t\t\t\t1"
+      },
+      "size": {
+        "BN": 20,
+        "EN": 24
+      }
+    },
+    
+    "informationText": {
+        "text":{
+            "BN":"তথ্য ",
+            "EN": "Information"
+        },
+        "size":{
+            "BN":35,
+            "EN":35
+        }
+    },
+    "footerLabelText": {
+      "text": {
+        "BN": "দুইটি মাঠের দৈর্ঘ্য ও প্রস্থের অনুপাত থেকে মাঠের ক্ষেত্রফলের অনুপাত নির্ণয়।",
+        "EN": "National flags are made in different proportions"
+      },
+      "size": {
+        "BN": 22,
+        "EN": 28
+      }
+    }
+}

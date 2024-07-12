@@ -1,0 +1,123 @@
+{
+    "lang": "EN",
+    "itemsInfo": [
+        {
+            "btnImage": "matBtn.png",
+            "mainImage": "mat.png",
+            "btnWidth": 220,
+            "btnHeight": 220,
+            "mainWidth": 230,
+            "mainHeight": 230,
+            "btnStartingX": 1450,
+            "btnStartingY": 230,
+            "scale": 1,
+            "moveX": 0,
+            "moveY": 0
+        },
+        {
+            "btnImage": "bedBtn.png",
+            "mainImage": "bed.png",
+            "btnWidth": 180,
+            "btnHeight": 200,
+            "mainWidth": 360,
+            "mainHeight": 395,
+            "btnStartingX": 1690,
+            "btnStartingY": 250,
+            "scale": 0.8,
+            "moveX": 0,
+            "moveY": 6
+        },
+        {
+            "btnImage": "tableBtn.png",
+            "mainImage": "table.png",
+            "btnWidth": 450,
+            "btnHeight": 100,
+            "mainWidth": 450,
+            "mainHeight": 100,
+            "btnStartingX": 1450,
+            "btnStartingY": 450,
+            "scale": 1,
+            "moveX": -20,
+            "moveY": -10
+        },
+        {
+            "btnImage": "deskBtn.png",
+            "mainImage": "desk.png",
+            "btnWidth": 160,
+            "btnHeight": 150,
+            "mainWidth": 160,
+            "mainHeight": 140,
+            "btnStartingX": 1450,
+            "btnStartingY": 570,
+            "scale": 1,
+            "moveX": 0,
+            "moveY": 0
+        },
+        {
+            "btnImage": "toolBtn.png",
+            "mainImage": "tool.png",
+            "btnWidth": 100,
+            "btnHeight": 100,
+            "mainWidth": 110,
+            "mainHeight": 100,
+            "btnStartingX": 1630,
+            "btnStartingY": 590,
+            "scale": 1,
+            "moveX": 0,
+            "moveY": 0
+        },
+        {
+            "btnImage": "seatBtn.png",
+            "mainImage": "seat.png",
+            "btnWidth": 100,
+            "btnHeight": 100,
+            "mainWidth": 100,
+            "mainHeight": 100,
+            "btnStartingX": 1750,
+            "btnStartingY": 590,
+            "scale": 1,
+            "moveX": -10,
+            "moveY": 0
+        },
+        {
+            "btnImage": "desk2Btn.png",
+            "mainImage": "desk2.png",
+            "btnWidth": 190,
+            "btnHeight": 100,
+            "mainWidth": 305,
+            "mainHeight": 150,
+            "btnStartingX": 1450,
+            "btnStartingY": 790,
+            "scale": 1,
+            "moveX": 0,
+            "moveY": 0
+        },
+        {
+            "btnImage": "almirahBtn.png",
+            "mainImage": "cabinate.png",
+            "btnWidth": 190,
+            "btnHeight": 100,
+            "mainWidth": 305,
+            "mainHeight": 150,
+            "btnStartingX": 1680,
+            "btnStartingY": 790,
+            "scale": 1,
+            "moveX": 0,
+            "moveY": 0
+        },
+        {
+            "btnImage": "doorBtn.png",
+            "mainImage": "door.png",
+            "btnWidth": 190,
+            "btnHeight": 30,
+            "mainWidth": 180,
+            "mainHeight": 30,
+            "btnStartingX": 1570,
+            "btnStartingY": 730,
+            "scale": 1,
+            "moveX": 0,
+            "moveY": 0
+        }
+    ]
+}
+  

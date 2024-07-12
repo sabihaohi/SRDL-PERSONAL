@@ -1,0 +1,43 @@
+{
+    "lang": "EN",
+    "itemsInfo": [
+        {
+            "mainImage": "leaf.png",
+            "structure":"20m",
+            "form":"Oval",
+            "weight":"1kg",
+            "startingX": 600,
+            "startingY": 250
+        },
+        
+        {
+            "mainImage": "book1.png",
+            "structure":"20m",
+            "form":"Rectangle",
+            "weight":"5kg",
+            "color":"blue",
+            "startingX": 850,
+            "startingY": 250
+        },
+        {
+            "mainImage": "book2.png",
+            "structure":"20m",
+            "form":"Rectangle",
+            "weight":"5kg",
+            "color":"red",
+            "startingX": 1080,
+            "startingY": 250
+        },
+        {
+            "mainImage": "boy.png",
+            "structure":"20m",
+            "form":"Rectangle",
+            "weight":"45kg",
+            "startingX": 1325,
+            "startingY": 250
+        }
+
+       
+    ]
+}
+  
