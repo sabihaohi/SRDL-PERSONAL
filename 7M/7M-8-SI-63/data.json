@@ -2,8 +2,8 @@
     "lang": "EN",
     "headerText": {
       "text": {
-        "BN": "নিজের ঘর গুছাও",
-        "EN": "Build Your Own Room"
+        "BN": "বৃত্তের ব্যাসার্ধ মাপি",
+        "EN": "Measure the radius of the circle"
       },
       "size": {
         "BN": 40,
@@ -12,14 +12,48 @@
     },
     "chapter": {
       "text": {
-        "BN": "অভিজ্ঞতা \n\t\t\t 2",
-        "EN": "Experience \n\t\t\t No:2"
+        "BN": "অভিজ্ঞতা \n\t\t\t\t\t\t 8",
+        "EN": "Experience \n\t\t\t No:8"
       },
       "size": {
         "BN": 28,
         "EN": 24
       }
     },
+    "informationText": {
+      "text":{
+          "BN":"তথ্য ",
+          "EN": "Information"
+      },
+      "size":{
+          "BN":35,
+          "EN":35
+      },
+      "x":{
+          "BN": 210,
+          "EN": 175
+      }
+  },
+ "diameterText": {
+    "text": {
+      "BN": "ব্যাস :",
+      "EN": "Diameter : "
+    },
+    "size": {
+      "BN": 25,
+      "EN": 25
+    }
+  },
+  "radiusText": {
+    "text": {
+      "BN": "ব্যাসার্ধ :",
+      "EN": "Radius : "
+    },
+    "size": {
+      "BN": 25,
+      "EN": 25
+    }
+  },
     "footerText":{
       "text":{
         "BN":"একটি স্লাইডার দিয়ে কত পদক্ষেপ পর্যন্ত অর্ধবৃত্ত তৈরি হবে তা নির্ণয় করুন। অন্য আরেকটি স্লাইডার \nদিয়ে কয়টা অর্ধবৃত্ত তৈরি হবে তা নির্ণয় করুন। এখানে প্রদর্শিত সংখ্যা গুলো পরিবর্তন করে দেখুন।\nডানপাশের তথ্যমালা তে রাশির গুনফল দেখুন",

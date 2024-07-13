@@ -4,24 +4,24 @@
         {
             "mainImage": "bottlecap.png",
             "diameter":"4",
-            "radius":"2cm",
-            "startingX": 1600,
-            "startingY": 250
+            "radius":"= 2cm",
+            "startingX": 1625,
+            "startingY": 385
         },
         
         {
             "mainImage": "churi.png",
-             "diameter":"8cm",
-            "radius":"4cm",
-            "startingX": 1600,
-            "startingY": 450
+             "diameter":"7",
+            "radius":"= 3.5cm",
+            "startingX": 1625,
+            "startingY": 530
         },
         {
             "mainImage": "ring.png",
-            "diameter":"3cm",
-            "radius":"1.5cm",
-            "startingX": 1600,
-            "startingY": 650
+            "diameter":"2.5",
+            "radius":"= 1.25cm",
+            "startingX": 1620,
+            "startingY": 670
         }
        
 
