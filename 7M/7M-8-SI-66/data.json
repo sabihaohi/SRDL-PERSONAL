@@ -1,0 +1,58 @@
+{
+    "lang": "EN",
+    "headerText": {
+      "text": {
+        "BN": "বৃত্তের পরিধির দৈর্ঘ্য নির্ণয় কর",
+        "EN":"Determine the length of the circle"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অভিজ্ঞতা নং \n\t\t\t\t\t\t\t\t8",
+        "EN": "Experience No.\n\t\t\t\t\t\t\t\t8"
+      },
+      "size": {
+        "BN": 20,
+        "EN": 24
+      }
+    },
+    
+    "informationText": {
+        "text":{
+            "BN":"তথ্য ",
+            "EN": "Information"
+        },
+        "size":{
+            "BN":35,
+            "EN":35
+        },
+        "x":{
+            "BN": 280,
+            "EN": 240
+        }
+    },
+    "centerText": {
+        "text": {
+          "BN": "বৃত্তের মধ্যবিন্দু :",
+          "EN":"Center of the circle:"
+        },
+        "size": {
+          "BN": 40,
+          "EN": 32
+        }
+      },
+      "radiusText": {
+        "text": {
+          "BN": "বৃত্তের ব্যাসার্ধ :",
+          "EN":"Radius of the circle:"
+        },
+        "size": {
+          "BN": 40,
+          "EN": 32
+        }
+      }
+}
