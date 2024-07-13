@@ -153,7 +153,25 @@ async function init() {
         
         });
 
-
+        const restartButton = new Button({
+            label: "",
+            width: 90,
+            height: 90,
+            backgroundColor: "#967bb6",
+            rollBackgroundColor: "#967bb6",
+            borderWidth: 0,
+            gradient: 0.4,
+            corner: 45,
+          })
+            .center()
+            .mov(830, 430);
+      
+          const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
+          pic.rotation = 60;
+      
+          restartButton.on("click", () => {
+            location.reload();
+          });
 
     }
 
