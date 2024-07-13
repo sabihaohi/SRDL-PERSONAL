@@ -57,17 +57,24 @@ async function init() {
        const stage = new Pic("assets/image/stage.png").center().mov(100, 80);
        const scaleouterRect = new Rectangle({ width: 500, height: 87, color: "transparent" }).center().mov(100, 80);
        const scale = new Pic("assets/image/scale.png").center().mov(100, 80);
-       const wheelCircle = new Circle(80, "transparent").pos(740,418).drag();
+       const wheelCircle = new Circle(80, "transparent").loc(810,498).drag();
        const wheel = new Pic("assets/image/wheel.png").sca(.47).center(wheelCircle);
-
-       wheelCircle.on("pressup", function() {
-       //wheelCircle.y=418;
+       let isSpinnig = false;
+       wheelCircle.on("pressmove", function() {
+       wheelCircle.y=498;
+       if(!isSpinnig){
         wheelCircle.animate({
-            props: { x:wheelCircle.x+200,y:wheelCircle.y ,rotation:360},
-            time: 4,
+            props: {rotation:360},
+            time: 1,
+            call:()=>{
+                isSpinnig = false;
+            }
            
         });
-        
+        isSpinnig = true;
+
+       }
+       
 
        });
 

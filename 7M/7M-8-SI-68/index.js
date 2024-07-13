@@ -29,11 +29,11 @@ async function init() {
     drawColorsOnGraph(distancesOfCells, cells, radius, halfRectLabel, fullRectLabel);
     draggablePoint.on("pressmove", () => {
       
-      if (draggablePoint.x > 1100) {
-          draggablePoint.x = 1100;
+      if (draggablePoint.x > 1050) {
+          draggablePoint.x = 1050;
       }
-      else if (draggablePoint.x < 850) {
-          draggablePoint.x = 850;
+      else if (draggablePoint.x < 900) {
+          draggablePoint.x = 900;
       }
       draggablePoint.y = 230;
 
@@ -92,22 +92,22 @@ async function init() {
 
         cells.push(cell);
        
-        cellDistance = zim.dist(1100, 620, cell.x, cell.y);
+        cellDistance = zim.dist(1100, 610, cell.x, cell.y);
         distancesOfCells.push(cellDistance);
       }
     }
     // Graph Lines
     for (let row = 0; row < 5; row++) {
       for (let col = 0; col < 5; col++) {
-        const line = new Rectangle({ width: 100, height: 100, color: "transparent", borderWidth: 0.5, borderColor: "#78080a" }).pos(850 + 100 * col, 360 + 100 * row);
+        const line = new Rectangle({ width: 100, height: 100, color: "transparent", borderWidth: 0.5, borderColor: "red" }).pos(850 + 100 * col, 360 + 100 * row);
       }
     }
     return [cells, distancesOfCells];
   }
 
   function drawShape(){
-    const circle = new Circle({ radius: 100, color: "transparent", borderWidth: 1 }).loc(1100, 615);
-    const line = new Line({ length: 100, thickness: 2 }).pos(1100, 620);
+    const circle = new Circle({ radius: 100, color: "transparent", borderWidth: 1 }).loc(1100, 610);
+    const line = new Line({ length: 100, thickness: 2 }).pos(1100, 610);
     //new Circle(5, "red").pos(1100, 620);
     const upperLine = new Line({ length: 100, thickness: 2 }).pos(850, 230);
     const draggablePoint = new Circle({ radius: 10, color: "red" }).loc(950, 230).drag();
@@ -125,11 +125,11 @@ async function init() {
     let halfRectCount = 0;
     distancesOfCells.forEach((cellDis, index) => {
       if (cellDis < radius + 10) {
-          cells[index].color = "blue";
+          cells[index].color = "red";
           fullRectCount++;
 
           if (cellDis > radius - 10) {
-              cells[index].color = "pink";
+              cells[index].color = "green";
               halfRectCount++;
               fullRectCount--;
           }
