@@ -1,5 +1,5 @@
 {
-    "lang": "EN",
+    "lang": "BN",
     "headerText": {
       "text": {
         "BN": "বৃত্তের পরিধির দৈর্ঘ্য নির্ণয় কর",
@@ -35,20 +35,40 @@
             "EN": 240
         }
     },
-    "centerText": {
+    "greenText": {
         "text": {
-          "BN": "বৃত্তের মধ্যবিন্দু :",
-          "EN":"Center of the circle:"
+          "BN": "সবুজ চতুর্ভুজ\nঅংশের ক্ষেত্রফল : ",
+          "EN":"Area of the green\nRectangle : "
         },
         "size": {
           "BN": 40,
           "EN": 32
         }
       },
-      "radiusText": {
+      "redText": {
         "text": {
-          "BN": "বৃত্তের ব্যাসার্ধ :",
-          "EN":"Radius of the circle:"
+          "BN": "লাল চতুর্ভুজ\nঅংশের ক্ষেত্রফল : ",
+          "EN":"Area of the red\nRectangle : "
+        },
+        "size": {
+          "BN": 40,
+          "EN": 32
+        }
+      },
+      "resultText": {
+        "text": {
+          "BN": "বৃত্তের ক্ষেত্রফল : ",
+          "EN":"Area of the \ncircle : "
+        },
+        "size": {
+          "BN": 40,
+          "EN": 32
+        }
+      },
+      "result": {
+        "text": {
+          "BN": "বর্গসেন্টিমিটার",
+          "EN":"Square centimeter"
         },
         "size": {
           "BN": 40,

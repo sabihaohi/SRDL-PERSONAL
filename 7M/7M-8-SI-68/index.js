@@ -9,7 +9,7 @@ async function init() {
 
 
 
-  const { lang, headerText, chapter, informationText, diameterText, radiusText, footerLabelText } = data;
+  const { lang, headerText, chapter, informationText,redText, resultText, footerLabelText,greenText,result } = data;
   //const { itemsInfo } = itemsData;
   new Frame(FIT, 1920, 1080, "#adbed9", "#7d9ed1", ready, "assets/");
 
@@ -23,10 +23,10 @@ async function init() {
     labelCreation();
     const [cells, distancesOfCells] = drawGraph();
     const [circle,line,upperLine,draggablePoint] = drawShape();
-    const [halfRectLabel, fullRectLabel] = createLabels();
+    const [halfRectLabel, fullRectLabel,resultRectLabel] = createLabels();
 
     let radius =100;
-    drawColorsOnGraph(distancesOfCells, cells, radius, halfRectLabel, fullRectLabel);
+    drawColorsOnGraph(distancesOfCells, cells, radius, halfRectLabel, fullRectLabel,resultRectLabel);
     draggablePoint.on("pressmove", () => {
       
       if (draggablePoint.x > 1050) {
@@ -43,7 +43,7 @@ async function init() {
       circle.radius = radius;
       S.update();
 
-      drawColorsOnGraph(distancesOfCells, cells, radius,halfRectLabel, fullRectLabel);
+      drawColorsOnGraph(distancesOfCells, cells, radius,halfRectLabel, fullRectLabel,resultRectLabel);
   });
    
   
@@ -115,12 +115,14 @@ async function init() {
 
   }
   function createLabels() {
-    const halfRectLabel = new Label({ size: 28, font: "monospace", bold: true }).loc(200, 490);
-    const fullRectLabel = new Label({ size: 28, font: "monospace", bold: true }).loc(200, 550);
-    return [halfRectLabel, fullRectLabel];
+    const halfRectLabel = new Label({ size: 20, bold: true,lineHeight:25, }).loc(180, 490);
+    const fullRectLabel = new Label({ size: 20, bold: true,lineHeight:25, }).loc(180, 570);
+    const resultRectLabel = new Label({ size: 20, bold: true,lineHeight:25, }).loc(180, 670);
+
+    return [halfRectLabel, fullRectLabel,resultRectLabel];
 }
 
-  function drawColorsOnGraph(distancesOfCells, cells, radius, halfRectLabel, fullRectLabel) {
+  function drawColorsOnGraph(distancesOfCells, cells, radius, halfRectLabel, fullRectLabel,resultRectLabel) {
     let fullRectCount = 0;
     let halfRectCount = 0;
     distancesOfCells.forEach((cellDis, index) => {
@@ -137,9 +139,9 @@ async function init() {
       else {
           cells[index].color = "white";
       }
-      halfRectLabel.text = "green:" + halfRectCount;
-      fullRectLabel.text = "red: " + fullRectCount;
-
+      halfRectLabel.text = greenText.text[lang] + `0.5 x ${halfRectCount} \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t = ${halfRectCount * 0.5}`+result.text[lang];
+      fullRectLabel.text = redText.text[lang] + `1 x ${fullRectCount} \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t= ${fullRectCount * 1} `+result.text[lang];
+      resultRectLabel.text = resultText.text[lang] + `${halfRectCount * 0.5} + ${fullRectCount * 1} = ${halfRectCount * 0.5 + fullRectCount * 1}`+result.text[lang];
   });
    
   }
