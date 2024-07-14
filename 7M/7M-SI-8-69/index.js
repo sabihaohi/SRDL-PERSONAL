@@ -39,14 +39,33 @@ const circle =new Circle({radius:r,color:white,borderColor:black,borderWidth:2})
 
 const theta=getTheta()
 
-let chordsLine
+let chordsPoint1
+let chordsPoint2
+let chordsPoint3
+const allChords =[]
 if(theta){
-  chordsLine =new Shape().s(black).ss(5)
-  .mt(circle.x+r*Math.cos(theta.t1)-fW,circle.y+r*Math.sin(theta.t1)-fH)
-  .lt(circle.x+r*Math.cos(theta.t2)-fW,circle.y+r*Math.sin(theta.t2)-fH).center();
+  // chordsLine =new Shape().s(black).ss(5)
+  // .mt(circle.x+r*Math.cos(theta.t1)-fW,circle.y+r*Math.sin(theta.t1)-fH)
+  // .lt(circle.x+r*Math.cos(theta.t2)-fW,circle.y+r*Math.sin(theta.t2)-fH).center();
+
+  chordsPoint1 = new Circle(10, "black").center().mov(circle.x+r*Math.cos(theta.t1)-fW,circle.y+r*Math.sin(theta.t1)-fH).drag();
+  chordsPoint2 = new Circle(10, "black").center().mov(circle.x+r*Math.cos(theta.t2)-fW,circle.y+r*Math.sin(theta.t2)-fH).drag();
+  chordsPoint3 = new Circle(10, "black").center().mov(circle.x+r*Math.cos(theta.t1+theta.t2)-fW,circle.y+r*Math.sin(theta.t1+theta.t2)-fH).drag();
+  allChords.push(chordsPoint1,chordsPoint2,chordsPoint3)
 
 }
 
+
+allChords.forEach((point,index)=>{
+  point.on("pressmove",()=>{
+    if(index===0){
+      chordsPoint1 =new Shape().s(black).ss(5)
+     .mt(circle.x+r*Math.cos(theta.t1)-fW,circle.y+r*Math.sin(theta.t1)-fH)
+     .lt(circle.x+r*Math.cos(theta.t2)-fW,circle.y+r*Math.sin(theta.t2)-fH).center();
+    }
+    
+  })
+})
 
 
 

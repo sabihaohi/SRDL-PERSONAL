@@ -103,11 +103,7 @@ circleLinePoint2.on("pressmove",()=>{
      container.removeAllChildren();
      theta = theta > 0 ? (theta < .2 ? 0.001 : theta) : theta;
      console.log(theta);
-    //  if (theta < 0) {
-        const arc = new Shape().s("black").a(0, 0, distance, theta, 0).addTo().center(container);
-    //  }else{
-        // const arc = new Shape().s("black").a(0, 0, distance, 0, theta).addTo().center(container);
-    // }
+     const arc = new Shape().s("black").a(0, 0, distance, theta, 0).addTo().center(container);
      shapes.push(arc);
      S.update();
 })

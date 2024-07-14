@@ -81,7 +81,7 @@ async function init() {
 
   }
 
-  function drawGraph() {
+  function drawGraph(height,width) {
     const cells = [];
     const distancesOfCells = [];
     let cellDistance = 0;
@@ -141,7 +141,7 @@ async function init() {
       }
       halfRectLabel.text = greenText.text[lang] + `0.5 x ${halfRectCount} \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t = ${halfRectCount * 0.5}`+result.text[lang];
       fullRectLabel.text = redText.text[lang] + `1 x ${fullRectCount} \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t= ${fullRectCount * 1} `+result.text[lang];
-      resultRectLabel.text = resultText.text[lang] + `${halfRectCount * 0.5} + ${fullRectCount * 1} = ${halfRectCount * 0.5 + fullRectCount * 1}`+result.text[lang];
+      resultRectLabel.text = resultText.text[lang] + `${halfRectCount * 0.5} + ${fullRectCount * 1}\n = ${halfRectCount * 0.5 + fullRectCount * 1}`+result.text[lang];
   });
    
   }
