@@ -59,23 +59,14 @@ async function init() {
        const scale = new Pic("assets/image/scale.png").center().mov(100, 80);
        const wheelCircle = new Circle(80, "transparent").loc(810,498).drag();
        const wheel = new Pic("assets/image/wheel.png").sca(.47).center(wheelCircle);
-       let isSpinnig = false;
-       wheelCircle.on("pressmove", function() {
+       wheelCircle.on("click", function() {
        wheelCircle.y=498;
-       if(!isSpinnig){
         wheelCircle.animate({
-            props: {rotation:360},
-            time: 1,
-            call:()=>{
-                isSpinnig = false;
-            }
+            props: {x: wheelCircle.x + 200,y:wheelCircle.y,rotation:360},
+            time: 4,
+           
            
         });
-        isSpinnig = true;
-
-       }
-       
-
        });
 
         const restartButton = new Button({

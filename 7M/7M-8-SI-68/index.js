@@ -81,7 +81,7 @@ async function init() {
 
   }
 
-  function drawGraph(height,width) {
+  function drawGraph() {
     const cells = [];
     const distancesOfCells = [];
     let cellDistance = 0;
@@ -115,9 +115,9 @@ async function init() {
 
   }
   function createLabels() {
-    const halfRectLabel = new Label({ size: 20, bold: true,lineHeight:25, }).loc(180, 490);
-    const fullRectLabel = new Label({ size: 20, bold: true,lineHeight:25, }).loc(180, 570);
-    const resultRectLabel = new Label({ size: 20, bold: true,lineHeight:25, }).loc(180, 670);
+    const halfRectLabel = new Label({ size: 20, bold: true,lineHeight:20, }).loc(180, 490);
+    const fullRectLabel = new Label({ size: 20, bold: true,lineHeight:20, }).loc(180, 570);
+    const resultRectLabel = new Label({ size: 20, bold: true,lineHeight:20, }).loc(180, 670);
 
     return [halfRectLabel, fullRectLabel,resultRectLabel];
 }
