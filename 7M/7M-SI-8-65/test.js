@@ -70,11 +70,10 @@ async function init() {
     allChords.forEach((chord, index) => {
       chord.on("pressmove", () => {
         drawChords();
-        const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
-        distances.push(distance);
-        console.log(distances);
       });
-
+      const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
+      distances.push(distance);
+      console.log(distances);
     });
 
     function drawChords() {
