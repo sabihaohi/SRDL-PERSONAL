@@ -66,11 +66,17 @@ async function init() {
         allChordsPoints.push({ x: chord.x, y: chord.y });
       });
     }
-
+     let distances = [];
     allChords.forEach((chord, index) => {
       chord.on("pressmove", () => {
         drawChords();
+        const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
+        distances.push(distance);
+        console.log(distances);
+
+
       });
+
     });
 
     function drawChords() {
@@ -86,36 +92,38 @@ async function init() {
         const line = new Line(distance, 1, "black").pos(chord.x, chord.y);
         line.rotation = angle;
         lines.push(line);
-        frame.stage.update();
+        S.update();  
 
+        // chord.on("pressmove", () => {
+        // //   labels.forEach((label) => {
+        // //     label.dispose();
+        // //   });
 
-        chord.on("pressmove", () => {
-          labels.forEach((label) => {
-            label.dispose();
-          });
-
-            
-          for (let i = 0; i < lines.length; i++) {
-            if(lines[i].length > 399){
-                console.log("");
+         
+          
+        //     if(lines[0].length > 399){
+        //         console.log("hmj");
                 
-            }
-            // if (lines[i].length === r && lines[i].hitTestCircle(centerPoint)) {
-            //   console.log("hit");
-            // //   const diameterLabel = new Label({
-            // //     text: "hello",
-            // //     size: 20,
-            // //     color: "black",
-            // //   }).pos(100, 600);
-            // //   labels.push(diameterLabel);
-            // //   break;
-            // }
+            
+        //     // if (lines[i].length === r && lines[i].hitTestCircle(centerPoint)) {
+        //     //   console.log("hit");
+        //     // //   const diameterLabel = new Label({
+        //     // //     text: "hello",
+        //     // //     size: 20,
+        //     // //     color: "black",
+        //     // //   }).pos(100, 600);
+        //     // //   labels.push(diameterLabel);
+        //     // //   break;
+        //     // }
 
-        }
+        // }
 
           
-        });
-      });
+        // });
+        
+    });
+
+      
     }
 
     function labelsCreation() {
