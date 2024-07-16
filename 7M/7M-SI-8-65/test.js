@@ -75,7 +75,7 @@ async function init() {
         distances[index] = Math.round(distance);
         console.log(distances);
       });
-
+     
     });
 
     function drawChords() {

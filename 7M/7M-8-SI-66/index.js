@@ -55,19 +55,23 @@ async function init() {
     function mainFunction() {
        const bg = new Pic("assets/image/bg.png").center();
        const stage = new Pic("assets/image/stage.png").center().mov(100, 80);
+       //const innerStage = new Rectangle(650,300,"transparent").center().mov(100)
        const scaleouterRect = new Rectangle({ width: 500, height: 87, color: "transparent" }).center().mov(100, 80);
        const scale = new Pic("assets/image/scale.png").center().mov(100, 80);
-       const wheelCircle = new Circle(80, "transparent").loc(810,498).drag();
+       let r = 80;
+       const wheelCircle = new Circle(r, "transparent").loc(810,498).drag();
+       const wheelCircleInitalX = wheelCircle.x;
        const wheel = new Pic("assets/image/wheel.png").sca(.47).center(wheelCircle);
        wheelCircle.on("click", function() {
        wheelCircle.y=498;
+       const distance = wheelCircle.x - wheelCircleInitalX;
+       const angle = distance/(2*Math.PI*r)*360;
         wheelCircle.animate({
-            props: {x: wheelCircle.x + 200,y:wheelCircle.y,rotation:360},
-            time: 4,
-           
-           
+          props: {rotation:angle, x:wheelCircle.x+distance },
+            time: 1,
         });
        });
+ 
 
         const restartButton = new Button({
             label: "",
@@ -82,8 +86,8 @@ async function init() {
             .center()
             .mov(830, 430);
       
-          const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
-          pic.rotation = 60;
+          //const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
+          //pic.rotation = 60;
       
           restartButton.on("click", () => {
             location.reload();
