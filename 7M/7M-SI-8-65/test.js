@@ -73,8 +73,6 @@ async function init() {
         const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
         distances.push(distance);
         console.log(distances);
-
-
       });
 
     });
