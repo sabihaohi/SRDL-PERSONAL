@@ -44,7 +44,7 @@ async function init() {
     const r = 200;
     const circle = new Circle({ radius: r, color: "white", borderColor: "black", borderWidth: 2 }).center().mov(mov.x, mov.y);
     const centerPoint = new Circle(5, "red").pos(circle.x, circle.y);
-    console.log(circle.x, circle.y);
+    // console.log(circle.x, circle.y);
 
     const theta = getTheta();
 
@@ -66,12 +66,13 @@ async function init() {
         allChordsPoints.push({ x: chord.x, y: chord.y });
       });
     }
-     let distances = [];
+
+    let distances = [0, 0, 0];
     allChords.forEach((chord, index) => {
       chord.on("pressmove", () => {
         drawChords();
         const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
-        distances.push(distance);
+        distances[index] = distance;
         console.log(distances);
       });
 
@@ -84,25 +85,25 @@ async function init() {
 
       allChords.forEach((chord, index) => {
         const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
-       // console.log(distance);
-        
+        // console.log(distance);
+
         const angle = zim.angle(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
         const line = new Line(distance, 1, "black").pos(chord.x, chord.y);
         line.rotation = angle;
         lines.push(line);
-        S.update();  
+        S.update();
 
         // chord.on("pressmove", () => {
         // //   labels.forEach((label) => {
         // //     label.dispose();
         // //   });
 
-         
-          
+
+
         //     if(lines[0].length > 399){
         //         console.log("hmj");
-                
-            
+
+
         //     // if (lines[i].length === r && lines[i].hitTestCircle(centerPoint)) {
         //     //   console.log("hit");
         //     // //   const diameterLabel = new Label({
@@ -116,12 +117,12 @@ async function init() {
 
         // }
 
-          
-        // });
-        
-    });
 
-      
+        // });
+
+      });
+
+
     }
 
     function labelsCreation() {
