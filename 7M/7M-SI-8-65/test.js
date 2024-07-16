@@ -72,7 +72,7 @@ async function init() {
       chord.on("pressmove", () => {
         drawChords();
         const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
-        distances[index] = distance;
+        distances[index] = Math.round(distance);
         console.log(distances);
       });
 
