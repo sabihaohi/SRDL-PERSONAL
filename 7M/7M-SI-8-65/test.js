@@ -73,38 +73,25 @@ allChords.forEach((chord,index)=>{
     const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
     distances[index] = Math.round(distance);
     console.log(distances);  
-
-   
-
-    // if(chord.hitTestBounds(centerPoint)){
-    //   console.log("hit");
-    //         const diameterLabel = new Label({
-    //           text:"hello",
-    //           size:20,
-    //           color:black
-    //         }).pos(100,600);
-    //         labels.push(diameterLabel);
-    // }
-    
-    
   })
 
   chord.on("pressup",()=>{
-    for(let i=0;i<lines.length;i++){
-       labels.forEach((label)=>{
-         label.dispose();
-       })
-       if(lines[i].hitTestCircle(centerPoint)){
-         console.log("hit");
-         const diameterLabel = new Label({
-           text:"hello",
-           size:20,
-           color:black
-         }).pos(100,600);
-         labels.push(diameterLabel);
-         break;
-       }
-     }
+    labels.forEach((label)=>{
+      label.dispose();
+    })
+    if(lines[index].hitTestCircle(centerPoint)){
+      console.log("hit");
+      const diameterLabel = new Label({
+        text:"diameter",
+        size:20,
+        color:black
+      }).pos(200,400);
+      labels.push(diameterLabel);
+     
+    }
+    else{
+      console.log("not hit");
+    }
    })
 })
 
