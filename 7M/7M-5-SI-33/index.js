@@ -70,9 +70,9 @@ async function init() {
    function drawTriangles(){
     let line_1,line_2,line_3;
     if(line_1 || line_2 || line_3 ){
-            line_1.dispose()
-            line_2.dispose()
-            line_3.dispose()
+            line_1.removeFrom()
+            line_2.removeFrom()
+            line_3.removeFrom()
             
       }
       line_1 = new Line({ length: hyperbola.length, thickness: 2 }).pos(700,500);

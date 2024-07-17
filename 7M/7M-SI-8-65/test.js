@@ -76,8 +76,9 @@ allChords.forEach((chord,index)=>{
   })
 
   chord.on("pressup",()=>{
+    console.log(lines)
     labels.forEach((label)=>{
-      label.dispose();
+      label.removeFrom();
     })
     if(lines[index].hitTestCircle(centerPoint)){
       console.log("hit");
@@ -87,10 +88,17 @@ allChords.forEach((chord,index)=>{
         color:black
       }).pos(200,400);
       labels.push(diameterLabel);
-     
+     S.update();
     }
     else{
       console.log("not hit");
+      const diameterLabel = new Label({
+        text:"chords",
+        size:20,
+        color:black
+      }).pos(200,400);
+      labels.push(diameterLabel);
+     S.update();
     }
    })
 })
@@ -98,8 +106,9 @@ allChords.forEach((chord,index)=>{
 
 function drawChords(){
   lines.forEach((line)=>{
-      line.dispose();
+      line.removeFrom();
   })
+  lines.length=0;
   allChords.forEach((chord,index)=>{
     const distance = zim.dist(chord.x,chord.y,allChordsPoints[index].x,allChordsPoints[index].y);
     const angle = zim.angle(chord.x,chord.y,allChordsPoints[index].x,allChordsPoints[index].y);
