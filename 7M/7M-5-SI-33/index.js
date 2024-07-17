@@ -33,6 +33,8 @@ async function init() {
     PerpendicularDraggablePoint.y = 610;
     const PerpendicularDistance = zim.dist(1100, 610, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
     Perpendicular.length = PerpendicularDistance;
+
+    drawTriangles();
     });
 
     groundDraggablePoint.on("pressmove", () => {
@@ -45,6 +47,7 @@ async function init() {
     groundDraggablePoint.y = 650;
     const GroundDistance = zim.dist(1100, 650, groundDraggablePoint.x, groundDraggablePoint.y);
     ground.length = GroundDistance;
+    drawTriangles();
     
     });
 
@@ -58,6 +61,7 @@ async function init() {
   hyperbolaDraggablePoint.y = 700;
   const hyperbolaDistance = zim.dist(1100, 700, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
   hyperbola.length = hyperbolaDistance;
+  drawTriangles();
    });
 
    drawTriangles();
@@ -72,8 +76,8 @@ async function init() {
             
       }
       line_1 = new Line({ length: hyperbola.length, thickness: 2 }).pos(700,500);
-      line_2 = new Line({ length: ground.length, thickness: 2 }).pos(line_1.x,500).rot(300);
-      line_3 = new Line({ length: Perpendicular.length, thickness: 2 }).pos(line_2.x,line_2.y-line_2.length).rot
+      line_2 = new Line({ length: Perpendicular.length, thickness: 2 }).pos(line_1.x,500).rot(310);
+      line_3 = new Line({ length: ground.length, thickness: 2 }).pos(line_1.x+line_1.length,line_1.y).rot(-130);
    }
 
   //  function squareDraw(L,p,q){
@@ -190,12 +194,12 @@ async function init() {
 
   function drawShape(){
     
-    const Perpendicular  = new Line({ length: 100, thickness: 2 }).pos(1100, 610);
-    const ground = new Line({ length: 100, thickness: 2 }).pos(1100, 650);
+    const Perpendicular  = new Line({ length: 155, thickness: 2 }).pos(1100, 610);
+    const ground = new Line({ length: 155, thickness: 2 }).pos(1100, 650);
     const hyperbola = new Line({ length: 200, thickness: 2 }).pos(1100, 700);
 
-    const PerpendicularDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1200, 600).drag();
-    const groundDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1200, 640).drag();
+    const PerpendicularDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1255, 600).drag();
+    const groundDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1255, 640).drag();
     const hyperbolaDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1300, 690).drag();
     return [Perpendicular, ground, hyperbola, PerpendicularDraggablePoint,groundDraggablePoint,hyperbolaDraggablePoint];
 

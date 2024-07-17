@@ -40,6 +40,7 @@ const mov ={x:50,y:25};
 const r=200
 const circle =new Circle({radius:r,color:white,borderColor:black,borderWidth:2}).center().mov(mov.x,mov.y);
 const centerPoint = new Circle(5, "red").pos(circle.x,circle.y)
+const centerPointRect = new Rectangle(20,20,"red").pos()
 console.log(circle.x,circle.y)
 
 const theta=getTheta()
@@ -65,25 +66,17 @@ if(theta){
 }
 
 
-
+let distances = [0, 0, 0];
 allChords.forEach((chord,index)=>{
-
   chord.on("pressmove",()=>{
     drawChords();
-
-    // if(chord.hitTestBounds(centerPoint)){
-    //   console.log("hit");
-    //         const diameterLabel = new Label({
-    //           text:"hello",
-    //           size:20,
-    //           color:black
-    //         }).pos(100,600);
-    //         labels.push(diameterLabel);
-    // }
-    
-    
+    const distance = zim.dist(chord.x, chord.y, allChordsPoints[index].x, allChordsPoints[index].y);
+    distances[index] = Math.round(distance);
+    console.log(distances);  
   })
 })
+
+
 
 
 function drawChords(){
@@ -96,30 +89,23 @@ function drawChords(){
     const line = new Line(distance,1,"black").pos(chord.x,chord.y);
     line.rotation= angle;
     lines.push(line);
-    S.update();
+
 
     chord.on("pressmove",()=>{
-     for(let i=0;i<lines.length;i++){
-        labels.forEach((label)=>{
-          label.dispose();
-        })
-        if(lines[i].hitTestCircle(centerPoint)){
-          console.log("hit");
-          const diameterLabel = new Label({
-            text:"hello",
-            size:20,
-            color:black
-          }).pos(100,600);
-          labels.push(diameterLabel);
-          break;
-        }
+     
+      if(lines[index].hitTestCircle(centerPoint)){
+        console.log("hittest");
       }
     })
+
+    S.update();
+
+      
+   
   })
 
 
 }
-
  
 function labelsCreation(){
   const header_rect = new Rectangle({ width: 1700, height: 100, color: "transparent" })

@@ -15,7 +15,7 @@ async function init() {
 
   // Destructure the loaded data
   const {
-
+    lang,
     headerText,
     chapter,
     flowername,
@@ -36,7 +36,7 @@ async function init() {
     asstesLoading();
     labelCreation();
     generateRandomPicture();
-    handleDrag();
+    //handleDrag();
   }
 
   function asstesLoading() {
@@ -116,9 +116,9 @@ async function init() {
   let currentIndex = null;
   let indexArray = [];
   let imageBackgroundRect;
-
+  let pictureCount = 0;
   function generateRandomPicture() {
-    console.log(picData.items[pictureCount].imageLink);
+    //console.log(picData.items[pictureCount].imageLink);
     const picouterrect = new Rectangle({ width: 150, height: 100, color: "transparent" }).pos(145, 540).drag();
     const pic = new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
 
@@ -177,7 +177,7 @@ async function init() {
           props: { x: 145, y: 540 },
           time: 1,
         });
-        previousimg1.alp(0);
+        previousimg1.dispose();
         resultLabel.text = iswrongnumber.text[lang]
         S.update();
       }
