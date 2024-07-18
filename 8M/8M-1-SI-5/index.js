@@ -158,7 +158,8 @@ async function init() {
        console.log("correct");
        const newPic = new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(finalPicouterRect);
        centerImages.push(newPic);
-   
+       resultLabel.color = "black";
+       resultLabel.center(displayrect).mov(-20, -40);
        resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
        pictureCount++;  
        new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
@@ -171,6 +172,8 @@ async function init() {
           time: 1,
         });
         resultLabel.text = iswrongnumber.text[lang];
+        resultLabel.color = "red";
+        resultLabel.x = 210;
         S.update();
      }
      else if(picouterrect.hitTestBounds(notfibonaccirect) && !picData.items[pictureCount].isFibonacci){
@@ -181,6 +184,8 @@ async function init() {
       centerImages.push(newPic);
   
       resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
+      resultLabel.color = "black";
+      resultLabel.center(displayrect).mov(-20, -40);
       pictureCount++;  
       new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
       S.update()

@@ -65,8 +65,6 @@ async function init() {
    });
 
    drawTriangles();
-
-   
    function drawTriangles(){
     let line_1,line_2,line_3;
     if(line_1 || line_2 || line_3 ){
