@@ -65,17 +65,39 @@ async function init() {
    });
 
    drawTriangles();
+ 
+  
    function drawTriangles(){
+    let line1 = [];
+    let line2 = [];
+    let line3 = [];
+    line1.forEach((line)=>{
+      line.removeFrom();
+    })
+  
+    line2.forEach((line)=>{
+      line.removeFrom();
+    })
+  
+    line3.forEach((line)=>{
+      line.removeFrom();
+    })
     let line_1,line_2,line_3;
-    if(line_1 || line_2 || line_3 ){
-            line_1.removeFrom()
-            line_2.removeFrom()
-            line_3.removeFrom()
+
+  
+    // if(line_1 || line_2 || line_3 ){
+    //         line_1.removeFrom()
+    //         line_2.removeFrom()
+    //         line_3.removeFrom()
             
-      }
+    //   }
+
       line_1 = new Line({ length: hyperbola.length, thickness: 2 }).pos(700,500);
+      line1.push(line_1);
       line_2 = new Line({ length: Perpendicular.length, thickness: 2 }).pos(line_1.x,500).rot(310);
+      line2.push(line_2);
       line_3 = new Line({ length: ground.length, thickness: 2 }).pos(line_1.x+line_1.length,line_1.y).rot(-130);
+      line3.push(line_3);
    }
 
   //  function squareDraw(L,p,q){

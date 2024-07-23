@@ -290,8 +290,7 @@ async function init() {
               combination.forEach((flowerIndex) => {
                 if (
                   flowerCounts[flowerIndex[0]] ===
-                    flowerCounts[flowerIndex[1]] &&
-                  flowerCounts[flowerIndex[0]] != 0
+                    flowerCounts[flowerIndex[1]] 
                 ) {
                 } else {
                   status = false;
