@@ -20,6 +20,9 @@ async function init() {
     const stage = new Pic("assets/image/stage.png").center().mov(150, 80);
     const infoBox = new Pic("assets/image/infoBox.png").pos(100, 350);
     //mainFunction();
+    let line1 = [];
+    let line2 = [];
+    let line3 = [];
     labelCreation();
     const [Perpendicular, ground, hyperbola, PerpendicularDraggablePoint,groundDraggablePoint,hyperbolaDraggablePoint] = drawShape();
 
@@ -65,12 +68,8 @@ async function init() {
    });
 
    drawTriangles();
- 
-  
    function drawTriangles(){
-    let line1 = [];
-    let line2 = [];
-    let line3 = [];
+   
     line1.forEach((line)=>{
       line.removeFrom();
     })
@@ -83,15 +82,6 @@ async function init() {
       line.removeFrom();
     })
     let line_1,line_2,line_3;
-
-  
-    // if(line_1 || line_2 || line_3 ){
-    //         line_1.removeFrom()
-    //         line_2.removeFrom()
-    //         line_3.removeFrom()
-            
-    //   }
-
       line_1 = new Line({ length: hyperbola.length, thickness: 2 }).pos(700,500);
       line1.push(line_1);
       line_2 = new Line({ length: Perpendicular.length, thickness: 2 }).pos(line_1.x,500).rot(310);
@@ -100,31 +90,7 @@ async function init() {
       line3.push(line_3);
    }
 
-  //  function squareDraw(L,p,q){
-  //   if(L*2<1162){
-  //     if(line_1 || line_2 || line_3 || line_4){
-  //       line_1.dispose()
-  //       line_2.dispose()
-  //       line_3.dispose()
-  //       line_4.dispose()
-  //     }
-      
-  //     line_1=new Line(L).center().pos(heading_label_X,heading_label_Y);
-  //     line_2=new Line(L).center().pos(line_1.x,heading_label_Y).rot(270);
-  //     line_3=new Line(L).center().pos(line_2.x,line_2.y-line_2.length);
-  //     line_4=new Line(L).center().pos(line_3.x+line_3.length,line_3.y).rot(90);
-      
-  
-  //     button.pos(line_4.x-10,line_4.y-10)
-  //     S.update()
-  //   }else{
-  //     button.pos(line_4.x-10,line_4.y-10)
-  //     return
-  //   }
-  //   console.log(length,"=",width)
-  //   area(length,width)
-    
-  // }
+ 
    const drawTriangle = new Button({
     width: 200,
     height: 50,
@@ -175,8 +141,6 @@ async function init() {
     })
       
     
-   
-  
    
   }
   function labelCreation() {
