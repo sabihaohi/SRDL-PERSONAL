@@ -54,8 +54,11 @@ const labels = [];
 if(theta){
 
   chordsPoint1 = new Circle(10, "black").center().mov(circle.x+r*Math.cos(theta.t1)-fW,circle.y+r*Math.sin(theta.t1)-fH).drag(circle);
+ 
   chordsPoint2 = new Circle(10, "black").center().mov(circle.x+r*Math.cos(theta.t2)-fW,circle.y+r*Math.sin(theta.t2)-fH).drag(circle);
+  
   chordsPoint3 = new Circle(10, "black").center().mov(circle.x+r*Math.cos(theta.t1+theta.t2)-fW,circle.y+r*Math.sin(theta.t1+theta.t2)-fH).drag(circle);
+ 
   allChords.push(chordsPoint1,chordsPoint2,chordsPoint3);
   allChords.forEach((chord)=>{
     allChordsPoints.push({x:chord.x,y:chord.y})
@@ -80,6 +83,7 @@ allChords.forEach((chord,index)=>{
     labels.forEach((label)=>{
       label.removeFrom();
     })
+    
     if(lines[index].hitTestCircle(centerPoint)){
       console.log("hit");
       const diameterLabel = new Label({
@@ -115,6 +119,7 @@ function drawChords(){
     const line = new Line(distance,1,"black").pos(chord.x,chord.y);
     line.rotation= angle;
     lines.push(line);
+    
     S.update();
 
    

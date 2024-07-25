@@ -26,48 +26,75 @@ async function init() {
     labelCreation();
     const [Perpendicular, ground, hyperbola, PerpendicularDraggablePoint,groundDraggablePoint,hyperbolaDraggablePoint] = drawShape();
 
-    PerpendicularDraggablePoint.on("pressmove", () => {
-      if (PerpendicularDraggablePoint.x > 1500) {
-        PerpendicularDraggablePoint.x = 1500;
-    }
-    else if (PerpendicularDraggablePoint.x < 1200) {
-      PerpendicularDraggablePoint.x = 1200;
-    }
-    PerpendicularDraggablePoint.y = 610;
-    const PerpendicularDistance = zim.dist(1100, 610, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
-    Perpendicular.length = PerpendicularDistance;
+    let distanceLabelA = new Label({
+          text: `Distance of A = ${Math.round(Perpendicular.length)}`,
+          size: 20,
+          color: "black",
+          bold: true,
+        }).pos(170, 450);
+    
+    let distanceLabelB = new Label({
+      text: `Distance of B = ${Math.round(ground.length)}`,
+      size: 20,
+      color: "black",
+      bold: true,
+    }).pos(170, 500);
 
-    drawTriangles();
+    let distanceLabelC = new Label({
+      text: `Distance of C = ${Math.round(hyperbola.length)}`,
+      size: 20,
+      color: "black",
+      bold: true,
+    }).pos(170, 550);
+
+    PerpendicularDraggablePoint.on("pressmove", () => {
+      distanceLabelA.text = '';
+      if (PerpendicularDraggablePoint.x > 1550) {
+        PerpendicularDraggablePoint.x = 1550;
+    }
+    else if (PerpendicularDraggablePoint.x < 1350) {
+      PerpendicularDraggablePoint.x = 1350;
+    }
+    PerpendicularDraggablePoint.y = 750;
+    const PerpendicularDistance = zim.dist(1200, 740, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
+    Perpendicular.length = PerpendicularDistance;
+    distanceLabelA.text = `Distance of A = ${Math.round(PerpendicularDistance)}`;
+
+    //drawTriangles();
     });
 
     groundDraggablePoint.on("pressmove", () => {
-      if (groundDraggablePoint.x > 1500) {
-        groundDraggablePoint.x = 1500;
+      distanceLabelB.text = '';
+      if (groundDraggablePoint.x > 1550) {
+        groundDraggablePoint.x = 1550;
     }
-    else if (groundDraggablePoint.x < 1200) {
-      groundDraggablePoint.x = 1200;
+    else if (groundDraggablePoint.x < 1350) {
+      groundDraggablePoint.x = 1350;
     }
-    groundDraggablePoint.y = 650;
-    const GroundDistance = zim.dist(1100, 650, groundDraggablePoint.x, groundDraggablePoint.y);
+    groundDraggablePoint.y = 800;
+    const GroundDistance = zim.dist(1200, 800, groundDraggablePoint.x, groundDraggablePoint.y);
     ground.length = GroundDistance;
-    drawTriangles();
+    distanceLabelB.text = `Distance of B = ${Math.round(GroundDistance)}`;
+    //drawTriangles();
     
     });
 
    hyperbolaDraggablePoint.on("pressmove", () => {
-    if (hyperbolaDraggablePoint.x > 1500) {
-      hyperbolaDraggablePoint.x = 1500;
+    distanceLabelC.text = '';
+    if (hyperbolaDraggablePoint.x > 1550) {
+      hyperbolaDraggablePoint.x = 1550;
   }
-  else if (hyperbolaDraggablePoint.x < 1200) {
-    hyperbolaDraggablePoint.x = 1200;
+  else if (hyperbolaDraggablePoint.x < 1350) {
+    hyperbolaDraggablePoint.x = 1350;
   }
-  hyperbolaDraggablePoint.y = 700;
-  const hyperbolaDistance = zim.dist(1100, 700, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
+  hyperbolaDraggablePoint.y = 850;
+  const hyperbolaDistance = zim.dist(1200, 850, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
   hyperbola.length = hyperbolaDistance;
-  drawTriangles();
+  distanceLabelC.text = `Distance of C = ${Math.round(hyperbolaDistance)}`;
+  //drawTriangles();
    });
 
-   drawTriangles();
+   //drawTriangles();
    function drawTriangles(){
    
     line1.forEach((line)=>{
@@ -90,55 +117,65 @@ async function init() {
       line3.push(line_3);
    }
 
- 
-   const drawTriangle = new Button({
+   const possibleBtn = new Button({
     width: 200,
     height: 50,
-    label: "Draw Triangle",
-    backgroundColor: "#f1c40f",
+    label: "Possible",
+    backgroundColor: "#2ecc71",
     corner: 10,
-    rollBackgroundColor: "#f39c12",
+    rollBackgroundColor: "#27ae60",
     color: "white",
     rollColor: "white",
-   }).pos(500,800);
+   }).pos(600,800);
 
-   const possibleMassgae = new Label({
-    text: "Possible Triangle",
-    size: 20,
-    color: "black",
-    bold: true,
-   }).pos(100, 400).alp(0);
-   const notPossibleMassgae = new Label({
-    text: "Triangle is not possible",
-    size: 20,
-    color: "black",
-    bold: true,
-   }).pos(100, 400).alp(0);
+   const notpossibleBtn = new Button({
+    width: 200,
+    height: 50,
+    label: "Not Possible",
+    backgroundColor: "#2ecc71",
+    corner: 10,
+    rollBackgroundColor: "#27ae60",
+    color: "white",
+    rollColor: "white",
+   }).pos(850,800);
+  //  const drawTriangle = new Button({
+  //   width: 200,
+  //   height: 50,
+  //   label: "Draw Triangle",
+  //   backgroundColor: "#f1c40f",
+  //   corner: 10,
+  //   rollBackgroundColor: "#f39c12",
+  //   color: "white",
+  //   rollColor: "white",
+  //  }).pos(500,800);
+
+  
+
+  
 
    let distanceLabels = [];
 
-    drawTriangle.on("click",()=>{
-      distanceLabels.forEach((label)=>{
-        label.removeFrom();
-      })
-      const PerpendicularDistance = zim.dist(1100, 610, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
-      const GroundDistance = zim.dist(1100, 650, groundDraggablePoint.x, groundDraggablePoint.y);
-      const hyperbolaDistance = zim.dist(1100, 700, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
-      let distanceLabel = new Label({
-        text: `Perpendicular Distance: ${Math.round(PerpendicularDistance)} Ground Distance: ${Math.round(GroundDistance)} Hyperbola Distance: ${Math.round(hyperbolaDistance)}`,
-        size: 20,
-        color: "black",
-        bold: true,
-      }).pos(100, 450);
-      distanceLabels.push(distanceLabel);
+    // drawTriangle.on("click",()=>{
+    //   distanceLabels.forEach((label)=>{
+    //     label.removeFrom();
+    //   })
+    //   const PerpendicularDistance = zim.dist(1200, 740, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
+    //   const GroundDistance = zim.dist(1355, 800, groundDraggablePoint.x, groundDraggablePoint.y);
+    //   const hyperbolaDistance = zim.dist(1100, 850, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
+    //   let distanceLabel = new Label({
+    //     text: `Perpendicular Distance: ${Math.round(PerpendicularDistance)} Ground Distance: ${Math.round(GroundDistance)} Hyperbola Distance: ${Math.round(hyperbolaDistance)}`,
+    //     size: 20,
+    //     color: "black",
+    //     bold: true,
+    //   }).pos(100, 450);
+    //   distanceLabels.push(distanceLabel);
 
-      if(PerpendicularDistance + GroundDistance > hyperbolaDistance){
-        
-        possibleMassgae.alp(1);
-      }else{
-        possibleMassgae.alp(0);
-      }
-    })
+    //   if(PerpendicularDistance + GroundDistance > hyperbolaDistance){ 
+    //     possibleMassgae.alp(1);
+    //   }else{
+    //     possibleMassgae.alp(0);
+    //   }
+    // })
       
     
    
@@ -178,13 +215,31 @@ async function init() {
 
   function drawShape(){
     
-    const Perpendicular  = new Line({ length: 155, thickness: 2 }).pos(1100, 610);
-    const ground = new Line({ length: 155, thickness: 2 }).pos(1100, 650);
-    const hyperbola = new Line({ length: 200, thickness: 2 }).pos(1100, 700);
+    const Perpendicular  = new Line({ length: 155, thickness: 2 }).pos(1200, 750);
+    const ground = new Line({ length: 155, thickness: 2 }).pos(1200, 800);
+    const hyperbola = new Line({ length: 155, thickness: 2 }).pos(1200, 850);
+    new Label({
+      text: "A",
+      size: 20,
+      color: "black",
+      bold: true,
+    }).center(Perpendicular).mov(-90,0);
+    new Label({
+      text: "B",
+      size: 20,
+      color: "black",
+      bold: true,
+    }).center(ground).mov(-90,0);
+    new Label({
+      text: "C",
+      size: 20,
+      color: "black",
+      bold: true,
+    }).center(hyperbola).mov(-90,0);
 
-    const PerpendicularDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1255, 600).drag();
-    const groundDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1255, 640).drag();
-    const hyperbolaDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1300, 690).drag();
+    const PerpendicularDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1355, 740).drag();
+    const groundDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1355, 790).drag();
+    const hyperbolaDraggablePoint = new Circle({ radius: 10, color: "red" }).pos(1355, 840).drag();
     return [Perpendicular, ground, hyperbola, PerpendicularDraggablePoint,groundDraggablePoint,hyperbolaDraggablePoint];
 
   }
