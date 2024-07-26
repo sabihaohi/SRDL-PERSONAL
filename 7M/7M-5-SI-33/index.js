@@ -97,7 +97,7 @@ async function init() {
     conditionTriangle();
    });
 
-  drawTriangles();
+  //drawTriangles();
   function drawTriangles(){
    
   triangles.forEach((triangle)=>{
@@ -123,35 +123,6 @@ async function init() {
     rollColor: "white",
    }).pos(600,700).alp(0);
 
-
-  function conditionTriangle(){
-    const PerpendicularDistance = zim.dist(1200, 740, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
-    const GroundDistance = zim.dist(1200, 800, groundDraggablePoint.x, groundDraggablePoint.y);
-    const hyperbolaDistance = zim.dist(1200, 850, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
-
-    const maxDistance = Math.max(PerpendicularDistance,GroundDistance,hyperbolaDistance);
-    const sumOfDistance = PerpendicularDistance+GroundDistance+hyperbolaDistance;
-    const twoSmallLineDistance = sumOfDistance - maxDistance;
-
-    if(twoSmallLineDistance>maxDistance){
-      console.log('drawn triangle is possible');
-      drawTrianglebtn.alp(1);
-    }
-    else{
-      console.log('drawn triangle is not possible');
-      drawTrianglebtn.alp(0);
-      triangles.forEach((triangle)=>{
-        triangle.removeFrom();
-      })
-
-    }
-
-
-  }
-
-
-  
-
    const possibleBtn = new Button({
     width: 200,
     height: 50,
@@ -173,42 +144,47 @@ async function init() {
     color: "white",
     rollColor: "white",
    }).pos(850,800);
-  
-  
+
+  function conditionTriangle(){
+    const PerpendicularDistance = zim.dist(1200, 740, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
+    const GroundDistance = zim.dist(1200, 800, groundDraggablePoint.x, groundDraggablePoint.y);
+    const hyperbolaDistance = zim.dist(1200, 850, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
+
+    const maxDistance = Math.max(PerpendicularDistance,GroundDistance,hyperbolaDistance);
+    const sumOfDistance = PerpendicularDistance+GroundDistance+hyperbolaDistance;
+    const twoSmallLineDistance = sumOfDistance - maxDistance;
+
+    if(twoSmallLineDistance>maxDistance){
+      console.log('drawn triangle is possible');
+      possibleBtn.on("click",()=>{
+        drawTrianglebtn.alp(1);
+      })
+     
+    }
+    else{
+      console.log('drawn triangle is not possible');
+      notpossibleBtn.on("click",()=>{
+        drawTrianglebtn.alp(0);
+      })
+      possibleBtn.on("click",()=>{
+        drawTrianglebtn.alp(0);
+      })
+     
+      triangles.forEach((triangle)=>{
+        triangle.removeFrom();
+      })
+
+    }
+
+
+  }
+
 
    drawTrianglebtn.on("click",()=>{
     drawTriangles();
    })
 
-  possibleBtn.on("click",()=>{
-    drawTrianglebtn.alp(1);
-  })
   
-
-   let distanceLabels = [];
-
-    // drawTriangle.on("click",()=>{
-    //   distanceLabels.forEach((label)=>{
-    //     label.removeFrom();
-    //   })
-    //   const PerpendicularDistance = zim.dist(1200, 740, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
-    //   const GroundDistance = zim.dist(1355, 800, groundDraggablePoint.x, groundDraggablePoint.y);
-    //   const hyperbolaDistance = zim.dist(1100, 850, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
-    //   let distanceLabel = new Label({
-    //     text: `Perpendicular Distance: ${Math.round(PerpendicularDistance)} Ground Distance: ${Math.round(GroundDistance)} Hyperbola Distance: ${Math.round(hyperbolaDistance)}`,
-    //     size: 20,
-    //     color: "black",
-    //     bold: true,
-    //   }).pos(100, 450);
-    //   distanceLabels.push(distanceLabel);
-
-    //   if(PerpendicularDistance + GroundDistance > hyperbolaDistance){ 
-    //     possibleMassgae.alp(1);
-    //   }else{
-    //     possibleMassgae.alp(0);
-    //   }
-    // })
-      
     
    
   }
