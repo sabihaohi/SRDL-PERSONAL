@@ -97,27 +97,9 @@ async function init() {
     conditionTriangle();
    });
 
-   drawTriangles();
-   function drawTriangles(){
+  drawTriangles();
+  function drawTriangles(){
    
-  //   line1.forEach((line)=>{
-  //     line.removeFrom();
-  //   })
-  
-  //   line2.forEach((line)=>{
-  //     line.removeFrom();
-  //   })
-  
-  //   line3.forEach((line)=>{
-  //     line.removeFrom();
-  //   })
-  //   let line_1,line_2,line_3;
-  //     line_1 = new Line({ length: hyperbola.length, thickness: 2 }).pos(700,500);
-  //     line1.push(line_1);
-  //     line_2 = new Line({ length: Perpendicular.length, thickness: 2 }).pos(line_1.x,500).rot(310);
-  //     line2.push(line_2);
-  //     line_3 = new Line({ length: ground.length, thickness: 2 }).pos(line_1.x+line_1.length,line_1.y).rot(-130);
-  //     line3.push(line_3);
   triangles.forEach((triangle)=>{
      triangle.removeFrom();
   })
@@ -129,6 +111,17 @@ async function init() {
     triangles.push(triangle);
   
   }
+
+  const drawTrianglebtn = new Button({
+    width: 250,
+    height: 50,
+    label: "Draw Triangle",
+    backgroundColor: "#f1c40f",
+    corner: 10,
+    rollBackgroundColor: "#f39c12",
+    color: "white",
+    rollColor: "white",
+   }).pos(600,700).alp(0);
 
 
   function conditionTriangle(){
@@ -142,14 +135,20 @@ async function init() {
 
     if(twoSmallLineDistance>maxDistance){
       console.log('drawn triangle is possible');
+      drawTrianglebtn.alp(1);
     }
     else{
       console.log('drawn triangle is not possible');
+      drawTrianglebtn.alp(0);
+      triangles.forEach((triangle)=>{
+        triangle.removeFrom();
+      })
+
     }
 
 
   }
-  
+
 
   
 
@@ -174,18 +173,13 @@ async function init() {
     color: "white",
     rollColor: "white",
    }).pos(850,800);
-   const drawTrianglebtn = new Button({
-    width: 250,
-    height: 50,
-    label: "Draw Triangle",
-    backgroundColor: "#f1c40f",
-    corner: 10,
-    rollBackgroundColor: "#f39c12",
-    color: "white",
-    rollColor: "white",
-   }).pos(600,700).alp(0);
-
   
+  
+
+   drawTrianglebtn.on("click",()=>{
+    drawTriangles();
+   })
+
   possibleBtn.on("click",()=>{
     drawTrianglebtn.alp(1);
   })
