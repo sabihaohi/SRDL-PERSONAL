@@ -113,9 +113,6 @@ async function init() {
 
   }
 
-  // let currentIndex = null;
-  // let indexArray = [];
-  // let imageBackgroundRect;
   let pictureCount = 0;
   function generateRandomPicture() {
     //console.log(picData.items[pictureCount].imageLink);
@@ -128,7 +125,22 @@ async function init() {
     }
 
     const fibonacciRect = new Rectangle({ width: 450, height: 150, color: "transparent" }).pos(540, 815);
+    const fibonacciLabel = new Label({
+      text: "",
+      size: 20,
+      font: "courier",
+      color: "black",
+      bold: true,
+    }).pos(550, 840);
+
     const notfibonaccirect = new Rectangle({ width: 450, height: 150, color: "transparent" }).pos(1135, 815);
+    const notfibonacciLabel = new Label({
+      text: "",
+      size: 20,
+      font: "courier",
+      color: "black",
+      bold: true,
+    }).pos(1150, 840);
     const displayrect = new Rectangle({ width: 650, height: 400, color: "transparent" }).pos(615, 300)
 
     let finalPicouterRect = new Rectangle({ width: 200, height: 150, color: "transparent" }).pos(670, 420).drag();
@@ -152,7 +164,7 @@ async function init() {
       });
       resultLabel.text = "";
      if(picouterrect.hitTestBounds(fibonacciRect) && picData.items[pictureCount].isFibonacci){
-       
+      fibonacciLabel.text += fibonacciLabel.text ? `,${allPicdata[pictureCount].leafNumber}` : `${allPicdata[pictureCount].leafNumber}`;
        picouterrect.x=145;
        picouterrect.y=540;
        console.log("correct");
@@ -161,8 +173,18 @@ async function init() {
        resultLabel.color = "black";
        resultLabel.center(displayrect).mov(-20, -40);
        resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
+       if(pictureCount === 1){
+        
+       }
        pictureCount++;  
-       new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
+       if(pictureCount<17){
+        new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
+      }
+       if(pictureCount === 17){
+        picouterrect.noDrag();
+        resultLabel.text = "Your task is completed";
+       
+      }
        S.update();
 
      }
@@ -177,6 +199,7 @@ async function init() {
         S.update();
      }
      else if(picouterrect.hitTestBounds(notfibonaccirect) && !picData.items[pictureCount].isFibonacci){
+       notfibonacciLabel.text += notfibonacciLabel.text ? `,${allPicdata[pictureCount].leafNumber}` : `${allPicdata[pictureCount].leafNumber}`;
       picouterrect.x=145;
       picouterrect.y=540;
       console.log("correct");
@@ -185,9 +208,17 @@ async function init() {
   
       resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
       resultLabel.color = "black";
-      resultLabel.center(displayrect).mov(-20, -40);
+      resultLabel.center(displayrect).mov(130, -10);
       pictureCount++;  
-      new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
+    
+      if(pictureCount<17){
+        new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
+      }
+      if(pictureCount === 17){
+        picouterrect.noDrag();
+        resultLabel.text = "Your task is completed";
+        
+      }
       S.update()
      }
 
@@ -199,58 +230,6 @@ async function init() {
       S.update();
      }
    });
-
-    // picouterrect.on("pressup", () => {
-    //   let previousimg1;
-    //   if (picouterrect.hitTestBounds(fibonacciRect) && picData.items[pictureCount].isFibonacci) {
-    //     resultLabel.text = "";
-    //     previousimg1 = new Pic(`${picData.items[pictureCount].imageLink}`).center(finalPicouterRect).sca(.4).mov(200, 120);
-    //     resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
-    //     picouterrect.x = 145;
-    //     picouterrect.y = 540;
-    //     pictureCount++;
-    //     const previousimg = new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
-    //     S.update();
-
-    //   }
-    //   else if (picouterrect.hitTestBounds(fibonacciRect) && !picData.items[pictureCount].isFibonacci) {
-    //     picouterrect.animate({
-    //       props: { x: 145, y: 540 },
-    //       time: 1,
-    //     });
-    //     previousimg1.dispose();
-    //     resultLabel.text = iswrongnumber.text[lang]
-    //     S.update();
-    //   }
-
-    //   else if (picouterrect.hitTestBounds(notfibonaccirect) && picData.items[pictureCount].isFibonacci) {
-    //     picouterrect.animate({
-    //       props: { x: 145, y: 540 },
-    //       time: 1,
-    //     });
-    //     resultLabel.text = ""
-    //     resultLabel.text = iswrongnumber.text[lang];
-    //     S.update();
-    //   }
-
-    //   else if (picouterrect.hitTestBounds(notfibonaccirect) && !picData.items[pictureCount].isFibonacci) {
-    //     pictureCount++;
-    //     // picouterrect.animate({
-    //     //   props: { x: 670, y: 425,scale:1.3 },
-    //     //   time: 1,
-
-
-    //     // });
-    //     picouterrect.x = 670;
-    //     picouterrect.y = 425;
-    //     resultLabel.text = ""
-    //     resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
-    //     //pictureCount++;
-    //     S.update();
-    //   }
-
-    //   S.update();
-    // });
 
 
   }

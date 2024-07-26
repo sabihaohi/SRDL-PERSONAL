@@ -70,7 +70,7 @@ async function init() {
       color: "black",
     }).pos(informationText.posX[lang], 245);
 
-    const abdunatRect = new Rectangle(300, 200, "transparent").center().mov(-140, 210);
+    const abdunatRect = new Rectangle(300, 200, "red").center().mov(-140, 210);
     const abaduntNumber = new Label({
       text: "",
       size: 20,
