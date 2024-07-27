@@ -336,12 +336,7 @@ async function init() {
     
         checkTriangleCondition();
       }, 1000); // Adjust the timeout to match the duration of your animations
-    }
-    
-    
-    
-    
-    
+    } 
    
   }
   function labelCreation() {
