@@ -1,9 +1,19 @@
 {
     "lang": "BN",
-    "headerText": {
+    "headerText":{
       "text": {
-        "BN": "বৃত্তের পরিধির দৈর্ঘ্য নির্ণয় কর",
-        "EN":"Determine the length of the circle"
+        "BN": "ত্রিভুজ",
+        "EN":"Triangle"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "subHeaderText": {
+      "text": {
+        "BN": "তিনটি বাহূ দ্বারা ত্রিভুজ অঙ্কন করো",
+        "EN":""
       },
       "size": {
         "BN": 40,
@@ -12,8 +22,8 @@
     },
     "chapter": {
       "text": {
-        "BN": "অভিজ্ঞতা নং \n\t\t\t\t\t\t\t\t8",
-        "EN": "Experience No.\n\t\t\t\t\t\t\t\t8"
+        "BN": "অভিজ্ঞতা নং \n\t\t\t\t\t\t\t\t5",
+        "EN": "Experience No.\n\t\t\t\t\t\t\t\t5"
       },
       "size": {
         "BN": 20,
@@ -31,48 +41,98 @@
             "EN":35
         },
         "x":{
-            "BN": 280,
-            "EN": 240
+            "BN": 240,
+            "EN": 220
         }
     },
-    "greenText": {
-        "text": {
-          "BN": "সবুজ চতুর্ভুজ\nঅংশের ক্ষেত্রফল : ",
-          "EN":"Area of the green\nRectangle : "
+    "distanceOfA":{
+        "text":{
+            "BN":"A রেখার দৈর্ঘ্য : ",
+            "EN": "Length of line A: "
         },
-        "size": {
-          "BN": 40,
-          "EN": 32
-        }
-      },
-      "redText": {
-        "text": {
-          "BN": "লাল চতুর্ভুজ\nঅংশের ক্ষেত্রফল : ",
-          "EN":"Area of the red\nRectangle : "
+        "size":{
+            "BN": 25,
+            "EN": 25
         },
-        "size": {
-          "BN": 40,
-          "EN": 32
+        "x":{
+            "BN": 100,
+            "EN": 50
         }
-      },
-      "resultText": {
-        "text": {
-          "BN": "বৃত্তের ক্ষেত্রফল : ",
-          "EN":"Area of the \ncircle : "
+    },
+    "distanceOfB":{
+        "text":{
+            "BN":"B রেখার দৈর্ঘ্য : ",
+            "EN": "Length of line B: "
         },
-        "size": {
-          "BN": 40,
-          "EN": 32
-        }
-      },
-      "result": {
-        "text": {
-          "BN": "বর্গসেন্টিমিটার",
-          "EN":"Square centimeter"
+        "size":{
+            "BN": 25,
+            "EN": 25
         },
-        "size": {
-          "BN": 40,
-          "EN": 32
+        "x":{
+            "BN": 100,
+            "EN": 50
         }
+    },
+    "distanceOfC":{
+        "text":{
+            "BN":"C রেখার দৈর্ঘ্য : ",
+            "EN": "Length of line C: "
+        },
+        "size":{
+            "BN": 25,
+            "EN": 25
+        },
+        "x":{
+            "BN": 100,
+            "EN": 50
+        }
+    },
+    "rulesOfcreatingTriangle":{
+      "text":{
+        "BN":"ত্রিভুজের ছোটো দুই\nবাহুর সমষ্টি তৃতীয়\nবাহুর থেকে বড় হলে\nত্রিভুজ গঠন সম্ভব হবে ",
+        "EN":"If the sum of the two\nsmaller sides of a triangle is\ngreater than the third side,\nthen the triangle can be formed."
       }
+    },
+    "possibleBtnText":{
+      "text":{
+        "BN":"সম্ভব",
+        "EN":"Possible"
+      },
+      "size":{
+        "BN": 25,
+        "EN": 25
+      }
+    },
+    "impossibleBtnText":{
+      "text":{
+        "BN":"অসম্ভব",
+        "EN":"Impossible"
+      },
+      "size":{
+        "BN": 25,
+        "EN": 25
+      }
+    },
+    "drawTriangleBtnText":{
+      "text":{
+        "BN":"ত্রিভুজ আঁকুন",
+        "EN":"Draw Triangle"
+      },
+      "size":{
+        "BN": 25,
+        "EN": 25
+      }
+    },
+    "notpossibleText":{
+      "text":{
+        "BN":"ত্রিভুজ গঠন সম্ভব নয়,কারন ত্রিভুজের ছোটো দুই\nবাহুর সমষ্টি তৃতীয় বাহুর থেকে ছোট",
+        "EN":"Triangle can not be formed,because the sum of the two\nsmaller sides of a triangle is smaller than the third side"
+      },
+      "size":{
+        "BN": 25,
+        "EN": 25
+      }
+    }
+    
+   
 }

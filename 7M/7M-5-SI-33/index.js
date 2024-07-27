@@ -1,4 +1,4 @@
-import zim, { Triangle, drag, sca } from "./zim.js";
+import zim, { Triangle, drag, sca, timeout } from "./zim.js";
 const { Frame, Rectangle, Pic, Label,Circle, TextArea, Button, Line } = zim;
 
 
@@ -9,7 +9,7 @@ async function init() {
 
 
 
-  const { lang, headerText, chapter, informationText,redText, resultText, footerLabelText,greenText,result } = data;
+  const { lang,notpossibleText, headerText, chapter, informationText,distanceOfA,distanceOfB,distanceOfC,subHeaderText,rulesOfcreatingTriangle,possibleBtnText,impossibleBtnText,drawTriangleBtnText} = data;
   //const { itemsInfo } = itemsData;
   new Frame(FIT, 1920, 1080, "#adbed9", "#7d9ed1", ready, "assets/");
 
@@ -19,47 +19,57 @@ async function init() {
     const bg = new Pic("assets/image/bg.png").center();
     const stage = new Pic("assets/image/stage.png").center().mov(150, 80);
     const infoBox = new Pic("assets/image/infoBox.png").pos(100, 350);
-    //mainFunction();
-    // let line1 = [];
-    // let line2 = [];
-    // let line3 = [];
     let triangles = [];
     labelCreation();
     const [Perpendicular, ground, hyperbola, PerpendicularDraggablePoint,groundDraggablePoint,hyperbolaDraggablePoint] = drawShape();
 
+
+    let createTrinaglleRule = new Label({
+      text: rulesOfcreatingTriangle.text[lang],
+      size: 20,
+      color: "black",
+      bold: true,
+      lineHeight: 30,
+    }).pos(165,450)
+
     let distanceLabelA = new Label({
-          text: `Distance of A = ${Math.round(Perpendicular.length)}`,
+          text: distanceOfA.text[lang] + `${Math.round(Perpendicular.length)}`,
           size: 20,
           color: "black",
           bold: true,
-        }).pos(170, 450);
+        }).pos(170, 590);
     
     let distanceLabelB = new Label({
-      text: `Distance of B = ${Math.round(ground.length)}`,
+      text:distanceOfB.text[lang] + `${Math.round(ground.length)}`,
       size: 20,
       color: "black",
       bold: true,
-    }).pos(170, 500);
-
+    }).pos(170, 630);
+    let errorText =  new Label({
+      text:notpossibleText.text[lang],
+      size: 20,
+      color: "red",
+      lineHeight: 30,
+    }).pos(800,450).alp(0);
     let distanceLabelC = new Label({
-      text: `Distance of C = ${Math.round(hyperbola.length)}`,
+      text: distanceOfC.text[lang] +`${Math.round(hyperbola.length)}`,
       size: 20,
       color: "black",
       bold: true,
-    }).pos(170, 550);
+    }).pos(170, 670);
 
     PerpendicularDraggablePoint.on("pressmove", () => {
       distanceLabelA.text = '';
       if (PerpendicularDraggablePoint.x > 1550) {
         PerpendicularDraggablePoint.x = 1550;
-    }
+      }
     else if (PerpendicularDraggablePoint.x < 1250) {
       PerpendicularDraggablePoint.x = 1250;
     }
     PerpendicularDraggablePoint.y = 750;
     const PerpendicularDistance = zim.dist(1200, 740, PerpendicularDraggablePoint.x, PerpendicularDraggablePoint.y);
     Perpendicular.length = PerpendicularDistance;
-    distanceLabelA.text = `Distance of A = ${Math.round(PerpendicularDistance)}`;
+    distanceLabelA.text =distanceOfA.text[lang] + `${Math.round(PerpendicularDistance)}`;
     conditionTriangle()
     //drawTriangles();
     });
@@ -75,7 +85,7 @@ async function init() {
     groundDraggablePoint.y = 800;
     const GroundDistance = zim.dist(1200, 800, groundDraggablePoint.x, groundDraggablePoint.y);
     ground.length = GroundDistance;
-    distanceLabelB.text = `Distance of B = ${Math.round(GroundDistance)}`;
+    distanceLabelB.text =distanceOfB.text[lang] + `${Math.round(GroundDistance)}`;
     //drawTriangles();
     conditionTriangle()
     
@@ -92,7 +102,7 @@ async function init() {
   hyperbolaDraggablePoint.y = 850;
   const hyperbolaDistance = zim.dist(1200, 850, hyperbolaDraggablePoint.x, hyperbolaDraggablePoint.y);
   hyperbola.length = hyperbolaDistance;
-  distanceLabelC.text = `Distance of C = ${Math.round(hyperbolaDistance)}`;
+  distanceLabelC.text = distanceOfC.text[lang] + `${Math.round(hyperbolaDistance)}`;
     //drawTriangles();
     conditionTriangle();
    });
@@ -103,11 +113,12 @@ async function init() {
   triangles.forEach((triangle)=>{
      triangle.removeFrom();
   })
-  const triangle = new Triangle(hyperbola.length, Perpendicular.length, ground.length) // side lengths, color
-		.pos(800, 550, RIGHT, BOTTOM); // 150 from right and 200 from bottom
+  const maxLenght = Math.max(Perpendicular.length, ground.length, hyperbola.length);
+  const triangle = new Triangle(hyperbola.length, Perpendicular.length, maxLenght) // side lengths, color
+		.pos(800, 450, RIGHT, BOTTOM); // 150 from right and 200 from bottom
     triangle.color= "transparent";
     triangle.borderColor = "black";
-
+    triangle.borderThickness = 5;
     triangles.push(triangle);
   
   }
@@ -115,7 +126,7 @@ async function init() {
   const drawTrianglebtn = new Button({
     width: 250,
     height: 50,
-    label: "Draw Triangle",
+    label: drawTriangleBtnText.text[lang],
     backgroundColor: "#f1c40f",
     corner: 10,
     rollBackgroundColor: "#f39c12",
@@ -126,7 +137,7 @@ async function init() {
    const possibleBtn = new Button({
     width: 200,
     height: 50,
-    label: "Possible",
+    label: possibleBtnText.text[lang],
     backgroundColor: "#2ecc71",
     corner: 10,
     rollBackgroundColor: "#27ae60",
@@ -137,7 +148,7 @@ async function init() {
    const notpossibleBtn = new Button({
     width: 200,
     height: 50,
-    label: "Not Possible",
+    label: impossibleBtnText.text[lang],
     backgroundColor: "#2ecc71",
     corner: 10,
     rollBackgroundColor: "#27ae60",
@@ -158,16 +169,20 @@ async function init() {
       console.log('drawn triangle is possible');
       possibleBtn.on("click",()=>{
         drawTrianglebtn.alp(1);
+        errorText.alp(0);
       })
      
     }
     else{
+      drawTrianglebtn.alp(0);
       console.log('drawn triangle is not possible');
       notpossibleBtn.on("click",()=>{
         drawTrianglebtn.alp(0);
       })
       possibleBtn.on("click",()=>{
         drawTrianglebtn.alp(0);
+        errorText.alp(1);
+       
       })
      
       triangles.forEach((triangle)=>{
@@ -178,13 +193,154 @@ async function init() {
 
 
   }
-
+  const playButton = new Button({
+    label: "play",
+    width: 100,
+    height: 100,
+    backgroundColor: "blue",
+    rollBackgroundColor: "red",
+    borderWidth: 0,
+    gradient: 0.3,
+    corner: 10,
+  })
+    .center()
+    .sca(.8)
+    .pos(1670, 930).alp(0);
+   
+  playButton.on("click", () => {
+    practiccMode();
+  });
 
    drawTrianglebtn.on("click",()=>{
     drawTriangles();
    })
 
   
+  
+   const modeSlider = new Slider({
+    step: 1,
+    vertical: true,
+    min: 1,
+    max: 2,
+    useTicks: true,
+    button: "circle",
+    barColor: "black",
+    tickColor: "black",
+  })
+    .center()
+    .pos(1704, 244)
+    .sca(1)
+    .change(() => {
+      if(modeSlider.currentValue == 1){
+        playButton.alp(1);
+      }
+    });
+
+   
+  const animationTime = 1;
+    function practiccMode() {
+      // Generate random changes for each line length
+      const randomChange = () => Math.random() * 30 - 25; // Random value between -25 and 5
+      const randomChange2 = () => Math.random() * 30 + 25; // Random value between 25 and 55
+    
+      // Calculate new lengths for each line
+      const lengthChangePerpendicular = randomChange();
+      const lengthChangeGround = randomChange();
+      const lengthChangeHyperbola = randomChange2();
+    
+      // Ensure minimum length constraint
+      const minLength = 20;
+      const newPerpendicularLength = Math.max(minLength, Perpendicular.length + lengthChangePerpendicular);
+      const newGroundLength = Math.max(minLength, ground.length + lengthChangeGround);
+      const newHyperbolaLength = Math.max(minLength, hyperbola.length + lengthChangeHyperbola);
+    
+      // Animate lines with new lengths
+      zim.animate(Perpendicular, { length: newPerpendicularLength }, 1, "easeInOutQuart");
+      zim.animate(ground, { length: newGroundLength }, 1, "easeInOutQuart");
+      zim.animate(hyperbola, { length: newHyperbolaLength }, 1, "easeInOutQuart");
+    
+      // Update draggable points to align with new line lengths
+      const updateDraggablePoint = (point, length) => {
+        const endX = 1200 + length;
+        zim.animate(point, { x: endX }, 1, "easeInOutQuart");
+      };
+    
+      updateDraggablePoint(PerpendicularDraggablePoint, newPerpendicularLength);
+      updateDraggablePoint(groundDraggablePoint, newGroundLength);
+      updateDraggablePoint(hyperbolaDraggablePoint, newHyperbolaLength);
+    
+      // Ensure y positions remain fixed
+      PerpendicularDraggablePoint.y = 750;
+      groundDraggablePoint.y = 800;
+      hyperbolaDraggablePoint.y = 850;
+    
+      // Function to check if a valid triangle can be formed
+      function checkTriangleCondition() {
+        const maxDistance = Math.max(newPerpendicularLength, newGroundLength, newHyperbolaLength);
+        const sumOfDistances = newPerpendicularLength + newGroundLength + newHyperbolaLength;
+        const twoSmallestSides = sumOfDistances - maxDistance;
+    
+        if (twoSmallestSides > maxDistance) {
+          console.log('Drawn triangle is possible');
+          
+          // Animate possibleBtn
+          possibleBtn.animate({
+            time:animationTime,
+            call: () => {
+              possibleBtn.backgroundColor = "blue";
+              drawTrianglebtn.animate({
+                props: { alpha: 1 },
+                time: animationTime,
+                call: () => {
+                  drawTrianglebtn.animate({
+                    time: 1,
+                    call: () => {
+                      drawTrianglebtn.backgroundColor = "green";
+                      timeout(1, () => {
+                        drawTriangles();
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          });
+        } else {
+          console.log('Drawn triangle is not possible');
+          drawTrianglebtn.alp(0);
+          possibleBtn.animate({
+            props: { backgroundColor: "red" },
+            time: 2
+          });
+    
+          notpossibleBtn.on("click", () => {
+            drawTrianglebtn.alp(0);
+          });
+          
+          possibleBtn.on("click", () => {
+            drawTrianglebtn.alp(0);
+            errorText.alp(1);
+          });
+    
+          triangles.forEach((triangle) => {
+            triangle.removeFrom();
+          });
+        }
+      }
+    
+      // Check triangle condition after animation
+      setTimeout(() => {
+        distanceLabelA.text = distanceOfA.text[lang] + `${Math.round(newPerpendicularLength)}`;
+        distanceLabelB.text = distanceOfB.text[lang] + `${Math.round(newGroundLength)}`;
+        distanceLabelC.text = distanceOfC.text[lang] + `${Math.round(newHyperbolaLength)}`;
+    
+        checkTriangleCondition();
+      }, 1000); // Adjust the timeout to match the duration of your animations
+    }
+    
+    
+    
+    
     
    
   }
@@ -193,6 +349,11 @@ async function init() {
       .center()
       .pos(130, 60);
 
+    
+      const SubHeader_rect = new Rectangle({ width: 1500, height: 50, color: "transparent" })
+      .center()
+      .pos(270, 140);
+
     const header_label = new Label({
       text: headerText.text[lang],
       size: 40,
@@ -200,6 +361,14 @@ async function init() {
     })
       .center(header_rect)
       .sca(1);
+
+      const subHeader_label = new Label({
+        text: subHeaderText.text[lang],
+        size: 40,
+        bold: true,
+      })
+        .center(SubHeader_rect)
+        .sca(0.6).mov(100,10);
 
     new Label({
       text: chapter.text[lang],
@@ -215,7 +384,7 @@ async function init() {
       color: black,
       bold: true,
 
-    }).loc(informationText.x[lang], 380);
+    }).loc(informationText.x[lang], 405);
 
 
   }

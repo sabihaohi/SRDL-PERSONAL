@@ -36,7 +36,7 @@ async function init() {
     asstesLoading();
     labelCreation();
     generateRandomPicture();
-    //handleDrag();
+
   }
 
   function asstesLoading() {
@@ -159,6 +159,7 @@ async function init() {
 
     const centerImages = [];
    picouterrect.on("pressup", () => {
+
       centerImages.forEach((centerImage) => {
         centerImage.removeFrom();
       });
@@ -173,16 +174,16 @@ async function init() {
        resultLabel.color = "black";
        resultLabel.center(displayrect).mov(-20, -40);
        resultLabel.text = iscorrectnumber.text[lang] + `\n${flowername.text[lang]} ` + `${allPicdata[pictureCount].name[lang]}` + `\n${leafnumberlabel.text[lang]}` + `${allPicdata[pictureCount].leafNumber}`;
-       if(pictureCount === 1){
-        
-       }
+      
        pictureCount++;  
        if(pictureCount<17){
         new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
       }
        if(pictureCount === 17){
-        picouterrect.noDrag();
-        resultLabel.text = "Your task is completed";
+        console.log("completed");
+        // finalPicouterRect.dispose();
+        // picouterrect.dispose();
+        // resultLabel.text = "Your task is completed";
        
       }
        S.update();
@@ -215,13 +216,14 @@ async function init() {
         new Pic(`${picData.items[pictureCount].imageLink}`).sca(.3).center(picouterrect);
       }
       if(pictureCount === 17){
-        picouterrect.noDrag();
-        resultLabel.text = "Your task is completed";
-        
+        console.log("completed");
+        // finalPicouterRect.dispose();
+        // picouterrect.dispose();
+        // resultLabel.text = "Your task is completed";
+       
       }
       S.update()
      }
-
      else{
       picouterrect.animate({
         props: { x: 145, y: 540 },
@@ -229,6 +231,7 @@ async function init() {
       });
       S.update();
      }
+     console.log(pictureCount);
    });
 
 
