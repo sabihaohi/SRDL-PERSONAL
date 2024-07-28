@@ -27,6 +27,27 @@ async function init() {
             .center()
             .mov(0, 185);
 
+
+            const texts = [
+                ["Traingle","1st side","2nd side","angle"],
+                ["ABC","100","200","50 degree"],
+                ["DEF","200","400","80 degree"],
+                ["side ratio","1/2","2/3",""]
+        
+               ]
+               let labels = [];
+               createTable();
+               function createTable(){
+                  for(let i=0; i<4; i++){
+                        for(let j=0; j<4; j++){
+                            let table = new Rectangle(196, 40, "transparent", "transparent", 1).pos(196*i+566, 40*j+275);
+                            let text = new Label(texts[i][j], 20, "Arial", "#000").center(table);
+                            labels.push(text);
+                        }
+                  }
+               }
+
+               console.log(labels[7].text);
             
         // Define initial positions for the right triangle vertices
         const rightTrianglePointA = { x: 650, y: 900 };
@@ -109,7 +130,7 @@ async function init() {
             // rightAngleBLabel.text = `Angle B: ${angles.angleB.toFixed(2)}°`;
             // rightAngleCLabel.text = `Angle C: ${angles.angleC.toFixed(2)}°`;
 
-            
+
 
             // Redraw right triangle
             rightTriangleShape.graphics
@@ -155,6 +176,14 @@ async function init() {
             rightTrianglePointB.x = event.currentTarget.x;
             rightTrianglePointB.y = event.currentTarget.y;
             rightUpdateTriangle();
+
+            const a = distance(rightTrianglePointB, rightTrianglePointC);
+            const b = distance(rightTrianglePointA, rightTrianglePointC);
+            const c = distance(rightTrianglePointA, rightTrianglePointB);
+            const angles = calculateAngles(a, b, c);
+
+            labels[7].text = `${angles.angleA.toFixed(2)}°`;
+            
            
         });
 
@@ -199,24 +228,7 @@ async function init() {
         // createTable(1650, 400, 150);
 
         // Function to create rectangles
-       const texts = [
-        ["Traingle","1st side","2nd side","angle"],
-        ["ABC","100","200","50 degree"],
-        ["DEF","200","400","80 degree"],
-        ["side ratio","1/2","2/3",""]
-
-       ]
-       let labels = [];
-       createTable();
-       function createTable(){
-          for(let i=0; i<4; i++){
-                for(let j=0; j<4; j++){
-                    let table = new Rectangle(196, 40, "transparent", "transparent", 1).pos(196*i+566, 40*j+275);
-                    let text = new Label(texts[i][j], 20, "Arial", "#000").center(table);
-                    labels.push(text);
-                }
-          }
-       }
+       
 
         // // Function to check if triangles are similar
         function checkSimilar() {
