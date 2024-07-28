@@ -30,8 +30,8 @@ async function init() {
 
             const texts = [
                 ["Traingle","1st side","2nd side","angle"],
-                ["ABC","100","200","50 degree"],
-                ["DEF","200","400","80 degree"],
+                ["ABC","100","200","50°"],
+                ["DEF","200","400","80°"],
                 ["side ratio","1/2","2/3",""]
         
                ]
@@ -48,16 +48,29 @@ async function init() {
                }
 
                console.log(labels[7].text);
+
+               
             
         // Define initial positions for the right triangle vertices
         const rightTrianglePointA = { x: 650, y: 900 };
         const rightTrianglePointB = { x: 800, y: 600 };
         const rightTrianglePointC = { x: 850, y: 900 };
 
+        
+
         // Define initial positions for the left triangle vertices
         const leftTrianglePointA = { x: 1000, y: 900 };
         const leftTrianglePointB = { x: 1100, y: 600 };
         const leftTrianglePointC = { x: 1250, y: 800 };
+
+        const a = distance(leftTrianglePointB, leftTrianglePointC);
+            const b = distance(leftTrianglePointA, leftTrianglePointC);
+            const c = distance(leftTrianglePointA, leftTrianglePointB);
+
+            const angles = calculateAngles(a, b, c);
+
+            // // Update angle labels for left triangle
+            // leftAngleALabel.text = `Angle A: ${angles.angleA.toFixed(2)}°`;
 
         // Draw initial right triangle
         const rightTriangleShape = new Shape(stage).addTo(stage);
@@ -126,7 +139,7 @@ async function init() {
             const angles = calculateAngles(a, b, c);
 
             // // Update angle labels for right triangle
-            // rightAngleALabel.text = `Angle A: ${angles.angleA.toFixed(2)}°`;
+           console.log( `Angle A: ${angles.angleA.toFixed(2)}°`);
             // rightAngleBLabel.text = `Angle B: ${angles.angleB.toFixed(2)}°`;
             // rightAngleCLabel.text = `Angle C: ${angles.angleC.toFixed(2)}°`;
 
