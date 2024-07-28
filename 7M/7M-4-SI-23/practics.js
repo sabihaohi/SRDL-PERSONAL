@@ -17,27 +17,55 @@ async function init() {
 
         const bg = new Pic("assets/bg.png").center().mov(0, 0).alp(1);
 
-        // Set initial positions for points A, B, and C
-        const pointA = { x: 700, y: 500 };  // Fixed point A
-        const pointB = { x: 1100, y: 500 }; // Initial position for point B
-        const pointC = { x: 900, y: 800 };  // Initial position for point C
+        const rightTrianglePointA = { x: 700, y: 800 };  
+        const rightTrianglePointB = { x: 850, y: 500 }; 
+        const rightTrianglePointC = { x: 950, y: 800 }; 
 
-        // Draw initial triangle
-        const triangleShape = new Shape(stage).addTo(stage);
-        triangleShape.graphics.beginStroke("green").moveTo(pointA.x, pointA.y)
-            .lineTo(pointB.x, pointB.y)
-            .lineTo(pointC.x, pointC.y)
-            .lineTo(pointA.x, pointA.y);
+        const leftTrianglePointA = { x: 1200, y: 800 };
+        const leftTrianglePointB = { x: 1300, y: 500 };
+        const leftTrianglePointC = { x: 1450, y: 700 };
 
-        // Create draggable circles at each point
-        const circleA = new Circle(10, "red").center(stage).pos(pointA.x, pointA.y).drag();
-        const circleB = new Circle(10, "red").center(stage).pos(pointB.x, pointB.y).drag();
-        const circleC = new Circle(10, "red").center(stage).pos(pointC.x, pointC.y).drag();
+        // Draw initial triangle right
+        const rightTriangleShape = new Shape(stage).addTo(stage);
+        rightTriangleShape.graphics.beginStroke("green").moveTo(rightTrianglePointA.x, rightTrianglePointA.y)
+            .lineTo(rightTrianglePointB.x, rightTrianglePointB.y)
+            .lineTo(rightTrianglePointC.x, rightTrianglePointC.y)
+            .lineTo(rightTrianglePointA.x, rightTrianglePointA.y);
 
-        // Create labels for displaying angles
-        const angleALabel = new Label({ text: "Angle A: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 50);
-        const angleBLabel = new Label({ text: "Angle B: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 80);
-        const angleCLabel = new Label({ text: "Angle C: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 110);
+
+    
+        //draw initial tringle left
+        const leftTriangleShape = new Shape(stage).addTo(stage);
+        leftTriangleShape.graphics.beginStroke("blue").moveTo(leftTrianglePointA.x, leftTrianglePointA.y)
+            .lineTo(leftTrianglePointB.x, leftTrianglePointB.y)
+            .lineTo(leftTrianglePointC.x, leftTrianglePointC.y)
+            .lineTo(leftTrianglePointA.x, leftTrianglePointA.y);
+
+
+       
+       // const circleA = new Circle(10, "red").center(stage).pos(rightTrianglePointA.x, rightTrianglePointA.y); // Not draggable since it's fixed
+        const rightCircleB = new Circle(10, "blue").center(stage).pos(rightTrianglePointB.x, rightTrianglePointB.y).drag();
+        const rightCircleC = new Circle(10, "green").center(stage).pos(rightTrianglePointC.x, rightTrianglePointC.y).drag();
+
+
+        const leftCircleB = new Circle(10, "red").center(stage).pos(leftTrianglePointB.x, leftTrianglePointB.y).drag();
+        const leftCircleC = new Circle(10, "violet").center(stage).pos(leftTrianglePointC.x, leftTrianglePointC.y).drag();
+
+       
+        const rightAngleALabel = new Label({ text: "Angle A: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 50);
+        const rightAngleBLabel = new Label({ text: "Angle B: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 80);
+        const rightAngleCLabel = new Label({ text: "Angle C: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 110);
+
+        const leftAngleALabel = new Label({ text: "Angle A: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 50);
+        const leftAngleBLabel = new Label({ text: "Angle B: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 80);
+        const leftAngleCLabel = new Label({ text: "Angle C: 0°", size: 20, color: "black" }).addTo(stage).pos(50, 110);
+
+
+
+        // Create labels for displaying side lengths
+        // const sideABLabel = new Label({ text: "AB: 0", size: 20, color: "black" }).addTo(stage).pos(750, 400);
+        // const sideBCLabeL = new Label({ text: "BC: 0", size: 20, color: "black" }).addTo(stage).pos(1000, 700);
+        // const sideCALabel = new Label({ text: "CA: 0", size: 20, color: "black" }).addTo(stage).pos(800, 650);
 
         // Function to calculate distances between two points
         function distance(p1, p2) {
@@ -52,50 +80,91 @@ async function init() {
             return { angleA, angleB, angleC };
         }
 
-        // Function to update angles and triangle
-        function updateTriangle() {
-            const a = distance(pointB, pointC);
-            const b = distance(pointA, pointC);
-            const c = distance(pointA, pointB);
+        // Function to update angles, side lengths, and triangle shape
+        function rightUpdateTriangle() {
+            const a = distance(rightTrianglePointB, rightTrianglePointC);
+            const b = distance(rightTrianglePointA, rightTrianglePointC);
+            const c = distance(rightTrianglePointA, rightTrianglePointB);
 
             const angles = calculateAngles(a, b, c);
 
-            angleALabel.text = `Angle A: ${angles.angleA.toFixed(2)}°`;
-            angleBLabel.text = `Angle B: ${angles.angleB.toFixed(2)}°`;
-            angleCLabel.text = `Angle C: ${angles.angleC.toFixed(2)}°`;
+            // Update angle labels
+            rightAngleALabel.text = `Angle A: ${angles.angleA.toFixed(2)}°`;
+            rightAngleBLabel.text = `Angle B: ${angles.angleB.toFixed(2)}°`;
+            rightAngleCLabel.text = `Angle C: ${angles.angleC.toFixed(2)}°`;
+
+            // Update side length labels
+            // sideABLabel.text = `AB: ${(c / 10).toFixed(2)} cm`;
+            // sideBCLabeL.text = `BC: ${(a / 10).toFixed(2)} cm`;
+            // sideCALabel.text = `CA: ${(b / 10).toFixed(2)} cm`;
 
             // Redraw triangle
-            triangleShape.graphics.clear()
+            rightTriangleShape.graphics.clear()
                 .beginStroke("green")
-                .moveTo(pointA.x, pointA.y)
-                .lineTo(pointB.x, pointB.y)
-                .lineTo(pointC.x, pointC.y)
-                .lineTo(pointA.x, pointA.y);
+                .moveTo(rightTrianglePointA.x, rightTrianglePointA.y)
+                .lineTo(rightTrianglePointB.x, rightTrianglePointB.y)
+                .lineTo(rightTrianglePointC.x, rightTrianglePointC.y)
+                .lineTo(rightTrianglePointA.x, rightTrianglePointA.y);
 
             // Update the stage
             stage.update();
         }
 
-        // Update angles initially
-        updateTriangle();
+
+        rightUpdateTriangle();
+
+    function leftUpdateTriangle() {
+        const a = distance(leftTrianglePointB, leftTrianglePointC);
+        const b = distance(leftTrianglePointA, leftTrianglePointC);
+        const c = distance(leftTrianglePointA, leftTrianglePointB);
+
+        const angles = calculateAngles(a, b, c);
+
+        // Update angle labels
+        leftAngleALabel.text = `Angle A: ${angles.angleA.toFixed(2)}°`;
+        leftAngleBLabel.text = `Angle B: ${angles.angleB.toFixed(2)}°`;
+        leftAngleCLabel.text = `Angle C: ${angles.angleC.toFixed(2)}°`;
+
+        // Update side length labels
+        // sideABLabel.text = `AB: ${(c / 10).toFixed(2)} cm`;
+        // sideBCLabeL.text = `BC: ${(a / 10).toFixed(2)} cm`;
+        // sideCALabel.text = `CA: ${(b / 10).toFixed(2)} cm`;
+
+        // Redraw triangle
+        leftTriangleShape.graphics.clear()
+            .beginStroke("green")
+            .moveTo(leftTrianglePointA.x, leftTrianglePointA.y)
+            .lineTo(leftTrianglePointB.x, leftTrianglePointB.y)
+            .lineTo(leftTrianglePointC.x, leftTrianglePointC.y)
+            .lineTo(leftTrianglePointA.x, leftTrianglePointA.y);
+
+        // Update the stage
+        stage.update();
+    }
 
         // Add drag event listeners to update triangle when any circle is moved
-        circleA.on("pressmove", (event) => {
-            pointA.x = event.currentTarget.x;
-            pointA.y = event.currentTarget.y;
-            updateTriangle();
+        rightCircleB.on("pressmove", (event) => {
+            rightTrianglePointB.x = event.currentTarget.x;
+            rightTrianglePointB.y = event.currentTarget.y;
+            rightUpdateTriangle();
         });
 
-        circleB.on("pressmove", (event) => {
-            pointB.x = event.currentTarget.x;
-            pointB.y = event.currentTarget.y;
-            updateTriangle();
+        rightCircleC.on("pressmove", (event) => {
+            rightTrianglePointC.x = event.currentTarget.x;
+            rightTrianglePointC.y = event.currentTarget.y;
+            rightUpdateTriangle();
         });
 
-        circleC.on("pressmove", (event) => {
-            pointC.x = event.currentTarget.x;
-            pointC.y = event.currentTarget.y;
-            updateTriangle();
+        leftCircleB.on("pressmove", (event) => {
+            leftTrianglePointB.x = event.currentTarget.x;
+            leftTrianglePointB.y = event.currentTarget.y;
+            leftUpdateTriangle();
+        });
+
+        leftCircleC.on("pressmove", (event) => {
+            leftTrianglePointC.x = event.currentTarget.x;
+            leftTrianglePointC.y = event.currentTarget.y;
+            leftUpdateTriangle();
         });
     }
 }
