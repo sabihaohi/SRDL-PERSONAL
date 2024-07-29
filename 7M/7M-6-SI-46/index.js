@@ -32,7 +32,7 @@ async function init() {
             ["Triangle", "1st side", "2nd side", "3rd side"],
             ["ABC(<BAC)", "0", "0", "0"],
             ["DEF(<EDF)", "0", "0", "0"],
-            ["side ratio","0", "0", "0"]
+            ["side ratio", "0", "0", "0"]
         ];
 
         let labels = [];
@@ -175,8 +175,8 @@ async function init() {
             const angles = calculateAngles(a, b, c);
 
             labels[9].text = Math.floor(a) + " cm (DE)"; // Update DE length
-            labels[10].text = Math.floor(b) + " cm (DF)"; // Update DF length
-            labels[11].text =  Math.floor(c) + " cm (EF)"; // Update angle
+            labels[10].text = Math.floor(b) + " cm (DF)";  // Update DF length
+            labels[11].text = Math.floor(c) + " cm (EF)";  // Update EF length
 
             // Redraw left triangle
             leftTriangleShape.graphics
@@ -191,205 +191,102 @@ async function init() {
             stage.update();
         }
 
-        // Add drag event listeners to update right triangle when any circle is moved
-
-        rightCircleA.on("pressmove", (event) => {
-            rightTrianglePointA.x = event.currentTarget.x;
-            rightTrianglePointA.y = event.currentTarget.y;
+        // Add 'pressup' event listener for right circle A
+        rightCircleA.on("pressmove", function () {
+            rightTrianglePointA.x = rightCircleA.x + 15;
+            rightTrianglePointA.y = rightCircleA.y + 15;
             rightUpdateTriangle();
-            updateRatios();
+             // Check similarity after updates
         });
-        rightCircleA.on("pressup", () => {
-            checkSimilar();
+        rightCircleA.on("pressup", function () {
+            checkSimilar(); 
         });
-        rightCircleB.on("pressmove", (event) => {
-            rightTrianglePointB.x = event.currentTarget.x;
-            rightTrianglePointB.y = event.currentTarget.y;
+
+        // Add 'pressup' event listener for right circle B
+        rightCircleB.on("pressmove", function () {
+            rightTrianglePointB.x = rightCircleB.x + 15;
+            rightTrianglePointB.y = rightCircleB.y + 15;
             rightUpdateTriangle();
-            updateRatios();
+   
         });
 
-        rightCircleB.on("pressup", () => {
-            checkSimilar();
+        rightCircleB.on("pressup", function () {
+            checkSimilar(); // Check similarity after updates
         });
 
-        rightCircleC.on("pressmove", (event) => {
-            rightTrianglePointC.x = event.currentTarget.x;
-            rightTrianglePointC.y = event.currentTarget.y;
+        // Add 'pressup' event listener for right circle C
+        rightCircleC.on("pressmove", function () {
+            rightTrianglePointC.x = rightCircleC.x + 15;
+            rightTrianglePointC.y = rightCircleC.y + 15;
             rightUpdateTriangle();
-            updateRatios();
+            
+        });
+        rightCircleC.on("pressup", function () {
+            checkSimilar(); // Check similarity after updates
         });
 
-        rightCircleC.on("pressup", () => {
-            checkSimilar();
-        });
-
-        // Add drag event listeners to update left triangle when any circle is moved
-        leftCircleD.on("pressmove", (event) => {  // Updated drag event listener for point D
-            leftTrianglePointD.x = event.currentTarget.x;
-            leftTrianglePointD.y = event.currentTarget.y;
+        // Add 'pressup' event listener for left circle D
+        leftCircleD.on("pressup", function () {
+            leftTrianglePointD.x = leftCircleD.x + 15;
+            leftTrianglePointD.y = leftCircleD.y + 15;
             leftUpdateTriangle();
-            updateRatios();
+            checkSimilar(); // Check similarity after updates
         });
 
-        leftCircleD.on("pressup", () => {
-            checkSimilar();
-        });
-
-        leftCircleE.on("pressmove", (event) => {
-            leftTrianglePointE.x = event.currentTarget.x;
-            leftTrianglePointE.y = event.currentTarget.y;
+        // Add 'pressup' event listener for left circle E
+        leftCircleE.on("pressup", function () {
+            leftTrianglePointE.x = leftCircleE.x + 15;
+            leftTrianglePointE.y = leftCircleE.y + 15;
             leftUpdateTriangle();
-            updateRatios();
+            checkSimilar(); // Check similarity after updates
         });
 
-        leftCircleE.on("pressup", () => {
-            checkSimilar();
-        });
-
-        leftCircleF.on("pressmove", (event) => {
-            leftTrianglePointF.x = event.currentTarget.x;
-            leftTrianglePointF.y = event.currentTarget.y;
+        // Add 'pressup' event listener for left circle F
+        leftCircleF.on("pressup", function () {
+            leftTrianglePointF.x = leftCircleF.x + 15;
+            leftTrianglePointF.y = leftCircleF.y + 15;
             leftUpdateTriangle();
-            updateRatios();
+            checkSimilar(); // Check similarity after updates
         });
 
-        leftCircleF.on("pressup", () => {
-            checkSimilar();
-        });
+        // Create a label to display the result message
+        const resultMessage = new Label("", 25, "Arial", "black").pos(800, 150);
+        stage.addChild(resultMessage);
 
-        // Function to update the side ratios in the table
-        function updateRatios() {
-            const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
-            const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-            const rightBC = distanceInCm(rightTrianglePointB, rightTrianglePointC);
-
-            const leftDE = distanceInCm(leftTrianglePointD, leftTrianglePointE);
-            const leftDF = distanceInCm(leftTrianglePointD, leftTrianglePointF);
-            const leftEF = distanceInCm(leftTrianglePointE, leftTrianglePointF);
-
-            const { ratio1, ratio2, ratio3 } = calculateSideRatios(rightAB, rightAC, rightBC, leftDE, leftDF, leftEF);
-
-            console.log("Ratios: ", ratio1, ratio2, ratio3);
-
-            labels[13].text = `${Math.floor(rightAB)} / ${Math.floor(leftDE)} = ${ratio1}`; // Update ratio for 1st side (AB/DE)
-            labels[14].text = `${Math.floor(rightAC)} / ${Math.floor(leftDF)} = ${ratio2}`; // Update ratio for 2nd side (AC/DF)
-            labels[15].text = `${Math.floor(rightBC)} / ${Math.floor(leftEF)} = ${ratio3}`; // Update ratio for 3rd side (BC/EF)
-        }
-        updateRatios();
-
-        let results = [];
-
-        // Function to check if triangles are similar
+        // Function to check similarity and update the result message
         function checkSimilar() {
-            const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
-            const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-            const rightBC = distanceInCm(rightTrianglePointB, rightTrianglePointC);
+            const rightA = distanceInCm(rightTrianglePointB, rightTrianglePointC);
+            const rightB = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+            const rightC = distanceInCm(rightTrianglePointA, rightTrianglePointB);
 
-            const leftDE = distanceInCm(leftTrianglePointD, leftTrianglePointE);
-            const leftDF = distanceInCm(leftTrianglePointD, leftTrianglePointF);
-            const leftEF = distanceInCm(leftTrianglePointE, leftTrianglePointF);
+            const leftA = distanceInCm(leftTrianglePointD, leftTrianglePointE);
+            const leftB = distanceInCm(leftTrianglePointD, leftTrianglePointF);
+            const leftC = distanceInCm(leftTrianglePointE, leftTrianglePointF);
 
-            // Calculate side ratios
-            const { ratio1, ratio2, ratio3 } = calculateSideRatios(rightAB, rightAC, rightBC, leftDE, leftDF, leftEF);
+            // Update side ratios in the table
+            const sideRatios = calculateSideRatios(rightA, rightB, rightC, leftA, leftB, leftC);
+            labels[13].text = sideRatios.ratio1 + ":1"; // Update ratio for DE
+            labels[14].text = sideRatios.ratio2 + ":1"; // Update ratio for DF
+            labels[15].text = sideRatios.ratio3 + ":1"; // Update ratio for EF
 
-            // Check if all ratios are approximately equal
-            const isSimilar = Math.abs(ratio1 - ratio2) < 0.01 &&
-                Math.abs(ratio1 - ratio3) < 0.01 &&
-                Math.abs(ratio2 - ratio3) < 0.01;
-
-            // Update result label
-            results.forEach(result => result.removeFrom());
-            results = [];
-            if (isSimilar) {
-                console.log("Triangles are similar");
-                const successText = new Label({
-                    text: similarMessage.text[lang],
-                    size: 20,
-                    lineHeight: 30,
-                }).pos(150, 500);
-                results.push(successText);
+            if (
+                sideRatios.ratio1 === sideRatios.ratio2 &&
+                sideRatios.ratio2 === sideRatios.ratio3
+            ) {
+                resultMessage.text = "The triangles are similar!";
             } else {
-                console.log("Triangles are not similar");
-                const errorText = new Label({
-                    text: errorMessage.text[lang],
-                    size: 20,
-                    lineHeight: 30,
-                    color: "red",
-                }).pos(150, 500);
-                results.push(errorText);
+                resultMessage.text = "The triangles are not similar.";
             }
+
+            // Update the stage after changing the result message
+            stage.update();
         }
 
-        function labelCreation() {
-            const header_rect = new Rectangle({ width: 1700, height: 100, color: "transparent" })
-                .center()
-                .pos(130, 60);
-
-            const SubHeader_rect = new Rectangle({ width: 1500, height: 50, color: "transparent" })
-                .center()
-                .pos(270, 140);
-
-            const header_label = new Label({
-                text: headerText.text[lang],
-                size: 40,
-                bold: true,
-            })
-                .center(header_rect)
-                .sca(1);
-
-            const subHeader_label = new Label({
-                text: subHeaderText.text[lang],
-                size: 40,
-                bold: true,
-            })
-                .center(SubHeader_rect)
-                .sca(0.6).mov(0, 20);
-
-            new Label({
-                text: chapter.text[lang],
-                size: 25,
-                color: "black",
-                bold: true,
-                italic: true,
-            }).loc(100, 110);
-
-            new Label({
-                text: informationText.text[lang],
-                size: 20,
-                color: "black",
-                bold: true,
-            }).loc(informationText.positionX[lang], 430);
-
-            const restartButton = new Button({
-                label: "",
-                width: 90,
-                height: 90,
-                backgroundColor: "#967bb6",
-                rollBackgroundColor: "#967bb6",
-                borderWidth: 0,
-                gradient: 0.4,
-                corner: 45,
-            })
-                .center()
-                .mov(830, 430);
-
-            const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
-            pic.rotation = 60;
-
-            restartButton.on("click", () => {
-                location.reload();
-            });
-        }
-
-        // Initial update of triangles
+        // Initial update
         rightUpdateTriangle();
         leftUpdateTriangle();
-        updateRatios();
-        labelCreation();
-        checkSimilar();
+        checkSimilar(); // Initial similarity check
     }
 }
 
-// Initialize the app
 init();
