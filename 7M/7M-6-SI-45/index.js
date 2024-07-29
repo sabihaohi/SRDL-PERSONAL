@@ -7,7 +7,7 @@ async function init() {
     const data = await response.json();
 
     // Destructure the loaded data
-    const { lang, headerText, chapter, chapterNoText, footerLabelText, informationText } = data;
+    const { lang, headerText, chapter, chapterNoText, footerLabelText, informationText,similarMessage } = data;
 
     // Create the frame after loading the JSON data
     const frame = new Frame("fit", 1920, 1080, "#adbed9", "#7d9ed1", ready, "assets/");
@@ -30,8 +30,8 @@ async function init() {
 
             const texts = [
                 ["Traingle","1st side","2nd side","angle"],
-                ["ABC","100","200","50°"],
-                ["DEF","200","400","80°"],
+                ["ABC(<BAC)","100","200","63.00°"],
+                ["DEF(<EDF)","200","400","80°"],
                 ["side ratio","1/2","2/3",""]
         
                ]
@@ -40,7 +40,7 @@ async function init() {
                function createTable(){
                   for(let i=0; i<4; i++){
                         for(let j=0; j<4; j++){
-                            let table = new Rectangle(196, 40, "transparent", "transparent", 1).pos(196*i+566, 40*j+275);
+                            let table = new Rectangle(196, 40, "transparent", "transparent", 1).pos(196*i+566, 40*j+277);
                             let text = new Label(texts[i][j], 20, "Arial", "#000").center(table);
                             labels.push(text);
                         }
@@ -63,14 +63,7 @@ async function init() {
         const leftTrianglePointB = { x: 1100, y: 600 };
         const leftTrianglePointC = { x: 1250, y: 800 };
 
-        const a = distance(leftTrianglePointB, leftTrianglePointC);
-            const b = distance(leftTrianglePointA, leftTrianglePointC);
-            const c = distance(leftTrianglePointA, leftTrianglePointB);
-
-            const angles = calculateAngles(a, b, c);
-
-            // // Update angle labels for left triangle
-            // leftAngleALabel.text = `Angle A: ${angles.angleA.toFixed(2)}°`;
+          
 
         // Draw initial right triangle
         const rightTriangleShape = new Shape(stage).addTo(stage);
@@ -91,24 +84,38 @@ async function init() {
             .lineTo(leftTrianglePointA.x, leftTrianglePointA.y);
 
         // Create draggable circles at each vertex of the right triangle
-        const rightCircleB = new Circle(10, "blue")
+        const rightCircleA = new Circle(15, "red")
             .center(stage)
-            .pos(rightTrianglePointB.x, rightTrianglePointB.y)
+            .pos(rightTrianglePointA.x-15, rightTrianglePointA.y-15)
             .drag(stageRect);
-        const rightCircleC = new Circle(10, "green")
+        new Label("A", 20, "Arial", "white",).center(rightCircleA);
+        const rightCircleB = new Circle(15, "blue")
             .center(stage)
-            .pos(rightTrianglePointC.x, rightTrianglePointC.y)
+            .pos(rightTrianglePointB.x-15, rightTrianglePointB.y-10)
             .drag(stageRect);
+         new Label("B", 20, "Arial", "white",).center(rightCircleB);
+        const rightCircleC = new Circle(15, "green")
+            .center(stage)
+            .pos(rightTrianglePointC.x-15, rightTrianglePointC.y-15)
+            .drag(stageRect);
+        new Label("C", 20, "Arial", "white",).center(rightCircleC);
 
         // Create draggable circles at each vertex of the left triangle
-        const leftCircleB = new Circle(10, "red")
+        const leftCircleA = new Circle(15, "blue")
             .center(stage)
-            .pos(leftTrianglePointB.x, leftTrianglePointB.y)
+            .pos(leftTrianglePointA.x-10, leftTrianglePointA.y-10)
             .drag(stageRect);
-        const leftCircleC = new Circle(10, "violet")
+        new Label("D", 20, "Arial", "white",).center(leftCircleA);
+        const leftCircleB = new Circle(15, "red")
             .center(stage)
-            .pos(leftTrianglePointC.x, leftTrianglePointC.y)
+            .pos(leftTrianglePointB.x-10, leftTrianglePointB.y-10)
             .drag(stageRect);
+        new Label("E", 20, "Arial", "white",).center(leftCircleB);
+        const leftCircleC = new Circle(15, "violet")
+            .center(stage)
+            .pos(leftTrianglePointC.x-15, leftTrianglePointC.y-15)
+            .drag(stageRect);
+        new Label("F", 20, "Arial", "white",).center(leftCircleC);
 
        
         // Function to calculate distances between two points
@@ -208,6 +215,14 @@ async function init() {
             rightTrianglePointC.x = event.currentTarget.x;
             rightTrianglePointC.y = event.currentTarget.y;
             rightUpdateTriangle();
+
+            const a = distance(rightTrianglePointB, rightTrianglePointC);
+            const b = distance(rightTrianglePointA, rightTrianglePointC);
+            const c = distance(rightTrianglePointA, rightTrianglePointB);
+            const angles = calculateAngles(a, b, c);
+
+            labels[7].text = `${angles.angleA.toFixed(2)}°`;
+
             
         });
         rightCircleC.on("pressup", () => {
@@ -219,6 +234,14 @@ async function init() {
             leftTrianglePointB.x = event.currentTarget.x;
             leftTrianglePointB.y = event.currentTarget.y;
             leftUpdateTriangle();
+           
+            const a = distance(leftTrianglePointB, leftTrianglePointC);
+            const b = distance(leftTrianglePointA, leftTrianglePointC);
+            const c = distance(leftTrianglePointA, leftTrianglePointB);
+
+            const angles = calculateAngles(a, b, c);
+
+            labels[11].text = `${angles.angleA.toFixed(2)}°`;
          
         });
 
@@ -230,6 +253,14 @@ async function init() {
             leftTrianglePointC.x = event.currentTarget.x;
             leftTrianglePointC.y = event.currentTarget.y;
             leftUpdateTriangle();
+
+            const a = distance(leftTrianglePointB, leftTrianglePointC);
+            const b = distance(leftTrianglePointA, leftTrianglePointC);
+            const c = distance(leftTrianglePointA, leftTrianglePointB);
+
+            const angles = calculateAngles(a, b, c);
+
+            labels[11].text = `${angles.angleA.toFixed(2)}°`;
             
         });
         leftCircleC.on("pressup", () => {
