@@ -29,7 +29,7 @@ async function init() {
 
         // Define initial table data
         const texts = [
-            ["Triangle", "1st side", "2nd side", "angle"],
+            ["Triangle", "1st side", "2nd side", "3rd side"],
             ["ABC(<BAC)", "100", "200", "63.00°"],
             ["DEF(<EDF)", "200", "400", "63.00°"],
             ["side ratio", "1/2", "1/2", ""]
@@ -251,32 +251,30 @@ async function init() {
         let results =[];
         // Function to check if triangles are similar
        // Function to check if triangles are similar
+
+
+       // Function to check if triangles are similar
        function checkSimilar() {
-        // Remove any previous result labels
-        results.forEach((result) => result.removeFrom());
+        const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+        const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+        const rightBC = distanceInCm(rightTrianglePointB, rightTrianglePointC);
+
+        const leftDE = distanceInCm(leftTrianglePointA, leftTrianglePointB);
+        const leftDF = distanceInCm(leftTrianglePointA, leftTrianglePointC);
+        const leftEF = distanceInCm(leftTrianglePointB, leftTrianglePointC);
+
+        // Calculate side ratios
+        const { ratioAB_DE, ratioAC_DF, ratioBC_EF } = calculateSideRatios(rightAB, rightAC, rightBC, leftDE, leftDF, leftEF);
+
+        // Check if all ratios are approximately equal
+        const isSimilar = Math.abs(ratioAB_DE - ratioAC_DF) < 0.01 &&
+            Math.abs(ratioAB_DE - ratioBC_EF) < 0.01 &&
+            Math.abs(ratioAC_DF - ratioBC_EF) < 0.01;
+
+        // Update result label
+        results.forEach(result => result.removeFrom());
         results = [];
-    
-        // Calculate side lengths and angles
-        const a = distanceInCm(rightTrianglePointA, rightTrianglePointB);
-        const b = distanceInCm(rightTrianglePointB, rightTrianglePointC);
-        const c = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-    
-        const rightAngles = calculateAngles(a, b, c);
-    
-        const a1 = distanceInCm(leftTrianglePointA, leftTrianglePointB);
-        const b1 = distanceInCm(leftTrianglePointB, leftTrianglePointC);
-        const c1 = distanceInCm(leftTrianglePointA, leftTrianglePointC);
-    
-        const leftAngles = calculateAngles(a1, b1, c1);
-    
-        const { ratio1, ratio2 } = calculateSideRatios(a, b, a1, b1);
-    
-       
-       
-    
-       
-    
-        if (rightAngles.angleA === leftAngles.angleA && ratio1 === ratio2 ) {
+        if (isSimilar) {
             console.log("Triangles are similar");
             const successText = new Label({
                 text: similarMessage.text[lang],
@@ -295,6 +293,7 @@ async function init() {
             results.push(errorText);
         }
     }
+
 labelCreation();
 function labelCreation() {
     const header_rect = new Rectangle({ width: 1700, height: 100, color: "transparent" })
@@ -366,7 +365,7 @@ function labelCreation() {
         rightUpdateTriangle();
         leftUpdateTriangle();
         updateRatios();
-        checkSimilar();
+        //checkSimilar();
     }
 }
 
