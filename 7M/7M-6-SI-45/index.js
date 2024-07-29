@@ -274,7 +274,14 @@ async function init() {
         // Function to create rectangles
        
 
-        // // Function to check if triangles are similar
+       
+
+        const resultMessage = new Label({
+            text: "",
+            lineHeight:30,
+            size:25,
+        }).pos(150, 500);
+        stage.addChild(resultMessage);
         function checkSimilar() {
             const a = distance(rightTrianglePointB, rightTrianglePointC);
             const b = distance(rightTrianglePointA, rightTrianglePointC);

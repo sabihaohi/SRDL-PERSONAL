@@ -191,66 +191,79 @@ async function init() {
             stage.update();
         }
 
-        // Add 'pressup' event listener for right circle A
-        rightCircleA.on("pressmove", function () {
-            rightTrianglePointA.x = rightCircleA.x + 15;
-            rightTrianglePointA.y = rightCircleA.y + 15;
+        rightCircleA.on("pressmove", (event) => {
+            rightTrianglePointA.x = event.currentTarget.x;
+            rightTrianglePointA.y = event.currentTarget.y;
             rightUpdateTriangle();
-             // Check similarity after updates
+           
         });
-        rightCircleA.on("pressup", function () {
-            checkSimilar(); 
+        rightCircleA.on("pressup", () => {
+            checkSimilar();
         });
-
-        // Add 'pressup' event listener for right circle B
-        rightCircleB.on("pressmove", function () {
-            rightTrianglePointB.x = rightCircleB.x + 15;
-            rightTrianglePointB.y = rightCircleB.y + 15;
+        rightCircleB.on("pressmove", (event) => {
+            rightTrianglePointB.x = event.currentTarget.x;
+            rightTrianglePointB.y = event.currentTarget.y;
             rightUpdateTriangle();
-   
-        });
-
-        rightCircleB.on("pressup", function () {
-            checkSimilar(); // Check similarity after updates
-        });
-
-        // Add 'pressup' event listener for right circle C
-        rightCircleC.on("pressmove", function () {
-            rightTrianglePointC.x = rightCircleC.x + 15;
-            rightTrianglePointC.y = rightCircleC.y + 15;
-            rightUpdateTriangle();
+           // updateRatios();
             
         });
-        rightCircleC.on("pressup", function () {
-            checkSimilar(); // Check similarity after updates
+
+        rightCircleB.on("pressup", () => {
+            checkSimilar();
         });
 
-        // Add 'pressup' event listener for left circle D
-        leftCircleD.on("pressup", function () {
-            leftTrianglePointD.x = leftCircleD.x + 15;
-            leftTrianglePointD.y = leftCircleD.y + 15;
-            leftUpdateTriangle();
-            checkSimilar(); // Check similarity after updates
+        rightCircleC.on("pressmove", (event) => {
+            rightTrianglePointC.x = event.currentTarget.x;
+            rightTrianglePointC.y = event.currentTarget.y;
+            rightUpdateTriangle();
+            //updateRatios();
         });
 
-        // Add 'pressup' event listener for left circle E
-        leftCircleE.on("pressup", function () {
-            leftTrianglePointE.x = leftCircleE.x + 15;
-            leftTrianglePointE.y = leftCircleE.y + 15;
-            leftUpdateTriangle();
-            checkSimilar(); // Check similarity after updates
+        rightCircleC.on("pressup", () => {
+            checkSimilar();
         });
 
-        // Add 'pressup' event listener for left circle F
-        leftCircleF.on("pressup", function () {
-            leftTrianglePointF.x = leftCircleF.x + 15;
-            leftTrianglePointF.y = leftCircleF.y + 15;
+        // Add drag event listeners to update left triangle when any circle is moved
+        leftCircleD.on("pressmove", (event) => {  // Updated drag event listener for point D
+            leftTrianglePointD.x = event.currentTarget.x;
+            leftTrianglePointD.y = event.currentTarget.y;
             leftUpdateTriangle();
-            checkSimilar(); // Check similarity after updates
+            //updateRatios();
         });
+
+        leftCircleD.on("pressup", () => {
+            checkSimilar();
+        });
+
+        leftCircleE.on("pressmove", (event) => {
+            leftTrianglePointE.x = event.currentTarget.x;
+            leftTrianglePointE.y = event.currentTarget.y;
+            leftUpdateTriangle();
+            //updateRatios();
+        });
+
+        leftCircleE.on("pressup", () => {
+            checkSimilar();
+        });
+
+        leftCircleF.on("pressmove", (event) => {
+            leftTrianglePointF.x = event.currentTarget.x;
+            leftTrianglePointF.y = event.currentTarget.y;
+            leftUpdateTriangle();
+            //updateRatios();
+        });
+
+        leftCircleF.on("pressup", () => {
+            checkSimilar();
+        });
+
 
         // Create a label to display the result message
-        const resultMessage = new Label("", 25, "Arial", "black").pos(800, 150);
+        const resultMessage = new Label({
+            text: "",
+            lineHeight:35,
+            size:25,
+        }).pos(150, 500);
         stage.addChild(resultMessage);
 
         // Function to check similarity and update the result message
@@ -273,15 +286,83 @@ async function init() {
                 sideRatios.ratio1 === sideRatios.ratio2 &&
                 sideRatios.ratio2 === sideRatios.ratio3
             ) {
-                resultMessage.text = "The triangles are similar!";
+                resultMessage.color = "green";
+                resultMessage.text = similarMessage.text[lang];
+               
             } else {
-                resultMessage.text = "The triangles are not similar.";
+                resultMessage.text = errorMessage.text[lang];
+                resultMessage.color = "red";
             }
 
             // Update the stage after changing the result message
             stage.update();
         }
 
+        labelCreation();
+function labelCreation() {
+    const header_rect = new Rectangle({ width: 1700, height: 100, color: "transparent" })
+      .center()
+      .pos(130, 60);
+
+    
+      const SubHeader_rect = new Rectangle({ width: 1500, height: 50, color: "transparent" })
+      .center()
+      .pos(270, 140);
+
+    const header_label = new Label({
+      text: headerText.text[lang],
+      size: 40,
+      bold: true,
+    })
+      .center(header_rect)
+      .sca(1);
+
+      const subHeader_label = new Label({
+        text: subHeaderText.text[lang],
+        size: 40,
+        bold: true,
+      })
+        .center(SubHeader_rect)
+        .sca(0.6).mov(0,20);
+
+    new Label({
+      text: chapter.text[lang],
+      size: 25,
+      color: "black",
+      bold: true,
+      italic: true,
+    }).loc(100, 110);
+
+    new Label({
+      text: informationText.text[lang],
+      size: 20,
+      color: black,
+      bold: true,
+
+    }).loc(informationText.positionX[lang], 430);
+
+    const restartButton = new Button({
+        label: "",
+        width: 90,
+        height: 90,
+        backgroundColor: "#967bb6",
+        rollBackgroundColor: "#967bb6",
+        borderWidth: 0,
+        gradient: 0.4,
+        corner: 45,
+      })
+        .center()
+        .mov(830, 430);
+  
+      const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
+      pic.rotation = 60;
+  
+      restartButton.on("click", () => {
+        location.reload();
+      });
+
+
+  }
         // Initial update
         rightUpdateTriangle();
         leftUpdateTriangle();

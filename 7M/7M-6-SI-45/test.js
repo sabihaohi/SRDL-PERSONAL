@@ -248,13 +248,16 @@ async function init() {
             labels[13].text = `${Math.floor(rightAB)} / ${Math.floor(leftDE)} =${ratio1}`; // Update ratio for 1st side (AB/DE)
             labels[14].text =  `${Math.floor(rightAC)} / ${Math.floor(leftDF)} =${ratio2} ` // Update ratio for 2nd side (AC/DF)
         }
-        let results =[];
-        // Function to check if triangles are similar
-       // Function to check if triangles are similar
+       
+
+       const resultMessage = new Label({
+        text: "",
+        lineHeight:35,
+        size:25,
+    }).pos(150, 500);
+    stage.addChild(resultMessage);
        function checkSimilar() {
-        // Remove any previous result labels
-        results.forEach((result) => result.removeFrom());
-        results = [];
+      
     
         // Calculate side lengths and angles
         const a = Math.floor(distanceInCm(rightTrianglePointB, rightTrianglePointC));
@@ -272,21 +275,13 @@ async function init() {
         const { ratio1, ratio2 } = calculateSideRatios(a, b, a1, b1);
         if (rightAngles.angleA === leftAngles.angleA && ratio1 === ratio2 ) {
             console.log("Triangles are similar");
-            const successText = new Label({
-                text: similarMessage.text[lang],
-                size: 20,
-                lineHeight: 30,
-            }).pos(150, 500);
-            results.push(successText);
+            
+            resultMessage.text = similarMessage.text[lang];
+            resultMessage.color = "green";
         } else {
             console.log("Triangles are not similar");
-            const errorText = new Label({
-                text: errorMessage.text[lang],
-                size: 20,
-                lineHeight: 30,
-                color: "red",
-            }).pos(150, 500);
-            results.push(errorText);
+            resultMessage.text = errorMessage.text[lang];
+            resultMessage.color = "red";
         }
     }
 labelCreation();

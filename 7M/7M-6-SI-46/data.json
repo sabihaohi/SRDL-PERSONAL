@@ -1,5 +1,5 @@
 {
-    "lang": "EN",
+    "lang": "BN",
     "headerText": {
       "text": {
         "BN": "সর্বসমতা ও সদৃশতা",
@@ -48,8 +48,8 @@
 
     "similarMessage":{
       "text":{
-        "BN":"ABC এবং DEF ত্রিভুজ এর মধ্যে সদৃশ রয়েছে। এখানে দুটি ত্রিভুজের বাহুগুলোর দৈর্ঘ্য এর অনুপাত সমান ",
-        "EN":"Triangles ABC and DEF are\nsimilar.Here the ratio of the\nlengths of the two sides of\nthe triangles is equal."
+        "BN":"ABC এবং DEF ত্রিভুজ\nএর মধ্যে সদৃশ রয়েছে। এখানে\nদুটি ত্রিভুজের বাহুগুলোর\nদৈর্ঘ্য এর অনুপাত \nসমান ",
+        "EN":"Triangles ABC and \nDEF are similar Here \nthe ratio of the lengths \nof the two sides of the \ntriangles is equal"
       },
       "size":{
         "BN": 25 ,
@@ -58,8 +58,8 @@
     },
     "errorMessage":{
       "text":{
-        "BN":"ABC এবং DEF ত্রিভুজ এর মধ্যে সদৃশ রয়েছে।\nএখানে দুটি ত্রিভুজের বাহুগুলোর দৈর্ঘ্য এর অনুপাত নয়।",
-        "EN":"Triangles ABC and DEF are similar\nHere the ratio of the lengths of the two sides of the triangles is not\nintermediate."
+        "BN":"ABC এবং DEF ত্রিভুজ\nএর মধ্যেসদৃশ রয়েছে।\nএখানে দুটি ত্রিভুজের\nবাহুগুলোর দৈর্ঘ্য \nএর অনুপাত নয়।",
+        "EN":"Triangles ABC and \nDEF are not similar \nHere the ratio of the \nlengths of the two sides \nof the triangles is not \nintermediate."
       },
       "size":{
         "BN": 25 ,
