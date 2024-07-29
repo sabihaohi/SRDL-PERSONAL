@@ -1,5 +1,5 @@
 import zim, { center, Rectangle, Shape, siz, Triangle } from "./zim.js";
-const { Frame, Circle, Label, Pic } = zim;
+const { Frame, Circle, Label, Pic, Button } = zim;
 
 async function init() {
     // Load JSON data
@@ -7,7 +7,7 @@ async function init() {
     const data = await response.json();
 
     // Destructure the loaded data
-    const { lang, headerText, chapter, chapterNoText, footerLabelText,subHeaderText, informationText,similarMessage,errorMessage } = data;
+    const { lang, headerText, chapter, chapterNoText, footerLabelText, subHeaderText, informationText, similarMessage, errorMessage } = data;
 
     // Create the frame after loading the JSON data
     const frame = new Frame("fit", 1920, 1080, "#adbed9", "#7d9ed1", ready, "assets/");
@@ -56,9 +56,9 @@ async function init() {
         const rightTrianglePointC = { x: 850, y: 900 };
 
         // Initial positions for the left triangle vertices
-        const leftTrianglePointA = { x: 995, y: 900 };
-        const leftTrianglePointB = { x: 1100, y: 600 };
-        const leftTrianglePointC = { x: 1150, y: 900 };
+        const leftTrianglePointD = { x: 995, y: 900 };
+        const leftTrianglePointE = { x: 1100, y: 600 };
+        const leftTrianglePointF = { x: 1150, y: 900 };
 
         // Draw initial right triangle
         const rightTriangleShape = new Shape(stage).addTo(stage);
@@ -73,19 +73,19 @@ async function init() {
         const leftTriangleShape = new Shape(stage).addTo(stage);
         leftTriangleShape.graphics
             .beginStroke("blue")
-            .moveTo(leftTrianglePointA.x, leftTrianglePointA.y)
-            .lineTo(leftTrianglePointB.x, leftTrianglePointB.y)
-            .lineTo(leftTrianglePointC.x, leftTrianglePointC.y)
-            .lineTo(leftTrianglePointA.x, leftTrianglePointA.y);
+            .moveTo(leftTrianglePointD.x, leftTrianglePointD.y)
+            .lineTo(leftTrianglePointE.x, leftTrianglePointE.y)
+            .lineTo(leftTrianglePointF.x, leftTrianglePointF.y)
+            .lineTo(leftTrianglePointD.x, leftTrianglePointD.y);
 
         // Create draggable circles at each vertex of the right triangle
         const rightCircleA = new Circle(15, "red")
             .center(stage)
-            .pos(rightTrianglePointA.x - 15, rightTrianglePointA.y - 15)
+            .pos(rightTrianglePointA.x - 15, rightTrianglePointA.y - 15);
         new Label("A", 20, "Arial", "white").center(rightCircleA);
         const rightCircleB = new Circle(15, "blue")
             .center(stage)
-            .pos(rightTrianglePointB.x - 15, rightTrianglePointB.y - 10)
+            .pos(rightTrianglePointB.x - 15, rightTrianglePointB.y - 15)
             .drag(stageRect);
         new Label("B", 20, "Arial", "white").center(rightCircleB);
         const rightCircleC = new Circle(15, "green")
@@ -95,20 +95,21 @@ async function init() {
         new Label("C", 20, "Arial", "white").center(rightCircleC);
 
         // Create draggable circles at each vertex of the left triangle
-        const leftCircleA = new Circle(15, "blue")
+        const leftCircleD = new Circle(15, "blue")  // Updated circle for point D
             .center(stage)
-            .pos(leftTrianglePointA.x - 10, leftTrianglePointA.y - 10)
-        new Label("D", 20, "Arial", "white").center(leftCircleA);
-        const leftCircleB = new Circle(15, "red")
+            .pos(leftTrianglePointD.x - 15, leftTrianglePointD.y - 15)
+            .drag(stageRect); // Make it draggable
+        new Label("D", 20, "Arial", "white").center(leftCircleD);
+        const leftCircleE = new Circle(15, "red")
             .center(stage)
-            .pos(leftTrianglePointB.x - 10, leftTrianglePointB.y - 10)
+            .pos(leftTrianglePointE.x - 15, leftTrianglePointE.y - 15)
             .drag(stageRect);
-        new Label("E", 20, "Arial", "white").center(leftCircleB);
-        const leftCircleC = new Circle(15, "violet")
+        new Label("E", 20, "Arial", "white").center(leftCircleE);
+        const leftCircleF = new Circle(15, "violet")
             .center(stage)
-            .pos(leftTrianglePointC.x - 15, leftTrianglePointC.y - 15)
+            .pos(leftTrianglePointF.x - 15, leftTrianglePointF.y - 15)
             .drag(stageRect);
-        new Label("F", 20, "Arial", "white").center(leftCircleC);
+        new Label("F", 20, "Arial", "white").center(leftCircleF);
 
         // Conversion factor: pixels to centimeters
         const PIXELS_PER_CM = 37.79527559;
@@ -134,10 +135,11 @@ async function init() {
         }
 
         // Function to calculate side ratios
-        function calculateSideRatios(rightA, rightB, leftA, leftB) {
-            const ratio1 =Math.floor(rightA / leftA);
+        function calculateSideRatios(rightA, rightB, rightC, leftA, leftB, leftC) {
+            const ratio1 = Math.floor(rightA / leftA);
             const ratio2 = Math.floor(rightB / leftB);
-            return { ratio1, ratio2 };
+            const ratio3 = Math.floor(rightC / leftC);
+            return { ratio1, ratio2, ratio3 };
         }
 
         // Function to update angles, side lengths, and right triangle shape
@@ -148,9 +150,9 @@ async function init() {
 
             const angles = calculateAngles(a, b, c);
 
-            labels[5].text = Math.floor(a) + " cm (AB)";  // Update AB length
+            labels[5].text = Math.floor(c) + " cm (AB)";  // Update AB length
             labels[6].text = Math.floor(b) + " cm (AC)";  // Update AC length
-            labels[7].text = `${angles.angleA.toFixed(2)}°`; // Update angle
+            labels[7].text = Math.floor(a) + " cm (BC)"; // Update angle
 
             // Redraw right triangle
             rightTriangleShape.graphics
@@ -167,23 +169,23 @@ async function init() {
 
         // Function to update angles, side lengths, and left triangle shape
         function leftUpdateTriangle() {
-            const a = distanceInCm(leftTrianglePointB, leftTrianglePointC);
-            const b = distanceInCm(leftTrianglePointA, leftTrianglePointC);
-            const c = distanceInCm(leftTrianglePointA, leftTrianglePointB);
+            const a = distanceInCm(leftTrianglePointD, leftTrianglePointE);
+            const b = distanceInCm(leftTrianglePointD, leftTrianglePointF);
+            const c = distanceInCm(leftTrianglePointE, leftTrianglePointF);
             const angles = calculateAngles(a, b, c);
 
             labels[9].text = Math.floor(a) + " cm (DE)"; // Update DE length
             labels[10].text = Math.floor(b) + " cm (DF)"; // Update DF length
-            labels[11].text = `${angles.angleA.toFixed(2)}°`; // Update angle
+            labels[11].text =  Math.floor(c) + " cm (EF)"; // Update angle
 
             // Redraw left triangle
             leftTriangleShape.graphics
                 .clear()
                 .beginStroke("blue")
-                .moveTo(leftTrianglePointA.x, leftTrianglePointA.y)
-                .lineTo(leftTrianglePointB.x, leftTrianglePointB.y)
-                .lineTo(leftTrianglePointC.x, leftTrianglePointC.y)
-                .lineTo(leftTrianglePointA.x, leftTrianglePointA.y);
+                .moveTo(leftTrianglePointD.x, leftTrianglePointD.y)
+                .lineTo(leftTrianglePointE.x, leftTrianglePointE.y)
+                .lineTo(leftTrianglePointF.x, leftTrianglePointF.y)
+                .lineTo(leftTrianglePointD.x, leftTrianglePointD.y);
 
             // Update the stage
             stage.update();
@@ -213,25 +215,36 @@ async function init() {
         });
 
         // Add drag event listeners to update left triangle when any circle is moved
-        leftCircleB.on("pressmove", (event) => {
-            leftTrianglePointB.x = event.currentTarget.x;
-            leftTrianglePointB.y = event.currentTarget.y;
+        leftCircleD.on("pressmove", (event) => {  // Updated drag event listener for point D
+            leftTrianglePointD.x = event.currentTarget.x;
+            leftTrianglePointD.y = event.currentTarget.y;
             leftUpdateTriangle();
             updateRatios();
         });
 
-        leftCircleB.on("pressup", () => {
+        leftCircleD.on("pressup", () => {
             checkSimilar();
         });
 
-        leftCircleC.on("pressmove", (event) => {
-            leftTrianglePointC.x = event.currentTarget.x;
-            leftTrianglePointC.y = event.currentTarget.y;
+        leftCircleE.on("pressmove", (event) => {
+            leftTrianglePointE.x = event.currentTarget.x;
+            leftTrianglePointE.y = event.currentTarget.y;
             leftUpdateTriangle();
             updateRatios();
         });
 
-        leftCircleC.on("pressup", () => {
+        leftCircleE.on("pressup", () => {
+            checkSimilar();
+        });
+
+        leftCircleF.on("pressmove", (event) => {
+            leftTrianglePointF.x = event.currentTarget.x;
+            leftTrianglePointF.y = event.currentTarget.y;
+            leftUpdateTriangle();
+            updateRatios();
+        });
+
+        leftCircleF.on("pressup", () => {
             checkSimilar();
         });
 
@@ -239,133 +252,129 @@ async function init() {
         function updateRatios() {
             const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
             const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+            const rightBC = distanceInCm(rightTrianglePointB, rightTrianglePointC);
 
-            const leftDE = distanceInCm(leftTrianglePointA, leftTrianglePointB);
-            const leftDF = distanceInCm(leftTrianglePointA, leftTrianglePointC);
+            const leftDE = distanceInCm(leftTrianglePointD, leftTrianglePointE);
+            const leftDF = distanceInCm(leftTrianglePointD, leftTrianglePointF);
+            const leftEF = distanceInCm(leftTrianglePointE, leftTrianglePointF);
 
-            const { ratio1, ratio2 } = calculateSideRatios(rightAB, rightAC, leftDE, leftDF);
+            const { ratio1, ratio2, ratio3 } = calculateSideRatios(rightAB, rightAC, rightBC, leftDE, leftDF, leftEF);
 
-            labels[13].text = `${Math.floor(rightAB)} / ${Math.floor(leftDE)} =${ratio1}`; // Update ratio for 1st side (AB/DE)
-            labels[14].text =  `${Math.floor(rightAC)} / ${Math.floor(leftDF)} =${ratio2} ` // Update ratio for 2nd side (AC/DF)
+            labels[13].text = `${Math.floor(rightAB)} / ${Math.floor(leftDE)} = ${ratio1}`; // Update ratio for 1st side (AB/DE)
+            labels[14].text = `${Math.floor(rightAC)} / ${Math.floor(leftDF)} = ${ratio2}`; // Update ratio for 2nd side (AC/DF)
+            labels[15].text = `${Math.floor(rightBC)} / ${Math.floor(leftEF)} = ${ratio3}`; // Update ratio for 3rd side (BC/EF)
         }
-        let results =[];
+
+        let results = [];
+
         // Function to check if triangles are similar
-       // Function to check if triangles are similar
+        function checkSimilar() {
+            const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+            const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+            const rightBC = distanceInCm(rightTrianglePointB, rightTrianglePointC);
 
+            const leftDE = distanceInCm(leftTrianglePointD, leftTrianglePointE);
+            const leftDF = distanceInCm(leftTrianglePointD, leftTrianglePointF);
+            const leftEF = distanceInCm(leftTrianglePointE, leftTrianglePointF);
 
-       // Function to check if triangles are similar
-       function checkSimilar() {
-        const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
-        const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-        const rightBC = distanceInCm(rightTrianglePointB, rightTrianglePointC);
+            // Calculate side ratios
+            const { ratio1, ratio2, ratio3 } = calculateSideRatios(rightAB, rightAC, rightBC, leftDE, leftDF, leftEF);
 
-        const leftDE = distanceInCm(leftTrianglePointA, leftTrianglePointB);
-        const leftDF = distanceInCm(leftTrianglePointA, leftTrianglePointC);
-        const leftEF = distanceInCm(leftTrianglePointB, leftTrianglePointC);
+            // Check if all ratios are approximately equal
+            const isSimilar = Math.abs(ratio1 - ratio2) < 0.01 &&
+                Math.abs(ratio1 - ratio3) < 0.01 &&
+                Math.abs(ratio2 - ratio3) < 0.01;
 
-        // Calculate side ratios
-        const { ratioAB_DE, ratioAC_DF, ratioBC_EF } = calculateSideRatios(rightAB, rightAC, rightBC, leftDE, leftDF, leftEF);
-
-        // Check if all ratios are approximately equal
-        const isSimilar = Math.abs(ratioAB_DE - ratioAC_DF) < 0.01 &&
-            Math.abs(ratioAB_DE - ratioBC_EF) < 0.01 &&
-            Math.abs(ratioAC_DF - ratioBC_EF) < 0.01;
-
-        // Update result label
-        results.forEach(result => result.removeFrom());
-        results = [];
-        if (isSimilar) {
-            console.log("Triangles are similar");
-            const successText = new Label({
-                text: similarMessage.text[lang],
-                size: 20,
-                lineHeight: 30,
-            }).pos(150, 500);
-            results.push(successText);
-        } else {
-            console.log("Triangles are not similar");
-            const errorText = new Label({
-                text: errorMessage.text[lang],
-                size: 20,
-                lineHeight: 30,
-                color: "red",
-            }).pos(150, 500);
-            results.push(errorText);
+            // Update result label
+            results.forEach(result => result.removeFrom());
+            results = [];
+            if (isSimilar) {
+                console.log("Triangles are similar");
+                // const successText = new Label({
+                //     text: similarMessage.text[lang],
+                //     size: 20,
+                //     lineHeight: 30,
+                // }).pos(150, 500);
+                // results.push(successText);
+            } else {
+                console.log("Triangles are not similar");
+                // const errorText = new Label({
+                //     text: errorMessage.text[lang],
+                //     size: 20,
+                //     lineHeight: 30,
+                //     color: "red",
+                // }).pos(150, 500);
+                // results.push(errorText);
+            }
         }
-    }
 
-labelCreation();
-function labelCreation() {
-    const header_rect = new Rectangle({ width: 1700, height: 100, color: "transparent" })
-      .center()
-      .pos(130, 60);
+        function labelCreation() {
+            const header_rect = new Rectangle({ width: 1700, height: 100, color: "transparent" })
+                .center()
+                .pos(130, 60);
 
-    
-      const SubHeader_rect = new Rectangle({ width: 1500, height: 50, color: "transparent" })
-      .center()
-      .pos(270, 140);
+            const SubHeader_rect = new Rectangle({ width: 1500, height: 50, color: "transparent" })
+                .center()
+                .pos(270, 140);
 
-    const header_label = new Label({
-      text: headerText.text[lang],
-      size: 40,
-      bold: true,
-    })
-      .center(header_rect)
-      .sca(1);
+            const header_label = new Label({
+                text: headerText.text[lang],
+                size: 40,
+                bold: true,
+            })
+                .center(header_rect)
+                .sca(1);
 
-      const subHeader_label = new Label({
-        text: subHeaderText.text[lang],
-        size: 40,
-        bold: true,
-      })
-        .center(SubHeader_rect)
-        .sca(0.6).mov(0,20);
+            const subHeader_label = new Label({
+                text: subHeaderText.text[lang],
+                size: 40,
+                bold: true,
+            })
+                .center(SubHeader_rect)
+                .sca(0.6).mov(0, 20);
 
-    new Label({
-      text: chapter.text[lang],
-      size: 25,
-      color: "black",
-      bold: true,
-      italic: true,
-    }).loc(100, 110);
+            new Label({
+                text: chapter.text[lang],
+                size: 25,
+                color: "black",
+                bold: true,
+                italic: true,
+            }).loc(100, 110);
 
-    new Label({
-      text: informationText.text[lang],
-      size: 20,
-      color: black,
-      bold: true,
+            new Label({
+                text: informationText.text[lang],
+                size: 20,
+                color: "black",
+                bold: true,
+            }).loc(informationText.positionX[lang], 430);
 
-    }).loc(informationText.positionX[lang], 430);
+            const restartButton = new Button({
+                label: "",
+                width: 90,
+                height: 90,
+                backgroundColor: "#967bb6",
+                rollBackgroundColor: "#967bb6",
+                borderWidth: 0,
+                gradient: 0.4,
+                corner: 45,
+            })
+                .center()
+                .mov(830, 430);
 
-    const restartButton = new Button({
-        label: "",
-        width: 90,
-        height: 90,
-        backgroundColor: "#967bb6",
-        rollBackgroundColor: "#967bb6",
-        borderWidth: 0,
-        gradient: 0.4,
-        corner: 45,
-      })
-        .center()
-        .mov(830, 430);
-  
-      const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
-      pic.rotation = 60;
-  
-      restartButton.on("click", () => {
-        location.reload();
-      });
+            const pic = new Pic("assets/image/restart.png").sca(0.15).center(restartButton);
+            pic.rotation = 60;
 
-
-  }
-
+            restartButton.on("click", () => {
+                location.reload();
+            });
+        }
 
         // Initial update of triangles
         rightUpdateTriangle();
         leftUpdateTriangle();
         updateRatios();
-        //checkSimilar();
+        labelCreation();
+        checkSimilar();
     }
 }
 
