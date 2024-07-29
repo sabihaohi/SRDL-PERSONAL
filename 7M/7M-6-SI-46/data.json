@@ -48,8 +48,8 @@
 
     "similarMessage":{
       "text":{
-        "BN":"ABC এবং DEF ত্রিভুজ এর মধ্যে সদৃশ রয়েছে। এখানে দুটি ত্রিভুজের বাহুদ্বয়ের দৈর্ঘ্য সমান এবং অন্তরভুক্ত কোন একটি কোণ সমান।",
-        "EN":"Triangles ABC and DEF are\nsimilar.Here the triangle is\nequal to the polygon and any\nangle is intermediate."
+        "BN":"ABC এবং DEF ত্রিভুজ এর মধ্যে সদৃশ রয়েছে। এখানে দুটি ত্রিভুজের বাহুগুলোর দৈর্ঘ্য এর অনুপাত সমান ",
+        "EN":"Triangles ABC and DEF are\nsimilar.Here the ratio of the\nlengths of the two sides of\nthe triangles is equal."
       },
       "size":{
         "BN": 25 ,
@@ -58,8 +58,8 @@
     },
     "errorMessage":{
       "text":{
-        "BN":"ABC এবং DEF ত্রিভুজ এর মধ্যে সদৃশতা নেই।\nএখানে দুটি ত্রিভুজের বাহুদ্বয়ের দৈর্ঘ্য সমান নয়\nএবং অন্তরভুক্ত কোন একটি কোণ সমান নয়।",
-        "EN":"Triangles ABC and DEF are \nnot similar.Here the triangle\nis not equal to the polygon\nand anyangle is not\nintermediate."
+        "BN":"ABC এবং DEF ত্রিভুজ এর মধ্যে সদৃশ রয়েছে।\nএখানে দুটি ত্রিভুজের বাহুগুলোর দৈর্ঘ্য এর অনুপাত নয়।",
+        "EN":"Triangles ABC and DEF are similar\nHere the ratio of the lengths of the two sides of the triangles is not\nintermediate."
       },
       "size":{
         "BN": 25 ,

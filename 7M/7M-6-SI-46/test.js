@@ -30,9 +30,9 @@ async function init() {
         // Define initial table data
         const texts = [
             ["Triangle", "1st side", "2nd side", "3rd side"],
-            ["ABC(<BAC)", "100", "200", "63.00°"],
-            ["DEF(<EDF)", "200", "400", "63.00°"],
-            ["side ratio", "1/2", "1/2", ""]
+            ["ABC(<BAC)", "0", "0", "0"],
+            ["DEF(<EDF)", "0", "0", "0"],
+            ["side ratio","0", "0", "0"]
         ];
 
         let labels = [];
@@ -290,21 +290,21 @@ async function init() {
             results = [];
             if (isSimilar) {
                 console.log("Triangles are similar");
-                // const successText = new Label({
-                //     text: similarMessage.text[lang],
-                //     size: 20,
-                //     lineHeight: 30,
-                // }).pos(150, 500);
-                // results.push(successText);
+                const successText = new Label({
+                    text: similarMessage.text[lang],
+                    size: 20,
+                    lineHeight: 30,
+                }).pos(150, 500);
+                results.push(successText);
             } else {
                 console.log("Triangles are not similar");
-                // const errorText = new Label({
-                //     text: errorMessage.text[lang],
-                //     size: 20,
-                //     lineHeight: 30,
-                //     color: "red",
-                // }).pos(150, 500);
-                // results.push(errorText);
+                const errorText = new Label({
+                    text: errorMessage.text[lang],
+                    size: 20,
+                    lineHeight: 30,
+                    color: "red",
+                }).pos(150, 500);
+                results.push(errorText);
             }
         }
 

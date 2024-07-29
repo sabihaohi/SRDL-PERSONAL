@@ -30,9 +30,9 @@ async function init() {
         // Define initial table data
         const texts = [
             ["Triangle", "1st side", "2nd side", "angle"],
-            ["ABC(<BAC)", "100", "200", "63.00°"],
-            ["DEF(<EDF)", "200", "400", "63.00°"],
-            ["side ratio", "1/2", "1/2", ""]
+            ["ABC(<BAC)", "0", "0", "0"],
+            ["DEF(<EDF)", "0", "0", "0"],
+            ["side ratio","0", "0", ""]
         ];
 
         let labels = [];
@@ -257,25 +257,19 @@ async function init() {
         results = [];
     
         // Calculate side lengths and angles
-        const a = distanceInCm(rightTrianglePointA, rightTrianglePointB);
-        const b = distanceInCm(rightTrianglePointB, rightTrianglePointC);
-        const c = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+        const a = Math.floor(distanceInCm(rightTrianglePointB, rightTrianglePointC));
+        const b = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointC));
+        const c = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointB));
     
         const rightAngles = calculateAngles(a, b, c);
     
-        const a1 = distanceInCm(leftTrianglePointA, leftTrianglePointB);
-        const b1 = distanceInCm(leftTrianglePointB, leftTrianglePointC);
-        const c1 = distanceInCm(leftTrianglePointA, leftTrianglePointC);
+        const a1 =Math.floor( distanceInCm(leftTrianglePointB, leftTrianglePointC));
+        const b1 = Math.floor(distanceInCm(leftTrianglePointA, leftTrianglePointC));
+        const c1 = Math.floor(distanceInCm(leftTrianglePointA, leftTrianglePointB));
     
         const leftAngles = calculateAngles(a1, b1, c1);
     
         const { ratio1, ratio2 } = calculateSideRatios(a, b, a1, b1);
-    
-       
-       
-    
-       
-    
         if (rightAngles.angleA === leftAngles.angleA && ratio1 === ratio2 ) {
             console.log("Triangles are similar");
             const successText = new Label({

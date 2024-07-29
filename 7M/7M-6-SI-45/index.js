@@ -30,9 +30,9 @@ async function init() {
 
             const texts = [
                 ["Traingle","1st side","2nd side","angle"],
-                ["ABC(<BAC)","100","200","63.00°"],
-                ["DEF(<EDF)","200","400","80°"],
-                ["side ratio","1/2","2/3",""]
+                ["ABC(<BAC)","0","0","0"],
+                ["DEF(<EDF)","0","0","0"],
+                ["side ratio","0","0","0"]
         
                ]
                let labels = [];
