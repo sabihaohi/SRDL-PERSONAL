@@ -58,7 +58,7 @@
     },
     "errorMessage":{
       "text":{
-        "BN":"ABC এবং DEF ত্রিভুজ\nএর মধ্যেসদৃশ রয়েছে।\nএখানে দুটি ত্রিভুজের\nবাহুগুলোর দৈর্ঘ্য \nএর অনুপাত নয়।",
+        "BN":"ABC এবং DEF ত্রিভুজ\nএর মধ্যে সদৃশ nei।\nএখানে দুটি ত্রিভুজের\nবাহুগুলোর দৈর্ঘ্য \nএর অনুপাত নয়।",
         "EN":"Triangles ABC and \nDEF are not similar \nHere the ratio of the \nlengths of the two sides \nof the triangles is not \nintermediate."
       },
       "size":{

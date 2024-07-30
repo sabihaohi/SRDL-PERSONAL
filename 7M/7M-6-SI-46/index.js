@@ -144,15 +144,18 @@ async function init() {
 
         // Function to update angles, side lengths, and right triangle shape
         function rightUpdateTriangle() {
-            const a = distanceInCm(rightTrianglePointB, rightTrianglePointC);
-            const b = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-            const c = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+            const a = Math.floor(distanceInCm(rightTrianglePointB, rightTrianglePointC));
+            const b = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointC));
+            const c = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointB));
 
             const angles = calculateAngles(a, b, c);
 
-            labels[5].text = Math.floor(c) + " cm (AB)";  // Update AB length
+            labels[5].text = Math.floor(c) + " cm (AB)";
+        // Update AB length
             labels[6].text = Math.floor(b) + " cm (AC)";  // Update AC length
+  
             labels[7].text = Math.floor(a) + " cm (BC)"; // Update angle
+      
 
             // Redraw right triangle
             rightTriangleShape.graphics
@@ -169,14 +172,17 @@ async function init() {
 
         // Function to update angles, side lengths, and left triangle shape
         function leftUpdateTriangle() {
-            const a = distanceInCm(leftTrianglePointD, leftTrianglePointE);
-            const b = distanceInCm(leftTrianglePointD, leftTrianglePointF);
-            const c = distanceInCm(leftTrianglePointE, leftTrianglePointF);
+            const a = Math.floor(distanceInCm(leftTrianglePointD, leftTrianglePointE));
+            const b = Math.floor(distanceInCm(leftTrianglePointD, leftTrianglePointF));
+            const c = Math.floor(distanceInCm(leftTrianglePointE, leftTrianglePointF));
             const angles = calculateAngles(a, b, c);
 
             labels[9].text = Math.floor(a) + " cm (DE)"; // Update DE length
+            
             labels[10].text = Math.floor(b) + " cm (DF)";  // Update DF length
+            
             labels[11].text = Math.floor(c) + " cm (EF)";  // Update EF length
+          
 
             // Redraw left triangle
             leftTriangleShape.graphics
@@ -268,13 +274,13 @@ async function init() {
 
         // Function to check similarity and update the result message
         function checkSimilar() {
-            const rightA = distanceInCm(rightTrianglePointB, rightTrianglePointC);
-            const rightB = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-            const rightC = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+            const rightA = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointB));
+            const rightB = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointC));
+            const rightC = Math.floor(distanceInCm(rightTrianglePointB, rightTrianglePointC));
 
-            const leftA = distanceInCm(leftTrianglePointD, leftTrianglePointE);
-            const leftB = distanceInCm(leftTrianglePointD, leftTrianglePointF);
-            const leftC = distanceInCm(leftTrianglePointE, leftTrianglePointF);
+            const leftA = Math.floor(distanceInCm(leftTrianglePointD, leftTrianglePointE));
+            const leftB = Math.floor(distanceInCm(leftTrianglePointD, leftTrianglePointF));
+            const leftC = Math.floor(distanceInCm(leftTrianglePointE, leftTrianglePointF));
 
             // Update side ratios in the table
             const sideRatios = calculateSideRatios(rightA, rightB, rightC, leftA, leftB, leftC);
