@@ -278,9 +278,9 @@ async function init() {
 
             // Update side ratios in the table
             const sideRatios = calculateSideRatios(rightA, rightB, rightC, leftA, leftB, leftC);
-            labels[13].text = sideRatios.ratio1 + ":1"; // Update ratio for DE
-            labels[14].text = sideRatios.ratio2 + ":1"; // Update ratio for DF
-            labels[15].text = sideRatios.ratio3 + ":1"; // Update ratio for EF
+            labels[13].text = sideRatios.ratio1 ;  // Update ratio for DE
+            labels[14].text = sideRatios.ratio2  ; // Update ratio for DF
+            labels[15].text = sideRatios.ratio3  ; // Update ratio for EF
 
             if (
                 sideRatios.ratio1 === sideRatios.ratio2 &&

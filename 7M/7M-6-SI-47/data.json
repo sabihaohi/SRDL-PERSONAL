@@ -1,0 +1,51 @@
+{
+    "lang": "BN",
+    "headerText": {
+      "text": {
+        "BN": "সর্বসমতা ও সদৃশতা",
+        "EN": "Equivalence and Equality."
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "subHeaderText": {
+      "text": {
+        "BN": "কাঠি দিয়ে বর্গ বানাই",
+        "EN":"Equality"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অভিজ্ঞতা \n\t\t\t 6",
+        "EN": "Experience \n\t\t\t No:6"
+      },
+      "size": {
+        "BN": 28,
+        "EN": 24
+      }
+    },
+    "informationText": {
+        "text":{
+            "BN":"তথ্য ",
+            "EN": "Information"
+        },
+        "size":{
+            "BN":35,
+            "EN":35
+        },
+        "positionX":{
+          "BN": 240,
+          "EN": 230
+        }
+    }
+  
+
+   
+    }
+

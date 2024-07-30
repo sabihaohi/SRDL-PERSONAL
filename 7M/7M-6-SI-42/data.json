@@ -1,0 +1,70 @@
+{
+    "lang": "BN",
+    "headerText": {
+      "text": {
+        "BN": "সর্বসমতা ও সদৃশতা",
+        "EN": "Equivalence and Equality."
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "subHeaderText": {
+      "text": {
+        "BN": "সদৃশতা",
+        "EN":"Equality"
+      },
+      "size": {
+        "BN": 40,
+        "EN": 32
+      }
+    },
+    "chapter": {
+      "text": {
+        "BN": "অভিজ্ঞতা \n\t\t\t 6",
+        "EN": "Experience \n\t\t\t No:6"
+      },
+      "size": {
+        "BN": 28,
+        "EN": 24
+      }
+    },
+    "informationText": {
+        "text":{
+            "BN":"তথ্য ",
+            "EN": "Information"
+        },
+        "size":{
+            "BN":35,
+            "EN":35
+        },
+        "positionX":{
+          "BN": 240,
+          "EN": 230
+        }
+    },
+  
+
+    "similarMessage":{
+      "text":{
+        "BN":"ABC এবং DEF ত্রিভুজ\nএর মধ্যে সদৃশ রয়েছে। এখানে\nদুটি ত্রিভুজের বাহুগুলোর\nদৈর্ঘ্য এর অনুপাত \nসমান ",
+        "EN":"Triangles ABC and \nDEF are similar Here \nthe ratio of the lengths \nof the two sides of the \ntriangles is equal"
+      },
+      "size":{
+        "BN": 25 ,
+        "EN": 25
+      }
+    },
+    "errorMessage":{
+      "text":{
+        "BN":"ABC এবং DEF ত্রিভুজ\nএর মধ্যেসদৃশ রয়েছে।\nএখানে দুটি ত্রিভুজের\nবাহুগুলোর দৈর্ঘ্য \nএর অনুপাত নয়।",
+        "EN":"Triangles ABC and \nDEF are not similar \nHere the ratio of the \nlengths of the two sides \nof the triangles is not \nintermediate."
+      },
+      "size":{
+        "BN": 25 ,
+        "EN": 25
+      }
+    }
+    }
+
