@@ -37,26 +37,14 @@ async function init() {
             return theta;
         }
 
-        function getThetaDEF() {
-            const theta = {};
-            do {
-                theta.t1 = Math.ceil(Math.random() * 6) * 30 + 170;
-                theta.t2 = Math.ceil(Math.random() * 6) * 30 + 170;
-                theta.t3 = Math.ceil(Math.random() * 6) * 30 + 170;
-            } while ((theta.t1 === theta.t2) || (theta.t1 === theta.t3) || (theta.t2 === theta.t3));
-            console.log(theta.t1);
-            return theta;
-        }
+       
 
         const thetaDEF = getThetaABC();
         const fW2 = frame.stage.width / 2
         const fH2 = frame.stage.height / 2
         const r2 = 100;
 
-        const thetaABC = getThetaDEF();
-        const fW = frame.stage.width / 2
-        const fH = frame.stage.height / 2
-        const r = 100;
+      
 
         //tri. three point
         const circleABCbg = new Circle({ radius: r, color: "transparent", borderColor: "transparent" }).center().mov(-150, 250)
@@ -85,44 +73,14 @@ async function init() {
         const p1 = { x: c.x, y: c.y }
         const p2 = { x: c2.x, y: c2.y }
         const p3 = { x: c3.x, y: c3.y }
-        //draw tringle
-        const triangleAline = new Shape().s(black).ss(2).mt(p1.x, p1.y).lt(p2.x, p2.y).addTo();
-        const triangleBline = new Shape().s(black).ss(2).mt(p2.x, p2.y).lt(p3.x, p3.y).addTo();
-        const triangleCline = new Shape().s(black).ss(2).mt(p3.x, p3.y).lt(p1.x, p1.y).addTo();
+        // //draw tringle
+        // const triangleAline = new Shape().s(black).ss(2).mt(p1.x, p1.y).lt(p2.x, p2.y).addTo();
+        // const triangleBline = new Shape().s(black).ss(2).mt(p2.x, p2.y).lt(p3.x, p3.y).addTo();
+        // const triangleCline = new Shape().s(black).ss(2).mt(p3.x, p3.y).lt(p1.x, p1.y).addTo();
 
 
 
-        //tri. three point
-        const circleDEFbg = new Circle({ radius: r, color: "transparent", borderColor: "transparent" }).center().mov(150, 250)
-        const c4 = new Circle(15, "red").center().mov((circleDEFbg.x + r * Math.cos(thetaDEF.t1) - fW), circleDEFbg.y + r * Math.sin(thetaDEF.t1) - fH)
-        const labelD = new Label({
-            text: "D",
-            size: 20,
-            color: "white",
-            bold: true,
-        }).center(c4);
-        const c5 = new Circle(15, "blue").center().mov((circleDEFbg.x + r * Math.cos(thetaDEF.t2) - fW), circleDEFbg.y + r * Math.sin(thetaDEF.t2) - fH);
-        const labelE = new Label({
-            text: "E",
-            size: 20,
-            color: "white",
-            bold: true,
-        }).center(c5);
-        const c6 = new Circle(15, "green").center().mov((circleDEFbg.x + r * Math.cos(thetaDEF.t3) - fW), circleDEFbg.y + r * Math.sin(thetaDEF.t3) - fH);
-        const labelF = new Label({
-            text: "F",
-            size: 20,
-            color: "white",
-            bold: true,
-        }).center(c6);
-
-        const p4 = { x: c4.x, y: c4.y }
-        const p5 = { x: c5.x, y: c5.y }
-        const p6 = { x: c6.x, y: c6.y }
-        //draw tringle
-        const triangleDline = new Shape().s(black).ss(2).mt(p4.x, p4.y).lt(p5.x, p5.y).addTo().drag();
-        const triangleEline = new Shape().s(black).ss(2).mt(p5.x, p5.y).lt(p6.x, p6.y).addTo();
-        const triangleFline = new Shape().s(black).ss(2).mt(p6.x, p6.y).lt(p4.x, p4.y).addTo();
+       
 
 
          // Define initial table data
