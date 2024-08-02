@@ -140,16 +140,17 @@ async function init() {
             return { ratio1, ratio2 };
         }
 
+        const rightABDis = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+            const rightACDis = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+            const rightBCDis = distanceInCm(rightTrianglePointA, rightTrianglePointB);
         // Function to update angles, side lengths, and right triangle shape
         function rightUpdateTriangle() {
-            const a = distanceInCm(rightTrianglePointB, rightTrianglePointC);
-            const b = distanceInCm(rightTrianglePointA, rightTrianglePointC);
-            const c = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+            
 
-            const angles = calculateAngles(a, b, c);
+            const angles = calculateAngles(rightABDis, rightACDis, rightBCDis);
 
-            labels[5].text = Math.floor(a) + " cm (AB)";  // Update AB length
-            labels[6].text = Math.floor(b) + " cm (AC)";  // Update AC length
+            labels[5].text = Math.floor(rightABDis) + " cm (AB)";  // Update AB length
+            labels[6].text = Math.floor(rightACDis) + " cm (AC)";  // Update AC length
             labels[7].text = `${angles.angleA.toFixed(2)}°`; // Update angle
 
             // Redraw right triangle
@@ -165,15 +166,16 @@ async function init() {
             stage.update();
         }
 
+        const leftABDis = distanceInCm(leftTrianglePointB, leftTrianglePointC);
+        const leftACDis = distanceInCm(leftTrianglePointA, leftTrianglePointC);
+        const c = distanceInCm(leftTrianglePointA, leftTrianglePointB);
         // Function to update angles, side lengths, and left triangle shape
         function leftUpdateTriangle() {
-            const a = distanceInCm(leftTrianglePointB, leftTrianglePointC);
-            const b = distanceInCm(leftTrianglePointA, leftTrianglePointC);
-            const c = distanceInCm(leftTrianglePointA, leftTrianglePointB);
-            const angles = calculateAngles(a, b, c);
+          
+            const angles = calculateAngles(leftABDis, leftACDis, c);
 
-            labels[9].text = Math.floor(a) + " cm (DE)"; // Update DE length
-            labels[10].text = Math.floor(b) + " cm (DF)"; // Update DF length
+            labels[9].text = Math.floor(leftABDis) + " cm (DE)"; // Update DE length
+            labels[10].text = Math.floor(leftACDis) + " cm (DF)"; // Update DF length
             labels[11].text = `${angles.angleA.toFixed(2)}°`; // Update angle
 
             // Redraw left triangle
@@ -237,16 +239,16 @@ async function init() {
 
         // Function to update the side ratios in the table
         function updateRatios() {
-            const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
-            const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
+            // const rightAB = distanceInCm(rightTrianglePointA, rightTrianglePointB);
+            // const rightAC = distanceInCm(rightTrianglePointA, rightTrianglePointC);
 
-            const leftDE = distanceInCm(leftTrianglePointA, leftTrianglePointB);
-            const leftDF = distanceInCm(leftTrianglePointA, leftTrianglePointC);
+            // const leftDE = distanceInCm(leftTrianglePointA, leftTrianglePointB);
+            // const leftDF = distanceInCm(leftTrianglePointA, leftTrianglePointC);
 
-            const { ratio1, ratio2 } = calculateSideRatios(rightAB, rightAC, leftDE, leftDF);
+            const { ratio1, ratio2 } = calculateSideRatios(rightABDis, rightACDis, leftABDis, leftACDis);
 
-            labels[13].text = `${Math.floor(rightAB)} / ${Math.floor(leftDE)} =${ratio1}`; // Update ratio for 1st side (AB/DE)
-            labels[14].text =  `${Math.floor(rightAC)} / ${Math.floor(leftDF)} =${ratio2} ` // Update ratio for 2nd side (AC/DF)
+            labels[13].text = `${Math.floor(rightABDis)} / ${Math.floor(leftABDis)} =${ratio1}`; // Update ratio for 1st side (AB/DE)
+            labels[14].text =  `${Math.floor(rightACDis)} / ${Math.floor(leftACDis)} =${ratio2} ` // Update ratio for 2nd side (AC/DF)
         }
        
 
@@ -259,20 +261,20 @@ async function init() {
        function checkSimilar() {
       
     
-        // Calculate side lengths and angles
-        const a = Math.floor(distanceInCm(rightTrianglePointB, rightTrianglePointC));
-        const b = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointC));
-        const c = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointB));
+        // // Calculate side lengths and angles
+        // const a = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointB));
+        // const b = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointC));
+        // const c = Math.floor(distanceInCm(rightTrianglePointB, rightTrianglePointC));
     
-        const rightAngles = calculateAngles(a, b, c);
+        const rightAngles = calculateAngles(rightABDis, rightACDis, rightBCDis);
     
-        const a1 =Math.floor( distanceInCm(leftTrianglePointB, leftTrianglePointC));
-        const b1 = Math.floor(distanceInCm(leftTrianglePointA, leftTrianglePointC));
-        const c1 = Math.floor(distanceInCm(leftTrianglePointA, leftTrianglePointB));
+        // const a1 =Math.floor( distanceInCm(leftTrianglePointA, leftTrianglePointB));
+        // const b1 = Math.floor(distanceInCm(leftTrianglePointA, leftTrianglePointC));
+        // const c1 = Math.floor(distanceInCm(leftTrianglePointB, leftTrianglePointC));
     
-        const leftAngles = calculateAngles(a1, b1, c1);
+        const leftAngles = calculateAngles(leftABDis, leftACDis, c);
     
-        const { ratio1, ratio2 } = calculateSideRatios(a, b, a1, b1);
+        const { ratio1, ratio2 } = calculateSideRatios(rightABDis, rightACDis, leftABDis, leftACDis);
         if (rightAngles.angleA === leftAngles.angleA && ratio1 === ratio2 ) {
             console.log("Triangles are similar");
             

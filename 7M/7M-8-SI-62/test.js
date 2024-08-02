@@ -119,8 +119,8 @@ async function init() {
         .beginStroke("green")
         .moveTo(rightTrianglePointA.x, rightTrianglePointA.y)
         .lineTo(pointB.x, pointB.y)
-        //.moveTo(rightTrianglePointA.x, rightTrianglePointA.y) // Line AC
-        //.lineTo(rightTrianglePointC.x, rightTrianglePointC.y);
+        .moveTo(rightTrianglePointA.x, rightTrianglePointA.y) // Line AC
+        .lineTo(rightTrianglePointC.x, rightTrianglePointC.y);
 
       // Calculate and update angles
      // const { angleA, angleB, angleC } = calculateAngles(a, b, c);

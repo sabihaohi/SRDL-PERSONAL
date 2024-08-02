@@ -34,7 +34,7 @@ async function init() {
          
           S.update();
     
-          drawColorsOnGraph(distancesOfCells, cells, radius,halfRectLabel, fullRectLabel,resultRectLabel);
+         // drawColorsOnGraph(distancesOfCells, cells, radius,halfRectLabel, fullRectLabel,resultRectLabel);
       });
 
       
