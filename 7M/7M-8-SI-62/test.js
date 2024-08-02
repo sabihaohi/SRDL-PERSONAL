@@ -1,6 +1,6 @@
 import zim from "https://zimjs.org/cdn/016/zim";
 
-const { Frame, Rectangle, Label, Circle, Pic, Shape } = zim;
+const { Frame, Circle, Pic, Shape } = zim;
 
 async function init() {
   // Load JSON data
@@ -28,51 +28,41 @@ async function init() {
 
     const point1 = new Circle(8, "transparent").loc(800, 280);
     const point2 = new Circle(8, "blue").loc(1000, 280).drag();
-    //const circleLinePoint1 = new Circle(8, "red").loc(1150, 700);
-    const circleLinePoint2 = new Circle(8, "red").loc(1290,700).drag();
-    const pointerimage = new Pic("assets/image/pointer.png").sca(0.18).center(circleLinePoint2).mov(5,-10);
+    const circleLinePoint2 = new Circle(8, "red").loc(1290, 700).drag();
+    const pointerimage = new Pic("assets/image/pointer.png").sca(0.18).center(circleLinePoint2).mov(5, -10);
+    
     let distance = zim.dist(point1.x, point1.y, point2.x, point2.y);
-   //const stageRect = new Rectangle(500, 500, "red").center();
-   //console.log(circleLinePoint1.x, circleLinePoint1.y);
-   console.log(distance);
+
     const lines = [];
-    function drawLine(){
-       lines.forEach(line => {
-           line.removeFrom();
-       });
-   
-       distance = zim.dist(point1.x, point1.y, point2.x, point2.y);
-       const line = new Rectangle(distance, 5).pos(point1.x, point1.y);
-       //const line2 = new Rectangle(distance, 5).pos(circleLinePoint1.x, circleLinePoint1.y);
-       //circleLinePoint2.x = circleLinePoint1.x + point2.x - point1.x;
-       lines.push(line);  
+    function drawLine() {
+      lines.forEach(line => {
+        line.removeFrom();
+      });
+
+      distance = zim.dist(point1.x, point1.y, point2.x, point2.y);
+      const line = new Rectangle(distance, 5).pos(point1.x, point1.y);
+      lines.push(line);
     }
-   
+
     drawLine();
     const shapes = [];
 
+    point2.on("pressmove", () => {
+      shapes.forEach(shape => {
+        shape.removeFrom();
+      });
 
-    point2.on("pressmove",()=>{
-        shapes.forEach(shape => {
-            shape.removeFrom();
-        });
-        // radiusLabels.forEach(label => {
-        //     label.removeFrom();
-        // });
+      console.log(distance);
+      point2.y = 280;
 
-        console.log(distance);
-     point2.y = 280;
-     
-     if(point2.x>1050){
-            point2.x = 1050;
-     }
-        else if(point2.x<900){
-            point2.x = 900;
-        }
+      if (point2.x > 1050) {
+        point2.x = 1050;
+      } else if (point2.x < 900) {
+        point2.x = 900;
+      }
 
-        drawLine();  
+      drawLine();
     });
-
 
     const rightTrianglePointA = { x: 695, y: 895 };
     const rightTrianglePointC = { x: 850, y: 900 };
@@ -99,20 +89,14 @@ async function init() {
     }
 
     // Function to calculate angles using the law of cosines
-   
-    function calculateAngle(p,q){
-        let angle = Math.atan2(p.y-q.y, p.x-q.x) * 180 / Math.PI;
-        angle = angle<0?angle*=-1:360-angle;
-        console.log(angle);
+    function calculateAngle(p, q) {
+      let angle = Math.atan2(p.y - q.y, p.x - q.x) * 180 / Math.PI;
+      angle = angle < 0 ? angle *= -1 : 360 - angle;
+      console.log(angle);
     }
-    
-  
+
     // Function to update the right triangle shape and angle label
     function rightUpdateTriangle() {
-    //   const a = Math.floor(distanceInCm(rightTrianglePointA, pointB));
-    //   const b = Math.floor(distanceInCm(rightTrianglePointC, pointB));
-    //   const c = Math.floor(distanceInCm(rightTrianglePointA, rightTrianglePointC));
-
       // Redraw right triangle with lines AB and AC
       rightTriangleShape.graphics
         .clear()
@@ -123,17 +107,12 @@ async function init() {
         .lineTo(rightTrianglePointC.x, rightTrianglePointC.y);
 
       // Calculate and update angles
-     // const { angleA, angleB, angleC } = calculateAngles(a, b, c);
-     const angle = calculateAngle(pointB,rightTrianglePointA);
-     //angleLabel.text = `Angle A: ${angle}°`;
-     
+      const angle = calculateAngle(pointB, rightTrianglePointA);
 
       // Update the stage
       stage.update();
     }
-    
 
-   
     // Initial drawing
     rightUpdateTriangle();
 
@@ -144,6 +123,56 @@ async function init() {
 
     // Ensure the initial drawing and angle labels are updated
     rightUpdateTriangle();
+
+    // Create the rhombus shape
+    const rhombusShape = new Shape().addTo(stage);
+
+    // Function to draw the rhombus based on circleLinePoint2 movement
+    function drawRhombus() {
+      // Clear the previous shape
+      rhombusShape.graphics.clear();
+
+      // Calculate the side length as the distance between point1 and point2
+      const sideLength = zim.dist(point1.x, point1.y, point2.x, point2.y);
+
+      // Calculate the angle offset for creating a diamond-shaped rhombus
+      const angleOffset = Math.PI / 3; // 60 degrees in radians
+
+      // Define rhombus vertices based on circleLinePoint2 position and side length
+      const vertex1 = { x: circleLinePoint2.x, y: circleLinePoint2.y };
+      const vertex2 = {
+        x: vertex1.x + sideLength * Math.cos(angleOffset),
+        y: vertex1.y + sideLength * Math.sin(angleOffset)
+      };
+      const vertex3 = {
+        x: vertex2.x + sideLength * Math.cos(angleOffset + Math.PI / 3),
+        y: vertex2.y + sideLength * Math.sin(angleOffset + Math.PI / 3)
+      };
+      const vertex4 = {
+        x: vertex3.x + sideLength * Math.cos(angleOffset + 2 * Math.PI / 3),
+        y: vertex3.y + sideLength * Math.sin(angleOffset + 2 * Math.PI / 3)
+      };
+
+      // Draw the rhombus by connecting the vertices
+      rhombusShape.graphics
+        .beginStroke("purple")
+        .moveTo(vertex1.x, vertex1.y)
+        .lineTo(vertex2.x, vertex2.y)
+        .lineTo(vertex3.x, vertex3.y)
+        .lineTo(vertex4.x, vertex4.y)
+        .lineTo(vertex1.x, vertex1.y);
+
+      // Update the stage to show the new rhombus
+      stage.update();
+    }
+
+    // Add event listener to draw the rhombus on circleLinePoint2 movement
+    circleLinePoint2.on("pressmove", () => {
+      drawRhombus();
+    });
+
+    // Initial rhombus drawing
+    drawRhombus();
   }
 
   function assetsLoading(stage) {
