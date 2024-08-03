@@ -49,7 +49,16 @@ async function init() {
             color: black,
             bold: true,
             
-          }).loc(informationText.x[lang], 380);
+          }).loc(informationText.x[lang], 385);
+
+      
+      new Label({
+        text: radiusText.text[lang] + " " + 80,
+        size: 20,
+        color: black,
+        bold: true,
+        }).loc(180, 430);
+    
 
 
     }
@@ -61,16 +70,17 @@ async function init() {
 
        const bg = new Pic("assets/image/bg.png").center();
        const stage = new Pic("assets/image/stage.png").center().mov(100, 80);
+       const infoBox = new Pic("assets/image/infoBox.png").pos(100, 330);  
       
        //physics wall to limit ball movement
        const rightWall = new Rectangle(50, 200, "transparent").center().mov(420,0).addPhysics(false);
-       const leftWall = new Rectangle(50, 200, " transparent").center().mov(-230,0).addPhysics(false);
+       const leftWall = new Rectangle(50, 200, "transparent").center().mov(-230,0).addPhysics(false);
        const topWall = new Rectangle(700, 50, "transparent").center().mov(400, -122).addPhysics(false);
 
 
-       const scaleouterRect = new Rectangle({ width: 500, height: 87, color: "transparent" }).center().mov(100, 80);
-       const scale = new Pic("assets/image/scale.png").center().mov(100, 80);
-       let r = 8;
+       const scaleouterRect = new Rectangle({ width: 500, height: 87, color: "transparent" }).center().mov(100, 70);
+       const scale = new Pic("assets/image/scale.png").center().mov(100, 70);
+       let r = 80;
        const wheelCircle = new Circle(r, "transparent").loc(810,498).rot(0)
        .sca(0.9)
        .addPhysics(
