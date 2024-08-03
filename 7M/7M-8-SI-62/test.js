@@ -128,51 +128,74 @@ async function init() {
     const rhombusShape = new Shape().addTo(stage);
 
     // Function to draw the rhombus based on circleLinePoint2 movement
-    function drawRhombus() {
-      // Clear the previous shape
-      rhombusShape.graphics.clear();
+    // function drawRhombus() {
+    //   // Clear the previous shape
+    //   rhombusShape.graphics.clear();
 
-      // Calculate the side length as the distance between point1 and point2
-      const sideLength = zim.dist(point1.x, point1.y, point2.x, point2.y);
+    //   // Calculate the side length as the distance between point1 and point2
+    //   const sideLength = zim.dist(point1.x, point1.y, point2.x, point2.y);
 
-      // Calculate the angle offset for creating a diamond-shaped rhombus
-      const angleOffset = Math.PI / 3; // 60 degrees in radians
+    //   // Calculate the angle offset for creating a diamond-shaped rhombus
+    //   const angleOffset = Math.PI / 3; // 60 degrees in radians
 
-      // Define rhombus vertices based on circleLinePoint2 position and side length
-      const vertex1 = { x: circleLinePoint2.x, y: circleLinePoint2.y };
-      const vertex2 = {
-        x: vertex1.x + sideLength * Math.cos(angleOffset),
-        y: vertex1.y + sideLength * Math.sin(angleOffset)
-      };
-      const vertex3 = {
-        x: vertex2.x + sideLength * Math.cos(angleOffset + Math.PI / 3),
-        y: vertex2.y + sideLength * Math.sin(angleOffset + Math.PI / 3)
-      };
-      const vertex4 = {
-        x: vertex3.x + sideLength * Math.cos(angleOffset + 2 * Math.PI / 3),
-        y: vertex3.y + sideLength * Math.sin(angleOffset + 2 * Math.PI / 3)
-      };
+    //   // Define rhombus vertices based on circleLinePoint2 position and side length
+    //   const vertex1 = { x: circleLinePoint2.x, y: circleLinePoint2.y };
+    //   const vertex2 = {
+    //     x: vertex1.x + sideLength * Math.cos(angleOffset),
+    //     y: vertex1.y + sideLength * Math.sin(angleOffset)
+    //   };
+    //   const vertex3 = {
+    //     x: vertex2.x + sideLength * Math.cos(angleOffset + Math.PI / 3),
+    //     y: vertex2.y + sideLength * Math.sin(angleOffset + Math.PI / 3)
+    //   };
+    //   const vertex4 = {
+    //     x: vertex3.x + sideLength * Math.cos(angleOffset + 2 * Math.PI / 3),
+    //     y: vertex3.y + sideLength * Math.sin(angleOffset + 2 * Math.PI / 3)
+    //   };
 
-      // Draw the rhombus by connecting the vertices
-      rhombusShape.graphics
-        .beginStroke("purple")
-        .moveTo(vertex1.x, vertex1.y)
-        .lineTo(vertex2.x, vertex2.y)
-        .lineTo(vertex3.x, vertex3.y)
-        .lineTo(vertex4.x, vertex4.y)
-        .lineTo(vertex1.x, vertex1.y);
+    //   // Draw the rhombus by connecting the vertices
+    //   rhombusShape.graphics
+    //     .beginStroke("purple")
+    //     .moveTo(vertex1.x, vertex1.y)
+    //     .lineTo(vertex2.x, vertex2.y)
+    //     .lineTo(vertex3.x, vertex3.y)
+    //     .lineTo(vertex4.x, vertex4.y)
+    //     .lineTo(vertex1.x, vertex1.y);
 
-      // Update the stage to show the new rhombus
-      stage.update();
+    //   // Update the stage to show the new rhombus
+    //   stage.update();
+    // }
+
+    function drawR(){
+       // Rhombus parameters
+       const centerX = 400; // Center x-coordinate
+       const centerY = 300; // Center y-coordinate
+       const rhombusWidth = 150; // Width of the rhombus (horizontal diagonal)
+       const rhombusHeight = 200; // Height of the rhombus (vertical diagonal)
+
+       // Calculate the vertices of the rhombus
+       const point1 = { x: centerX, y: centerY - rhombusHeight / 2 }; // Top vertex
+       const point2 = { x: centerX + rhombusWidth / 2, y: centerY }; // Right vertex
+       const point3 = { x: centerX, y: centerY + rhombusHeight / 2 }; // Bottom vertex
+       const point4 = { x: centerX - rhombusWidth / 2, y: centerY }; // Left vertex
+
+       // Draw lines between the vertices to form the rhombus
+       const line1 = new Line(point1.x, point1.y, point2.x, point2.y).addTo(stage);
+       const line2 = new Line(point2.x, point2.y, point3.x, point3.y).addTo(stage);
+       const line3 = new Line(point3.x, point3.y, point4.x, point4.y).addTo(stage);
+       const line4 = new Line(point4.x, point4.y, point1.x, point1.y).addTo(stage);
+
+       // Update the stage to render the rhombus
+       stage.update();
     }
 
     // Add event listener to draw the rhombus on circleLinePoint2 movement
     circleLinePoint2.on("pressmove", () => {
-      drawRhombus();
+      drawR();
     });
 
     // Initial rhombus drawing
-    drawRhombus();
+    //drawRhombus();
   }
 
   function assetsLoading(stage) {
