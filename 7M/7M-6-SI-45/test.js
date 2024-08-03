@@ -198,8 +198,8 @@ async function init() {
 			return { ratio1, ratio2 };
 		}
 
-		const { leftABDis, leftACDis } = leftUpdateTriangle();
-		const { rightABDis, rightACDis } = rightUpdateTriangle();
+		// const { leftABDis, leftACDis } = leftUpdateTriangle();
+		// const { rightABDis, rightACDis } = rightUpdateTriangle();
 
 		// Function to update angles, side lengths, and left triangle shape
 		function leftUpdateTriangle() {
