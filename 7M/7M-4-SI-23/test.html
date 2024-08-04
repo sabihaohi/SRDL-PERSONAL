@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZIM Draggable and Resizable Rectangle</title>
+    
+</head>
+<body>
+    <canvas id="canvasId" width="800" height="600"></canvas>
+    <script type="module" src="zim.js"></script>
+    <script type="module">
+        import ZIM from "./zim.js";
+        // Create a ZIM stage
+        const stage = new zim.Stage("canvasId");
+        
+        // Create a rectangle
+        const rect = new ZIM.Rectangle(200, 150, "#ff0000");
+        rect.center(stage);
+        stage.addChild(rect);
+        
+        // Create resize handles
+        const handleSize = 10;
+        const handles = {
+            topLeft: new ZIM.Rectangle(handleSize, handleSize, "#0000ff"),
+            topRight: new ZIM.Rectangle(handleSize, handleSize, "#00ff00"),
+            bottomLeft: new ZIM.Rectangle(handleSize, handleSize, "#0000ff"),
+            bottomRight: new ZIM.Rectangle(handleSize, handleSize, "#0000ff")
+        };
+
+        // Position the handles
+        function updateHandles() {
+            handles.topLeft.center(rect.x - rect.width / 2, rect.y - rect.height / 2);
+            handles.topRight.center(rect.x + rect.width / 2, rect.y - rect.height / 2);
+            handles.bottomLeft.center(rect.x - rect.width / 2, rect.y + rect.height / 2);
+            handles.bottomRight.center(rect.x + rect.width / 2, rect.y + rect.height / 2);
+        }
+
+        // Add handles to the stage
+        for (const handle of Object.values(handles)) {
+            stage.addChild(handle);
+            handle.cursor = "pointer";
+        }
+
+        // Dragging the main rectangle
+        rect.drag();
+        
+        // Handle resizing
+        function onResizeStart(event) {
+            this.startX = event.stageX;
+            this.startY = event.stageY;
+            this.startWidth = rect.width;
+            this.startHeight = rect.height;
+        }
+
+        function onResizeMove(event) {
+            const deltaX = event.stageX - this.startX;
+            const deltaY = event.stageY - this.startY;
+
+            if (this === handles.topLeft) {
+                rect.width = Math.max(20, this.startWidth - deltaX);
+                rect.height = Math.max(20, this.startHeight - deltaY);
+                rect.x += deltaX / 2;
+                rect.y += deltaY / 2;
+            } else if (this === handles.topRight) {
+                rect.width = Math.max(20, this.startWidth + deltaX);
+                rect.height = Math.max(20, this.startHeight - deltaY);
+                rect.y += deltaY / 2;
+            } else if (this === handles.bottomLeft) {
+                rect.width = Math.max(20, this.startWidth - deltaX);
+                rect.height = Math.max(20, this.startHeight + deltaY);
+                rect.x += deltaX / 2;
+            } else if (this === handles.bottomRight) {
+                rect.width = Math.max(20, this.startWidth + deltaX);
+                rect.height = Math.max(20, this.startHeight + deltaY);
+            }
+
+            updateHandles();
+            stage.update();
+        }
+
+        function onResizeEnd() {
+            stage.removeAllEventListeners("mousemove");
+            stage.removeAllEventListeners("mouseup");
+        }
+
+        // Attach resize events to handles
+        for (const [position, handle] of Object.entries(handles)) {
+            handle.on("mousedown", onResizeStart);
+            handle.on("pressmove", onResizeMove);
+            handle.on("pressup", onResizeEnd);
+        }
+
+        // Initial handle positioning
+        updateHandles();
+        stage.update();
+    </script>
+</body>
+</html>

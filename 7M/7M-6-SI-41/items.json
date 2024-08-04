@@ -23,7 +23,7 @@
             "mainImage": "book2.png",
             "structure":"20m",
             "form":"Rectangle",
-            "weight":"5kg",
+            "weight":"3kg",
             "color":"red",
             "startingX": 1080,
             "startingY": 250

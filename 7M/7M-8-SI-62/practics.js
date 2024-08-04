@@ -23,10 +23,10 @@ async function init() {
 
   function ready() {
 
-
-
-    const point1 = new Circle(8, "RED").loc(800, 280);
-    const point2 = new Circle(8, "blue").loc(1000, 280).drag();
+    const bg = new Pic("assets/image/bg.png").center();
+    const stagePic = new Pic("assets/image/stage.png").center().mov(0,100);
+    const point1 = new Circle(8, "transparent").loc(800, 380);
+    const point2 = new Circle(8, "blue").loc(1000, 380).drag();
     let distance = zim.dist(point1.x, point1.y, point2.x, point2.y);
     let angle;
     const lines = [];
@@ -47,7 +47,7 @@ async function init() {
         // });
   
         console.log(distance);
-        point2.y = 280;
+        point2.y = 380;
   
         if (point2.x > 1050) {
           point2.x = 1050;
@@ -62,7 +62,7 @@ async function init() {
     
       const anglesLines = [];
 
-    createAngle();
+      createAngle();
 
       
       function createAngle(){
@@ -77,13 +77,13 @@ async function init() {
             length:distance,
             color:"red",
             lineWidth:5
-        }).pos(400,800);
+        }).pos(600,800);
         
         const upperLine = new Line({
             length:distance,
             color:"blue",
             lineWidth:5
-        }).pos(400,800).rot(-90);
+        }).pos(600,800).rot(-90);
 
 
        
@@ -123,7 +123,7 @@ async function init() {
         length: distance,
         color: "red",
         lineWidth: 10,
-    }).pos(800, 580);
+    }).pos(900, 580);
 
     console.log(line1.x, line1.y)
 
